@@ -1,0 +1,343 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class Player
+{
+    // Player instance
+    private static Player instance;
+    
+    public static Player Instance
+    {
+        get
+        {
+            if (null == instance)
+                instance = new Player();
+            return instance;
+        }
+    }
+
+    private int health; // 0 ~ 3
+    private int mental; // 0 ~ 3
+    private int money; // 0 ~ 3
+    private PlayerManager gmr;
+
+    private static List<Pocket> entirePocket = new List<Pocket>();
+    private static List<Ability> abilityPocket = new List<Ability>();
+    private static List<Item> itemPocket = new List<Item>();
+    private static List<State> statePocket = new List<State>();
+
+    private Pocket[] entirePocketSort;
+    private Ability[] abilityPocketSort;
+    private Item[] itemPocketSort;
+    private State[] statePocketSort;
+    public bool sortbytime = true;
+    public Player()
+    {
+        gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        health = 3;
+        mental = 3;
+        money = 2;
+    }
+
+    public void gainHealth(int amount)
+    {
+        if(health != 3)
+        {
+            this.health += amount;
+            gmr.imgChange(0, this.health);
+        }
+    }
+    public void loseHealth(int amount)
+    {
+        if (this.health != 0) //Die
+        {
+            this.health -= amount;
+            gmr.imgChange(0, this.health);
+            if (this.health == 0)
+                this.Die();
+        }
+        else
+            this.Die();
+
+    }
+    public void gainMental(int amount)
+    {
+        if(mental != 3)
+        {
+            this.mental += amount;
+            gmr.imgChange(1, this.mental);
+        }
+    }
+    public void loseMental(int amount)
+    {
+        if (this.mental != 0) //Die
+        {
+            this.mental -= amount;
+            gmr.imgChange(1, this.mental);
+            if (this.mental == 0)
+                this.Die();
+        }
+        else
+            this.Die();
+    }
+    public void gainMoney(int amount)
+    {
+        if(this.money != 3)
+        {
+            this.money += amount;
+            gmr.imgChange(2, this.money);
+        }
+    }
+    public void loseMoney(int amount)
+    {
+        if(this.money != 0)
+        {
+            this.money -= amount;
+            gmr.imgChange(2, this.money);
+        }
+    }
+
+    public void Die()
+    { 
+        if(health == 0)
+            Debug.Log("Die");
+        else if(mental == 0)
+            Debug.Log("Die");
+    }
+    public Pocket FindPocketElement(string name)
+    {
+        Pocket result = entirePocket.Find( // finding element
+            delegate (Pocket tmp)
+            {
+                return tmp.getName() == name;
+            });
+        if (result != null)
+            return result;
+        else
+            return null;
+    }
+    public void SetAgain() //Play Again
+    {
+        this.health = 3;
+        this.mental = 3;
+        this.money = 2;
+        gmr.imgChange(0, health);
+        gmr.imgChange(1, mental);
+        gmr.imgChange(2, money);
+    }
+    public void putPocketElements(Pocket element)
+    {
+        Pocket result = entirePocket.Find( // finding element
+            delegate (Pocket tmp)
+            {
+                return tmp.getName() == element.getName();
+            });
+
+        if(result != null) // element found
+        {
+            result.increseNum();
+        }
+        else // element not found
+        {
+            //Put element into entirePocket list
+            entirePocket.Add(element);
+
+            if (element.getType() == 0)
+            {
+                //Put element in to ability list
+                abilityPocket.Add(element as Ability);
+            }
+            else if (element.getType() == 1)
+            {
+                //Put element in to item list
+                itemPocket.Add(element as Item);
+            }
+            else if (element.getType() == 2)
+            {
+                statePocket.Add(element as State);
+            }
+        }
+    }
+    public void removePocketElement(Pocket element)
+    {
+        Pocket result = entirePocket.Find( // finding element
+            delegate (Pocket tmp)
+            {
+                return tmp.getName() == element.getName();
+            });
+        if(result != null)
+        {
+            //element found
+            if(result.getNum() >= 2) // more than one element -> just decrease num
+            {
+                result.decreseNum();
+            }
+            else // just one element -> 1. remove from lists, 2. destory object
+            {
+                //Remove From Lists
+                entirePocket.Remove(result);
+                abilityPocket.Remove(result as Ability);
+                itemPocket.Remove(result as Item);
+                statePocket.Remove(result as State);
+
+                //Destroy Obj
+                result = null;
+                GC.Collect();
+            }
+        }
+        else
+        {
+            // element not found
+            // do nothing.. maybe?
+        }
+    }
+    public void test() // TEST
+    {
+        putPocketElements(new Ability("¿ä¸®½Ç·Â", 1));
+        putPocketElements(new Item("ÃÊÄÝ¸´", 1));
+        putPocketElements(new State("°¨¿°", 1));
+        putPocketElements(new State("°¨¿°", 1));
+        putPocketElements(new State("°¨¿°", 1));
+        removePocketElement(new Item("ÃÊÄÝ¸´", 1));
+        removePocketElement(new State("°¨¿°", 1));
+        putPocketElements(new State("°¨¿°", 1));
+        putPocketElements(new State("°¨¿°", 1));
+        putPocketElements(new Ability("±Ù·Â", 1));
+        putPocketElements(new Item("»ìÃæÁ¦", 1));
+    }
+    public string setStr(int type)
+    {
+        string pocket_str = "";
+        if (sortbytime)
+        {
+            if (type == 0) // Entire
+            {
+                for (int i = 0; i < entirePocket.Count; i++)
+                {
+                    pocket_str += entirePocket[i].getNameStr() + "\n";
+                }
+            }
+            else if (type == 1) // Abilbity 
+            {
+                for (int i = 0; i < abilityPocket.Count; i++)
+                {
+                    pocket_str += abilityPocket[i].getNameStr() + "\n";
+                }
+            }
+            else if (type == 2) // Item
+            {
+                for (int i = 0; i < itemPocket.Count; i++)
+                {
+                    pocket_str += itemPocket[i].getNameStr() + "\n";
+                }
+            }
+            else if (type == 3) // State
+            {
+                for (int i = 0; i < statePocket.Count; i++)
+                {
+                    pocket_str += statePocket[i].getNameStr() + "\n";
+                }
+            }
+        }
+        else //sort by char
+        {
+            sortPocket();
+            if (type == 0) // Entire
+            {
+                for (int i = 0; i < entirePocketSort.Length; i++)
+                {
+                    pocket_str += entirePocketSort[i].getNameStr() + "\n";
+                }
+            }
+            else if (type == 1) // Abilbity 
+            {
+                for (int i = 0; i < abilityPocketSort.Length; i++)
+                {
+                    pocket_str += abilityPocketSort[i].getNameStr() + "\n";
+                }
+            }
+            else if (type == 2) // Item
+            {
+                for (int i = 0; i < itemPocketSort.Length; i++)
+                {
+                    pocket_str += itemPocketSort[i].getNameStr() + "\n";
+                }
+            }
+            else if (type == 3) // State
+            {
+                for (int i = 0; i < statePocketSort.Length; i++)
+                {
+                    pocket_str += statePocketSort[i].getNameStr() + "\n";
+                }
+            }
+        }
+        return pocket_str;
+    }
+    public List<string> setPreviewStr()
+    {
+        List<string> preStrList = new List<string>();
+        if(entirePocket.Count <= 2)
+        {
+            for(int i =0; i < entirePocket.Count; i++)
+            {
+                preStrList.Add(entirePocket[i].getNameStr());
+            }
+        }
+        else
+        {
+            for(int i =0; i < 3; i++)
+            {
+                preStrList.Add(entirePocket[i].getNameStr());
+            }
+        }
+        return preStrList;
+    }
+
+    public void sortPocket()
+    {
+        entirePocketSort = new Pocket[entirePocket.Count];
+        abilityPocketSort = new Ability[abilityPocket.Count];
+        itemPocketSort = new Item[itemPocket.Count];
+        statePocketSort = new State[statePocket.Count];
+
+
+        IComparer<Pocket> comparer = new PocketComparer();
+        if (entirePocket.Count != 0)
+        {
+            entirePocket.CopyTo(entirePocketSort);
+            if (entirePocket.Count >= 2)
+                Array.Sort(entirePocketSort, comparer);
+        }
+        if(abilityPocket.Count != 0)
+        {
+            abilityPocket.CopyTo(abilityPocketSort);
+            if(abilityPocket.Count >= 2)
+                Array.Sort(abilityPocketSort, comparer);
+        }
+        if(itemPocket.Count != 0)
+        {
+            itemPocket.CopyTo(itemPocketSort);
+            if (itemPocket.Count >= 2)
+                Array.Sort(itemPocketSort, comparer);
+        }
+        if(statePocket.Count != 0)
+        {
+            statePocket.CopyTo(statePocketSort);
+            if (statePocket.Count >= 2)
+                Array.Sort(statePocketSort, comparer);
+        }
+    }
+
+}
+
+public class PocketComparer : IComparer<Pocket> //Pocket Comparer
+{
+    public int Compare(Pocket x, Pocket y)
+    {
+        return (x.CompareTo(y));
+    }
+}
