@@ -152,6 +152,30 @@ public class Player
         else
             return null;
     }
+    public bool AbilityAvailable(player_ability ability, int value)
+    {
+        if(ability == player_ability.force)
+        {
+            if (this.force >= value)
+                return true;
+            else
+                return false;
+        }
+        else if (ability == player_ability.intellect)
+        {
+            if (this.intellect >= value)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if (this.political_power >= value)
+                return true;
+            else
+                return false;
+        }
+    }
     public void SetAgain() //Play Again
     {
         this.health = 5;
@@ -238,6 +262,9 @@ public class Player
         putPocketElements(new State("감염", 1));
         putPocketElements(new Ability("근력", 1));
         putPocketElements(new Item("살충제", 1));
+        Changeability(player_ability.force, 10, 1);
+        Changeability(player_ability.intellect, 20, 1);
+        Changeability(player_ability.political_power, 11, 1);
     }
     public string setStr(int type)
     {

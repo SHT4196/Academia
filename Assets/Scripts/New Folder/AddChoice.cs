@@ -34,8 +34,54 @@ public class AddChoice : MonoBehaviour
             }
             for(int j = 0; j < choiceCount; j++)
             {
-                Pocket pocket_find_with_name = Player.Instance.FindPocketElement(choice.need[j]);
-                if(pocket_find_with_name == null)
+                //Pocket pocket_find_with_name = Player.Instance.FindPocketElement(choice.need[j]);
+                //if(pocket_find_with_name == null)
+                //{
+                //    tmpText += "<color=#8B0000>";
+                //    tmpText += choice.need[j];
+                //    tmpText += "</color>";
+                //    need_complete = false;
+                //}
+                //else
+                //{
+                //    tmpText += "<color=#008000>";
+                //    tmpText += choice.need[j];
+                //    tmpText += "</color>";
+                //}
+                //if (j != choiceCount - 1)
+                //    tmpText += "  ";
+                bool AbilityAvailableCheck = false;
+                string[] _val = choice.need[j].Split('%');
+                if(_val[0] == "¹«")
+                {
+                    int value = 0;
+                    for(int k = 0; k < _val[1].ToIntArray().Length; k++)
+                    {
+                        value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
+                    }
+                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.force, value);
+                }
+                else if (_val[0] == "Áö")
+                {
+                    int value = 0;
+                    
+                    for (int k = 0; k < _val[1].ToIntArray().Length; k++)
+                    {
+                        value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
+                        
+                    }
+                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.intellect, value);
+                }
+                else if (_val[0] == "Á¤")
+                {
+                    int value = 0;
+                    for (int k = 0; k < _val[1].ToIntArray().Length; k++)
+                    {
+                        value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
+                    }
+                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.political_power, value);
+                }
+                if (AbilityAvailableCheck == false)
                 {
                     tmpText += "<color=#8B0000>";
                     tmpText += choice.need[j];
