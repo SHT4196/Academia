@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstStart.unity
     guid: 40bd48f0928bca0418ee95f5a99f090f
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu_inhee.unity
     guid: ccdef28bd3e5a014b995839ed7ec6046
   - enabled: 1
-    path: Assets/Scenes/GameManaging.unity
+    path: Assets/Scenes/GameManaging_inhee.unity
     guid: 2fa674cc28bd9864a806797b1e9b1302
   m_configObjects: {}
