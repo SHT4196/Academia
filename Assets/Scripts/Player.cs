@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+public enum player_ability
+{
+    force,
+    intellect,
+    political_power
+}
+
 public class Player
 {
     // Player instance
@@ -20,9 +27,11 @@ public class Player
         }
     }
 
-    private int health; // 0 ~ 3
-    private int mental; // 0 ~ 3
-    private int money; // 0 ~ 3
+    private int health; // 0 ~ 5
+    private int mental; // 0 ~ 5
+    private int force;
+    private int intellect;
+    private int political_power;
     private PlayerManager gmr;
 
     private static List<Pocket> entirePocket = new List<Pocket>();
@@ -38,14 +47,16 @@ public class Player
     public Player()
     {
         gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
-        health = 3;
-        mental = 3;
-        money = 2;
+        health = 5;
+        mental = 5;
+        force = 0;
+        intellect = 0;
+        political_power = 0;
     }
 
     public void gainHealth(int amount)
     {
-        if(health != 3)
+        if(health != 5)
         {
             this.health += amount;
             gmr.imgChange(0, this.health);
@@ -66,7 +77,7 @@ public class Player
     }
     public void gainMental(int amount)
     {
-        if(mental != 3)
+        if(mental != 5)
         {
             this.mental += amount;
             gmr.imgChange(1, this.mental);
@@ -84,22 +95,42 @@ public class Player
         else
             this.Die();
     }
-    public void gainMoney(int amount)
+
+    public void Changeability(player_ability ability, int value, int sign) //value: Amount of ability Change, sign: +1 or -1
     {
-        if(this.money != 3)
+        if (ability == player_ability.force)
         {
-            this.money += amount;
-            gmr.imgChange(2, this.money);
+            this.force += value * sign;
+            gmr.changeability_amount(ability, this.force);
+        }
+        else if (ability == player_ability.intellect)
+        {
+            this.intellect += value * sign;
+            gmr.changeability_amount(ability, this.intellect);
+        }
+        else if (ability == player_ability.political_power)
+        {
+            this.political_power += value * sign;
+            gmr.changeability_amount(ability, this.political_power);
         }
     }
-    public void loseMoney(int amount)
-    {
-        if(this.money != 0)
-        {
-            this.money -= amount;
-            gmr.imgChange(2, this.money);
-        }
-    }
+
+    //public void gainMoney(int amount)
+    //{
+    //    if(this.money != 3)
+    //    {
+    //        this.money += amount;
+    //        gmr.imgChange(2, this.money);
+    //    }
+    //}
+    //public void loseMoney(int amount)
+    //{
+    //    if(this.money != 0)
+    //    {
+    //        this.money -= amount;
+    //        gmr.imgChange(2, this.money);
+    //    }
+    //}
 
     public void Die()
     { 
@@ -108,6 +139,7 @@ public class Player
         else if(mental == 0)
             Debug.Log("Die");
     }
+
     public Pocket FindPocketElement(string name)
     {
         Pocket result = entirePocket.Find( // finding element
@@ -120,14 +152,36 @@ public class Player
         else
             return null;
     }
+    public bool AbilityAvailable(player_ability ability, int value)
+    {
+        if(ability == player_ability.force)
+        {
+            if (this.force >= value)
+                return true;
+            else
+                return false;
+        }
+        else if (ability == player_ability.intellect)
+        {
+            if (this.intellect >= value)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if (this.political_power >= value)
+                return true;
+            else
+                return false;
+        }
+    }
     public void SetAgain() //Play Again
     {
-        this.health = 3;
-        this.mental = 3;
-        this.money = 2;
+        this.health = 5;
+        this.mental = 5;
         gmr.imgChange(0, health);
         gmr.imgChange(1, mental);
-        gmr.imgChange(2, money);
     }
     public void putPocketElements(Pocket element)
     {
@@ -208,6 +262,9 @@ public class Player
         putPocketElements(new State("감염", 1));
         putPocketElements(new Ability("근력", 1));
         putPocketElements(new Item("살충제", 1));
+        Changeability(player_ability.force, 10, 1);
+        Changeability(player_ability.intellect, 20, 1);
+        Changeability(player_ability.political_power, 11, 1);
     }
     public string setStr(int type)
     {

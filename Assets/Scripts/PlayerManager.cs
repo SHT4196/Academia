@@ -5,34 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public Image health_img;
-    public Image mental_img;
-    public Image money_img;
-    public Sprite three;
-    public Sprite two;
-    public Sprite one;
-    public Sprite zero;
-    private Sprite spr;
+    public List<Image> health;
+    public List<Image> mental;
+    public Text forceAmount;
+    public Text intellectAmount;
+    public Text politicalAmount;
 
-    private Sprite[,] arr_img = new Sprite[3, 4];
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 4; i++)
-        {
-            spr = Resources.Load<Sprite>("Images/health" + i.ToString()) as Sprite;
-            arr_img[0, i] = spr;
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            spr = Resources.Load<Sprite>("Images/mental" + i.ToString()) as Sprite;
-            arr_img[1, i] = spr;
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            spr = Resources.Load<Sprite>("Images/money" + i.ToString()) as Sprite;
-            arr_img[2, i] = spr;
-        }
         imgSet();
     }
 
@@ -43,19 +24,34 @@ public class PlayerManager : MonoBehaviour
     }
     public void imgChange(int state, int value) // Change Images by state & value
     {
-        //state 0: health, 1: mental, 2: money
-        if (state == 0)
-            health_img.sprite = arr_img[0, value];
-        else if (state == 1)
-            mental_img.sprite = arr_img[1, value];
-        else if (state == 2)
-            money_img.sprite = arr_img[2, value];
+        //state 0: health, 1: mental
+        if (state == 0) {
+            for (int i = 0; i < value; i++)
+                health[i].gameObject.SetActive(true);
+            for (int i = 4; i >= value; i--)
+                health[i].gameObject.SetActive(false);
+        }
+        else if(state == 1)
+        {
+            for (int i = 0; i < value; i++)
+                mental[i].gameObject.SetActive(true);
+            for (int i = 4; i >= value; i--)
+                mental[i].gameObject.SetActive(false);
+        }
     }
     public void imgSet()
     {
-        health_img.sprite = arr_img[0, 3];
-        mental_img.sprite = arr_img[1, 3];
-        money_img.sprite = arr_img[2, 2];
+        imgChange(0, 5);
+        imgChange(1, 5);
+    }
+    public void changeability_amount(player_ability ability, int value)
+    {
+        if (ability == player_ability.force)
+            forceAmount.text = value.ToString();
+        else if (ability == player_ability.intellect)
+            intellectAmount.text = value.ToString();
+        else if (ability == player_ability.political_power)
+            politicalAmount.text = value.ToString();
     }
 }
 
