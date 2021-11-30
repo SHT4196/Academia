@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
     public Text intellectAmount;
     public Text politicalAmount;
 
+    public Image[] stat_fill = new Image[3];    //force, intel, poli 순서로 사용
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,11 +49,20 @@ public class PlayerManager : MonoBehaviour
     public void changeability_amount(player_ability ability, int value)
     {
         if (ability == player_ability.force)
+        {
             forceAmount.text = value.ToString();
+            stat_fill[0].fillAmount = value / 20.0f;
+        }
         else if (ability == player_ability.intellect)
+        {
             intellectAmount.text = value.ToString();
+            stat_fill[1].fillAmount = value / 20.0f;
+        }
         else if (ability == player_ability.political_power)
+        {
             politicalAmount.text = value.ToString();
+            stat_fill[2].fillAmount = value / 20.0f;
+        }
     }
 }
 
