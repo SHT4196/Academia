@@ -26,5 +26,4 @@ public class NextContainer
 
     public List<string> nextChoice;
     public string nextText;
-
 }

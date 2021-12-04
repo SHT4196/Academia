@@ -64,11 +64,11 @@ public class Player
     }
     public void loseHealth(int amount)
     {
-        if (this.health != 0) //Die
+        if (this.health > 0) //Die
         {
             this.health -= amount;
             gmr.imgChange(0, this.health);
-            if (this.health == 0)
+            if (this.health <= 0)
                 this.Die();
         }
         else
@@ -96,21 +96,21 @@ public class Player
             this.Die();
     }
 
-    public void Changeability(player_ability ability, int value, int sign) //value: Amount of ability Change, sign: +1 or -1
+    public void Changeability(player_ability ability, int value) //value: Amount of ability Change
     {
         if (ability == player_ability.force)
         {
-            this.force += value * sign;
+            this.force += value;
             gmr.changeability_amount(ability, this.force);
         }
         else if (ability == player_ability.intellect)
         {
-            this.intellect += value * sign;
+            this.intellect += value;
             gmr.changeability_amount(ability, this.intellect);
         }
         else if (ability == player_ability.political_power)
         {
-            this.political_power += value * sign;
+            this.political_power += value;
             gmr.changeability_amount(ability, this.political_power);
         }
     }
@@ -262,9 +262,9 @@ public class Player
         putPocketElements(new State("감염", 1));
         putPocketElements(new Ability("근력", 1));
         putPocketElements(new Item("살충제", 1));
-        Changeability(player_ability.force, 10, 1);
-        Changeability(player_ability.intellect, 20, 1);
-        Changeability(player_ability.political_power, 11, 1);
+        Changeability(player_ability.force, 40);
+        Changeability(player_ability.intellect, 20);
+        Changeability(player_ability.political_power, 11);
     }
     public string setStr(int type)
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class AddChoice : MonoBehaviour
 {
 
@@ -34,22 +35,6 @@ public class AddChoice : MonoBehaviour
             }
             for(int j = 0; j < choiceCount; j++)
             {
-                //Pocket pocket_find_with_name = Player.Instance.FindPocketElement(choice.need[j]);
-                //if(pocket_find_with_name == null)
-                //{
-                //    tmpText += "<color=#8B0000>";
-                //    tmpText += choice.need[j];
-                //    tmpText += "</color>";
-                //    need_complete = false;
-                //}
-                //else
-                //{
-                //    tmpText += "<color=#008000>";
-                //    tmpText += choice.need[j];
-                //    tmpText += "</color>";
-                //}
-                //if (j != choiceCount - 1)
-                //    tmpText += "  ";
                 bool AbilityAvailableCheck = false;
                 string[] _val = choice.need[j].Split('%');
                 if(_val[0] == "¹«")
@@ -103,13 +88,13 @@ public class AddChoice : MonoBehaviour
             {
                 choiceBox = Instantiate(choicePrefab, Panel.transform.position, Panel.transform.rotation) as GameObject;
                 choiceBox.transform.SetParent(Panel.transform, false);
-                choiceBox.transform.position += new Vector3(-90, 30 * i, 0);
+                choiceBox.transform.position += new Vector3(-180, 30 * i, 0);
             }
             else
             {
                 choiceBox = Instantiate(choicePrefab_activefalse, Panel.transform.position, Panel.transform.rotation) as GameObject;
                 choiceBox.transform.SetParent(Panel.transform, false);
-                choiceBox.transform.position += new Vector3(-90, 30 * i, 0);
+                choiceBox.transform.position += new Vector3(-180, 30 * i, 0);
             }
 
             choiceText = choiceBox.GetComponentInChildren<TextMeshProUGUI>();
@@ -117,6 +102,7 @@ public class AddChoice : MonoBehaviour
             choiceBox.name = choice.next;
 
             i--;
+            
         }
     }
 
@@ -128,5 +114,5 @@ public class AddChoice : MonoBehaviour
             Destroy(Panel.transform.GetChild(i).gameObject);
         }
     }
-    
+
 }
