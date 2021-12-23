@@ -23,11 +23,11 @@ public class Test : MonoBehaviour //Just For Test
 
     public void forceup50()
     {
-        Player.Instance.Changeability(player_ability.force, 50, 1);
+        Player.Instance.Changeability(player_ability.force, 50);
     }
     public void forcedown50()
     {
-        Player.Instance.Changeability(player_ability.force, 50, -1);
+        Player.Instance.Changeability(player_ability.force, -50);
     }
     //public void moneyup()
     //{

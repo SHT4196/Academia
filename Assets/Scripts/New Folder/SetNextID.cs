@@ -19,4 +19,5 @@ public class SetNextID : MonoBehaviour
         else
             NextContainer.Instance.nextText = gameObject.name;
     }
+    
 }
