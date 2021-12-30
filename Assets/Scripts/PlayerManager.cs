@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
             intellectAmount.text = value.ToString();
             stat_fill[1].fillAmount = value / 20.0f;
         }
-        else if (ability == player_ability.political_power)
+        else if (ability == player_ability.mana)
         {
             politicalAmount.text = value.ToString();
             stat_fill[2].fillAmount = value / 20.0f;

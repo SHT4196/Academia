@@ -115,7 +115,7 @@ public class AddText : MonoBehaviour
                     Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
                 }
             }
-            if (script.result[0] == '정')
+            if (script.result[0] == '마')
             {
                 if (script.result[1] == '+')
                 {
@@ -123,7 +123,7 @@ public class AddText : MonoBehaviour
                     {
                         string_val += script.result[j];
                     }
-                    Player.Instance.Changeability(player_ability.political_power, Int32.Parse(string_val));
+                    Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val));
                 }
                 else
                 {
@@ -131,9 +131,11 @@ public class AddText : MonoBehaviour
                     {
                         string_val += script.result[j];
                     }
-                    Player.Instance.Changeability(player_ability.political_power, Int32.Parse(string_val) * (-1));
+                    Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val) * (-1));
                 }
             }
+
+
         }
     }
 

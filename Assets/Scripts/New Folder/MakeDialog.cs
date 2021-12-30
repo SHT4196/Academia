@@ -24,6 +24,8 @@ public class MakeDialog
         List<Dictionary<string, object>> BE_Dialog = CSVReader.Read("BE");
         List<Dictionary<string, object>> SE_Dialog = CSVReader.Read("SE");
         List<Dictionary<string, object>> SE_Dialog_choice = CSVReader.Read("SE_choice");
+        List<Dictionary<string, object>> ME_Dialog_choice = CSVReader.Read("ME_choice");
+        List<Dictionary<string, object>> BE_Dialog_choice = CSVReader.Read("BE_choice");
         object storyID = null;
         object storyText = null;
         object storyNext = null;
@@ -39,7 +41,12 @@ public class MakeDialog
             {
                 Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString()));
             }
-            if (ME_Dialog[i].TryGetValue("ChoiceID", out choiceID) && ME_Dialog[i].TryGetValue("ChoiceText", out choiceText) && ME_Dialog[i].TryGetValue("ChoiceNext", out choiceNext))
+           
+        }
+
+        for (int i = 0; i < ME_Dialog_choice.Count; i++)
+        {
+            if (ME_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && ME_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && ME_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
                 Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString(), choiceNext.ToString()));
         }
 
@@ -52,7 +59,12 @@ public class MakeDialog
                 if(scr_temp.id.Contains(story_start_str))
                     RandomPool.Instance.RandomPool_List.Add(scr_temp); // RandomPool Add
             }
-            if (BE_Dialog[i].TryGetValue("ChoiceID", out choiceID) && BE_Dialog[i].TryGetValue("ChoiceText", out choiceText) && BE_Dialog[i].TryGetValue("ChoiceNext", out choiceNext))
+           
+        }
+
+        for (int i = 0; i < BE_Dialog_choice.Count; i++)
+        {
+            if (BE_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && BE_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && BE_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
                 Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString(), choiceNext.ToString()));
         }
 

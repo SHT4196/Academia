@@ -57,14 +57,14 @@ public class AddChoice : MonoBehaviour
                     }
                     AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.intellect, value);
                 }
-                else if (_val[0] == "Á¤")
+                else if (_val[0] == "¸¶")
                 {
                     int value = 0;
                     for (int k = 0; k < _val[1].ToIntArray().Length; k++)
                     {
                         value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
                     }
-                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.political_power, value);
+                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.mana, value);
                 }
                 if (AbilityAvailableCheck == false)
                 {

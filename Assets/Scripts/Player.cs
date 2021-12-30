@@ -9,7 +9,7 @@ public enum player_ability
 {
     force,
     intellect,
-    political_power
+    mana
 }
 
 public class Player
@@ -31,7 +31,7 @@ public class Player
     private int mental; // 0 ~ 5
     private int force;
     private int intellect;
-    private int political_power;
+    private int mana;
     private PlayerManager gmr;
 
     private static List<Pocket> entirePocket = new List<Pocket>();
@@ -51,7 +51,7 @@ public class Player
         mental = 5;
         force = 0;
         intellect = 0;
-        political_power = 0;
+        mana = 0;
     }
 
     public void gainHealth(int amount)
@@ -108,10 +108,10 @@ public class Player
             this.intellect += value;
             gmr.changeability_amount(ability, this.intellect);
         }
-        else if (ability == player_ability.political_power)
+        else if (ability == player_ability.mana)
         {
-            this.political_power += value;
-            gmr.changeability_amount(ability, this.political_power);
+            this.mana += value;
+            gmr.changeability_amount(ability, this.mana);
         }
     }
 
@@ -170,7 +170,7 @@ public class Player
         }
         else
         {
-            if (this.political_power >= value)
+            if (this.mana >= value)
                 return true;
             else
                 return false;
@@ -262,9 +262,9 @@ public class Player
         putPocketElements(new State("감염", 1));
         putPocketElements(new Ability("근력", 1));
         putPocketElements(new Item("살충제", 1));
-        Changeability(player_ability.force, 40);
-        Changeability(player_ability.intellect, 20);
-        Changeability(player_ability.political_power, 11);
+        Changeability(player_ability.force, 2);
+        Changeability(player_ability.intellect, 2);
+        Changeability(player_ability.mana, 2);
     }
     public string setStr(int type)
     {
