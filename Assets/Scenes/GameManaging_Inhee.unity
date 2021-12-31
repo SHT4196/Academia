@@ -1404,12 +1404,12 @@ MonoBehaviour:
   - {fileID: 415397958}
   - {fileID: 415397957}
   forceAmount: {fileID: 415397971}
-  intellectAmount: {fileID: 415397967}
-  politicalAmount: {fileID: 415397969}
+  manaAmount: {fileID: 415397967}
+  intellectAmount: {fileID: 415397969}
   stat_fill:
   - {fileID: 415397972}
-  - {fileID: 415397968}
   - {fileID: 415397970}
+  - {fileID: 415397968}
 --- !u!4 &433682822
 Transform:
   m_ObjectHideFlags: 0

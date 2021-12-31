@@ -46,7 +46,7 @@ public class AddChoice : MonoBehaviour
                     }
                     AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.force, value);
                 }
-                else if (_val[0] == "지")
+                else if (_val[0] == "정")
                 {
                     int value = 0;
                     
@@ -57,7 +57,7 @@ public class AddChoice : MonoBehaviour
                     }
                     AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.intellect, value);
                 }
-                else if (_val[0] == "마")
+                else if (_val[0] == "지")
                 {
                     int value = 0;
                     for (int k = 0; k < _val[1].ToIntArray().Length; k++)
