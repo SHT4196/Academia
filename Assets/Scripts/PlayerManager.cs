@@ -8,8 +8,9 @@ public class PlayerManager : MonoBehaviour
     public List<Image> health;
     public List<Image> mental;
     public Text forceAmount;
+    public Text manaAmount;
     public Text intellectAmount;
-    public Text politicalAmount;
+
 
     public Image[] stat_fill = new Image[3];    //force, intel, poli 순서로 사용
 
@@ -60,7 +61,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (ability == player_ability.mana)
         {
-            politicalAmount.text = value.ToString();
+            manaAmount.text = value.ToString();
             stat_fill[2].fillAmount = value / 20.0f;
         }
     }

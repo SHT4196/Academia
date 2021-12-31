@@ -1003,6 +1003,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843538984}
     m_Modifications:
+    - target: {fileID: 168178337084567365, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0f49734be8727cf4eaa66dd3475274de, type: 3}
+    - target: {fileID: 196621430394548837, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 03c582ac2f8f18b4b8c5039f531064da, type: 3}
+    - target: {fileID: 2363422769620272579, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e5e94a5f92d65149b530c94b1386842, type: 3}
+    - target: {fileID: 3255425899779909401, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8137dfddd7536e545b333c03941a4d34, type: 3}
     - target: {fileID: 3887091686359763352, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1131,6 +1147,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -80
       objectReference: {fileID: 0}
+    - target: {fileID: 5551148581854165511, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 156628f442a6b1849a241c836103200b, type: 3}
+    - target: {fileID: 6033425076774858252, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 43379d3f4e6d7074e9bbeda2ecf76465, type: 3}
+    - target: {fileID: 6698519184097445845, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Name
+      value: Intellect
+      objectReference: {fileID: 0}
     - target: {fileID: 7105834513076790697, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9
@@ -1146,6 +1174,10 @@ PrefabInstance:
     - target: {fileID: 7105834513076790697, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710844018165151230, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_Name
+      value: Mana
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
