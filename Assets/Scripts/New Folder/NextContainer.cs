@@ -22,6 +22,7 @@ public class NextContainer
         nextChoice = new List<string>();
         nextChoice.Add("m1_1");
         nextText = "M1_1";
+        MainEventController.Instance.SetME_str("M1_1");
     }
 
     public List<string> nextChoice;
