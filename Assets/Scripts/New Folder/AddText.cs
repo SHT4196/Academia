@@ -47,6 +47,11 @@ public class AddText : MonoBehaviour
             GameObject.Find("Content").GetComponent<Scroll>().pos =0;
             GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
         }
+        if(script.sprite != "null")
+        {
+            Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
+            AddPicture(pic, -1200);
+        }
         NextContainer.Instance.nextChoice = script.next;
         currentID = script.id;
     }
@@ -59,7 +64,7 @@ public class AddText : MonoBehaviour
     }
     public void AddPicture(Sprite picture, int n)          //n is changed by sprite size
     {
-        Image img = Instantiate(imgprefab);
+        Image img = Instantiate(Resources.Load<Image>("Prefab/Image"));
         imgarr.Add(img);
         img.sprite = picture;
         img.transform.SetParent(textBox[textBox.Count-1].transform, true);
