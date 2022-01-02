@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-﻿StoryID,StoryText,StoryNext,StoryResult,Sprite
-B1_1,한번만 출력,b1_1,-,null
-B2_1,한번만 출력 2,b2_1,-,null
-=======
-﻿StoryID,StoryText,StoryNext,StoryResult,ChoiceID,ChoiceText,ChoiceNext
-B1_1,한번만 발생,b1_1,-,b1_1,다음,RANDOM
-B2_1,한번만 발생,b2_1,-,b2_1,다음,RANDOM
->>>>>>> origin/haram/choicesystem
+﻿StoryID,StoryText,StoryNext,StoryResult
+B1_1,한번만 출력,b1_1,-
+B2_1,한번만 출력 2,b2_1,-

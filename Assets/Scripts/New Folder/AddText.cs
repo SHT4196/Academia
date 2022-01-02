@@ -47,7 +47,7 @@ public class AddText : MonoBehaviour
             GameObject.Find("Content").GetComponent<Scroll>().pos =0;
             GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
         }
-        if(script.sprite != "null")
+        if(script.sprite != "0")
         {
             Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
             AddPicture(pic, -1200);
@@ -82,7 +82,7 @@ public class AddText : MonoBehaviour
         string string_val = "";
         if (script.result != "-")
         {
-            if (script.result[0] == '정')
+            if (script.result[0] == '지')
             {
                 if (script.result[1] == '+')
                 {
@@ -120,7 +120,7 @@ public class AddText : MonoBehaviour
                     Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
                 }
             }
-            if (script.result[0] == '지')
+            if (script.result[0] == '마')
             {
                 if (script.result[1] == '+')
                 {
@@ -143,69 +143,6 @@ public class AddText : MonoBehaviour
 
         }
     }
-    public void Stat()
-    {
-        string string_val = "";
-        if (script.result != "-")
-        {
-            if (script.result[0] == '지')
-            {
-                if (script.result[1] == '+')
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val));
-                }
-                else
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val) * (-1));
-                }
-            }
-            if (script.result[0] == '무')
-            {
-                if (script.result[1] == '+')
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val));
-                }
-                else
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
-                }
-            }
-            if (script.result[0] == '정')
-            {
-                if (script.result[1] == '+')
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.political_power, Int32.Parse(string_val));
-                }
-                else
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.political_power, Int32.Parse(string_val) * (-1));
-                }
-            }
-        }
-    }
+   
 
 }

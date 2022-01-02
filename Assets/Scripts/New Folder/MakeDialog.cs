@@ -24,11 +24,9 @@ public class MakeDialog
         List<Dictionary<string, object>> BE_Dialog = CSVReader.Read("BE");
         List<Dictionary<string, object>> SE_Dialog = CSVReader.Read("SE");
         List<Dictionary<string, object>> SE_Dialog_choice = CSVReader.Read("SE_choice");
-<<<<<<< HEAD
         List<Dictionary<string, object>> ME_Dialog_choice = CSVReader.Read("ME_choice");
         List<Dictionary<string, object>> BE_Dialog_choice = CSVReader.Read("BE_choice");
-=======
->>>>>>> origin/haram/choicesystem
+
         object storyID = null;
         object storyText = null;
         object storyNext = null;
@@ -36,24 +34,18 @@ public class MakeDialog
         object choiceText = null;
         object choiceNext = null;
         object storyResult = null;
-<<<<<<< HEAD
         object spritename = null;
-=======
         object storyInterval = null;
->>>>>>> origin/haram/choicesystem
+
 
         string story_start_str = "_1";
         for (int i = 0; i < ME_Dialog.Count; i++)
         {
-<<<<<<< HEAD
-            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename))
+
+            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), spritename.ToString()));
-=======
-            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval))
-            {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), Int32.Parse(storyInterval.ToString())));
->>>>>>> origin/haram/choicesystem
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), spritename.ToString(), Int32.Parse(storyInterval.ToString())));
+
             }
            
         }
@@ -66,15 +58,11 @@ public class MakeDialog
 
         for (int i = 0; i < BE_Dialog.Count; i++)
         {
-<<<<<<< HEAD
+
             if (BE_Dialog[i].TryGetValue("StoryID", out storyID) && BE_Dialog[i].TryGetValue("StoryText", out storyText) && BE_Dialog[i].TryGetValue("StoryNext", out storyNext) && BE_Dialog[i].TryGetValue("StoryResult", out storyResult) && BE_Dialog[i].TryGetValue("Sprite", out spritename))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), spritename.ToString());
-=======
-            if (BE_Dialog[i].TryGetValue("StoryID", out storyID) && BE_Dialog[i].TryGetValue("StoryText", out storyText) && BE_Dialog[i].TryGetValue("StoryNext", out storyNext) && BE_Dialog[i].TryGetValue("StoryResult", out storyResult))
-            {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), 0);
->>>>>>> origin/haram/choicesystem
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), spritename.ToString(),0);
+
                 Script_Dialog.Add(scr_temp);
                 if(scr_temp.id.Contains(story_start_str))
                     RandomPool.Instance.RandomPool_List.Add(scr_temp); // RandomPool Add
@@ -90,15 +78,11 @@ public class MakeDialog
 
         for (int i = 0; i < SE_Dialog.Count; i++)
         {
-<<<<<<< HEAD
+
             if (SE_Dialog[i].TryGetValue("StoryID", out storyID) && SE_Dialog[i].TryGetValue("StoryText", out storyText) && SE_Dialog[i].TryGetValue("StoryNext", out storyNext) && SE_Dialog[i].TryGetValue("StoryResult", out storyResult) && SE_Dialog[i].TryGetValue("Sprite", out spritename))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), spritename.ToString());
-=======
-            if (SE_Dialog[i].TryGetValue("StoryID", out storyID) && SE_Dialog[i].TryGetValue("StoryText", out storyText) && SE_Dialog[i].TryGetValue("StoryNext", out storyNext) && SE_Dialog[i].TryGetValue("StoryResult", out storyResult))
-            {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), 0);
->>>>>>> origin/haram/choicesystem
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString(), spritename.ToString(),0);
+
                 Script_Dialog.Add(scr_temp);
                 if (scr_temp.id.Contains(story_start_str))
                     RandomPool.Instance.RandomPool_List.Add(scr_temp); // RandomPool Add

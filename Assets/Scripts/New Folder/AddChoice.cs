@@ -88,21 +88,17 @@ public class AddChoice : MonoBehaviour
             {
                 choiceBox = Instantiate(choicePrefab, Panel.transform.position, Panel.transform.rotation) as GameObject;
                 choiceBox.transform.SetParent(Panel.transform, false);
-<<<<<<< HEAD
+
                 choiceBox.transform.position += new Vector3(-1300, -150 * i, 0);
-=======
-                choiceBox.transform.position += new Vector3(-180, 30 * i, 0);
->>>>>>> origin/haram/choicesystem
+
             }
             else
             {
                 choiceBox = Instantiate(choicePrefab_activefalse, Panel.transform.position, Panel.transform.rotation) as GameObject;
                 choiceBox.transform.SetParent(Panel.transform, false);
-<<<<<<< HEAD
+
                 choiceBox.transform.position += new Vector3(-1300, -150 * i, 0);
-=======
-                choiceBox.transform.position += new Vector3(-180, 30 * i, 0);
->>>>>>> origin/haram/choicesystem
+
             }
 
             choiceText = choiceBox.GetComponentInChildren<TextMeshProUGUI>();

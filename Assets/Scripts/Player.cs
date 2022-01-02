@@ -110,13 +110,10 @@ public class Player
         }
         else if (ability == player_ability.mana)
         {
-<<<<<<< HEAD
+
             this.mana += value;
             gmr.changeability_amount(ability, this.mana);
-=======
-            this.political_power += value;
-            gmr.changeability_amount(ability, this.political_power);
->>>>>>> origin/haram/choicesystem
+
         }
     }
 
@@ -267,16 +264,12 @@ public class Player
         putPocketElements(new State("감염", 1));
         putPocketElements(new Ability("근력", 1));
         putPocketElements(new Item("살충제", 1));
-<<<<<<< HEAD
         Changeability(player_ability.force, 2);
         Changeability(player_ability.intellect, 2);
         Changeability(player_ability.mana, 2);
-=======
-        Changeability(player_ability.force, 40);
-        Changeability(player_ability.intellect, 20);
-        Changeability(player_ability.political_power, 11);
->>>>>>> origin/haram/choicesystem
+
     }
+
     public string setStr(int type)
     {
         string pocket_str = "";
