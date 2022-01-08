@@ -54,46 +54,72 @@ public class Player
         mana = 0;
     }
 
-    public void gainHealth(int amount)
-    {
-        if(health != 5)
-        {
-            this.health += amount;
-            gmr.imgChange(0, this.health);
-        }
-    }
-    public void loseHealth(int amount)
-    {
-        if (this.health > 0) //Die
-        {
-            this.health -= amount;
-            gmr.imgChange(0, this.health);
-            if (this.health <= 0)
-                this.Die();
-        }
-        else
-            this.Die();
+    //public void gainHealth(int amount)
+    //{
+    //    if(health != 5)
+    //    {
+    //        this.health += amount;
+    //        gmr.imgChange(0, this.health);
+    //    }
+    //}
+    //public void loseHealth(int amount)
+    //{
+    //    if (this.health > 0) //Die
+    //    {
+    //        this.health -= amount;
+    //        gmr.imgChange(0, this.health);
+    //        if (this.health <= 0)
+    //            this.Die();
+    //    }
+    //    else
+    //        this.Die();
 
-    }
-    public void gainMental(int amount)
+    //}
+    public void HealthChange(int value)
     {
-        if(mental != 5)
+        if (health > 0)
         {
-            this.mental += amount;
-            gmr.imgChange(1, this.mental);
+            this.health += value;
+            if (this.health >= 5)
+                this.health = 5;
+            gmr.imgChange(0, this.health);
         }
-    }
-    public void loseMental(int amount)
-    {
-        if (this.mental != 0) //Die
-        {
-            this.mental -= amount;
-            gmr.imgChange(1, this.mental);
-            if (this.mental == 0)
-                this.Die();
-        }
-        else
+        if (health <= 0)
             this.Die();
+        Debug.Log(health);
+    }
+    //public void gainMental(int amount)
+    //{
+    //    if(mental != 5)
+    //    {
+    //        this.mental += amount;
+    //        gmr.imgChange(1, this.mental);
+    //    }
+    //}
+    //public void loseMental(int amount)
+    //{
+    //    if (this.mental != 0) //Die
+    //    {
+    //        this.mental -= amount;
+    //        gmr.imgChange(1, this.mental);
+    //        if (this.mental == 0)
+    //            this.Die();
+    //    }
+    //    else
+    //        this.Die();
+    //}
+    public void MentalChange(int value)
+    {
+        if (mental > 0)
+        {
+            this.mental += value;
+            if (this.mental >= 5)
+                this.mental = 5;
+            gmr.imgChange(1, this.mental);
+        }
+        if (mental <= 0)
+            this.Die();
+        Debug.Log(mental);
     }
 
     public void Changeability(player_ability ability, int value) //value: Amount of ability Change
@@ -116,23 +142,6 @@ public class Player
 
         }
     }
-
-    //public void gainMoney(int amount)
-    //{
-    //    if(this.money != 3)
-    //    {
-    //        this.money += amount;
-    //        gmr.imgChange(2, this.money);
-    //    }
-    //}
-    //public void loseMoney(int amount)
-    //{
-    //    if(this.money != 0)
-    //    {
-    //        this.money -= amount;
-    //        gmr.imgChange(2, this.money);
-    //    }
-    //}
 
     public void Die()
     { 
