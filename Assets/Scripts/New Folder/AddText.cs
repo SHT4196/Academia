@@ -101,70 +101,108 @@ public class AddText : MonoBehaviour
     }
     public void Stat()
     {
-        string string_val = "";
-        if (script.result != "-")
+        for(int i = 0; i < script.result.Count; i++)
         {
-            if (script.result[0] == '지')
+            string temp_str = script.result[i];
+            string string_val = "";
+            if (temp_str != "-")
             {
-                if (script.result[1] == '+')
+                if (temp_str[0] == '지')
                 {
-                    for (int j = 2; j < script.result.Length; j++)
+                    if (temp_str[1] == '+')
                     {
-                        string_val += script.result[j];
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val));
                     }
-                    Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val));
+                    else
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val) * (-1));
+                    }
                 }
-                else
+                if (temp_str[0] == '무')
                 {
-                    for (int j = 2; j < script.result.Length; j++)
+                    if (temp_str[1] == '+')
                     {
-                        string_val += script.result[j];
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val));
                     }
-                    Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val) * (-1));
+                    else
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
+                    }
+                }
+                if (temp_str[0] == '마')
+                {
+                    if (temp_str[1] == '+')
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val));
+                    }
+                    else
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val) * (-1));
+                    }
+                }
+                if (temp_str[0] == '체')
+                {
+                    if (temp_str[1] == '+')
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.HealthChange(Int32.Parse(string_val));
+                    }
+                    else
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.HealthChange(Int32.Parse(string_val) * (-1));
+                    }
+                }
+                if (temp_str[0] == '정')
+                {
+                    if (temp_str[1] == '+')
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.MentalChange(Int32.Parse(string_val));
+                    }
+                    else
+                    {
+                        for (int j = 2; j < temp_str.Length; j++)
+                        {
+                            string_val += temp_str[j];
+                        }
+                        Player.Instance.MentalChange(Int32.Parse(string_val) * (-1));
+                    }
                 }
             }
-            if (script.result[0] == '무')
-            {
-                if (script.result[1] == '+')
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val));
-                }
-                else
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
-                }
-            }
-            if (script.result[0] == '마')
-            {
-                if (script.result[1] == '+')
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val));
-                }
-                else
-                {
-                    for (int j = 2; j < script.result.Length; j++)
-                    {
-                        string_val += script.result[j];
-                    }
-                    Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val) * (-1));
-                }
-            }
-
-
         }
     }
-   
-
 }
