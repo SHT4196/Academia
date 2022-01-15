@@ -17,7 +17,8 @@ public class AddText : MonoBehaviour
 
     public Image imgprefab;
     private static List<Image> imgarr = new List<Image>();
-    
+
+    private static List<bool> isimage = new List<bool>();
 
     // Start is called before the first frame update
     void Start()
@@ -31,29 +32,50 @@ public class AddText : MonoBehaviour
         script = MakeDialog.Instance.FindScript(NextContainer.Instance.nextText);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) // ���� ���� ���丮
         {
+            if(script.sprite != "null")
+            {
+                Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
+                AddPicture(pic);
+                isimage.Add(true);
+            }
+            else
+            {
+                isimage.Add(false);
+            }
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
             textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count-1].text = script.text;
-            GameObject.Find("Content").GetComponent<Scroll>().pos += 600;
+            if(isimage[isimage.Count-2])
+            {
+                GameObject.Find("Content").GetComponent<Scroll>().pos += 480;
+            }
+            GameObject.Find("Content").GetComponent<Scroll>().pos += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
+            GameObject.Find("Content").GetComponent<Scroll>().pos += 200;
             GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
         }
         else //���ο� ���丮
         {
             DestroyScript();
             DestroyPicture();
+            if(script.sprite != "null")
+            {
+                Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
+                AddPicture(pic);
+                isimage.Add(true);
+            }
+            else
+            {
+                isimage.Add(false);
+            }
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[0].text = script.text;
-            GameObject.Find("Content").GetComponent<Scroll>().pos =0;
+            GameObject.Find("Content").GetComponent<Scroll>().pos = 0;
             GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
-        }
-        if(script.sprite != "0")
-        {
-            Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
-            AddPicture(pic, -1200);
         }
         NextContainer.Instance.nextChoice = script.next;
         currentID = script.id;
+        Debug.Log(textBox[0].GetComponent<RectTransform>().rect.y);
     }
 
     public void DestroyScript(){
@@ -62,13 +84,13 @@ public class AddText : MonoBehaviour
         }
         textBox.Clear();
     }
-    public void AddPicture(Sprite picture, int n)          //n is changed by sprite size
+    public void AddPicture(Sprite picture)          //n is changed by sprite size
     {
         Image img = Instantiate(Resources.Load<Image>("Prefab/Image"));
         imgarr.Add(img);
         img.sprite = picture;
-        img.transform.SetParent(textBox[textBox.Count-1].transform, true);
-        img.transform.position = textBox[textBox.Count-1].transform.position + new Vector3(0, n, 0);
+        img.transform.SetParent(GameObject.Find("Content").transform, true);
+        //img.transform.position = textBox[textBox.Count-1].transform.position;
     }
 
     public void DestroyPicture(){
