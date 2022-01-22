@@ -4,44 +4,60 @@ using UnityEngine;
 
 public class Scroll : MonoBehaviour
 {
+    private static Scroll instance = null;
+
+    void Awake()
+    {
+        if(null == instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    public static Scroll Instance
+    {
+        get 
+        { 
+            if (null == instance) return null;
+            return instance;
+
+        }
+    }
+
     public float pos;
     private float elapsedTime = 0;
     public bool IsScroll = false;
     private bool first = true;
+    public GameObject content;
+    [SerializeField] public float scrollAmount = 0f;
 
+    Vector2 endpos;
 
     void Update()
     {
-        if (IsScroll)
+        if (IsScroll && GameObject.Find("Content").activeInHierarchy)
         {
-            scroll();
+            StartCoroutine(Scrollroutine());
         }
     }
-    public void scroll()
+    public IEnumerator Scrollroutine()
     {
-        RectTransform set = gameObject.GetComponent<RectTransform>();
-        while (IsScroll)
+        RectTransform set = content.gameObject.GetComponent<RectTransform>();
+        yield return set.anchoredPosition += new Vector2(0, scrollAmount * 0.01f);
+        if(Mathf.Abs(set.anchoredPosition.y - pos) <= 1f)
         {
-            Vector3 nowpos = set.localPosition;
-            Vector3 endpos;
-            if (first)
-            {
-                endpos = new Vector3(392, pos, 0);
-                first = false;
-            }
-            else
-            {
-                endpos = new Vector3(392 * 2, pos, 0);
-            }
-            elapsedTime += Time.deltaTime;
-            float percentageComplete = elapsedTime / 3f;
-            set.localPosition = Vector3.Lerp(nowpos, endpos, Mathf.SmoothStep(0, 1, percentageComplete));
-            if (Vector3.Distance(set.localPosition, endpos) < 0.1f)
-            {
-                IsScroll = false;
-            }
+            set.anchoredPosition.Set(set.anchoredPosition.x, pos);
+            IsScroll = false;
+            StopAllCoroutines();
         }
-        elapsedTime = 0;
+    }
+    public void ScrollReset()
+    {
+        RectTransform set = content.gameObject.GetComponent<RectTransform>();
+        set.localPosition = new Vector3(set.localPosition.x, 0);
     }
 }
-

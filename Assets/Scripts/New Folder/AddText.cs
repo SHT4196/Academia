@@ -44,6 +44,7 @@ public class AddText : MonoBehaviour
     {
         script = MakeDialog.Instance.FindScript(NextContainer.Instance.nextText);
         DestroyEmpty();
+        float ScrollAmount = 0;
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) // ���� ���� ���丮
         {
             if(script.sprite != "null")
@@ -57,16 +58,23 @@ public class AddText : MonoBehaviour
                 isimage.Add(false);
             }
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
-            textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);   
+            textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
+            PlayerPrefs.SetString("ScriptID", script.id);
+
             Get_Typing(script.text, textBox[textBox.Count-1]);
+
             if(isimage[isimage.Count-2])
             {
-                GameObject.Find("Content").GetComponent<Scroll>().pos += 480;
+                Scroll.Instance.pos += 480f;
+                ScrollAmount += 480f;
             }
-            GameObject.Find("Content").GetComponent<Scroll>().pos += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
-            GameObject.Find("Content").GetComponent<Scroll>().pos += 200;
+            Scroll.Instance.pos += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
+            ScrollAmount += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
+            Scroll.Instance.pos += 200f;
+            ScrollAmount += 200f;
             AddEmpty();
-            GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
+            Scroll.Instance.scrollAmount = ScrollAmount;
+            Scroll.Instance.IsScroll = true;
         }
         else
         {
@@ -84,10 +92,14 @@ public class AddText : MonoBehaviour
             }
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
+            PlayerPrefs.SetString("ScriptID", script.id);
+
             Get_Typing(script.text, textBox[0]);
-            GameObject.Find("Content").GetComponent<Scroll>().pos = 0;
+            
+            Scroll.Instance.pos = 0f;
+            Scroll.Instance.scrollAmount = 0f;
             AddEmpty();
-            GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
+            Scroll.Instance.ScrollReset();
         }
         NextContainer.Instance.nextChoice = script.next;
         currentID = script.id;
@@ -106,7 +118,6 @@ public class AddText : MonoBehaviour
         imgarr.Add(img);
         img.sprite = picture;
         img.transform.SetParent(GameObject.Find("Content").transform, true);
-        //img.transform.position = textBox[textBox.Count-1].transform.position;
     }
 
     public void DestroyPicture()

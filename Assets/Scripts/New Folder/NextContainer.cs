@@ -20,9 +20,23 @@ public class NextContainer
     public NextContainer()
     {
         nextChoice = new List<string>();
-        nextChoice.Add("m1_1");
-        nextText = "M1_1";
-        MainEventController.Instance.SetME_str("M1_1");
+        Debug.Log(PlayerPrefs.GetString("ScriptID"));
+        if(PlayerPrefs.GetString("ScriptID") == "")
+        {
+            nextChoice.Add("m1_1");
+            nextText = "M1_1";
+            MainEventController.Instance.SetME_str("M1_1");
+        }
+        else
+        {
+            string currentID = PlayerPrefs.GetString("ScriptID");
+            Script currentScript = MakeDialog.Instance.FindScript(currentID);
+            for(int i =0; i < currentScript.next.Count; i++)
+            {
+                nextChoice.Add(currentScript.next[i]);
+            }
+            nextText = currentID;
+        }
     }
 
     public List<string> nextChoice;
