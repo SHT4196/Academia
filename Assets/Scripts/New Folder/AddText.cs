@@ -15,10 +15,23 @@ public class AddText : MonoBehaviour
     private Script script;
     private List<Choice> choice;
 
-    public Image imgprefab;
     private static List<Image> imgarr = new List<Image>();
 
     private static List<bool> isimage = new List<bool>();
+
+    private static TextMeshProUGUI empty;
+
+	public static float delay = 0.01f;
+    private static Coroutine coroutine;
+
+    private static string fulltext;
+    private string currentText;
+    private static TextMeshProUGUI tb;      //current text box
+
+    private static bool text_exit;
+    private static bool text_full;
+    private static bool text_cut;
+    private static bool trigger = false;     //trigger coroutine
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +43,7 @@ public class AddText : MonoBehaviour
     public void AddScript()
     {
         script = MakeDialog.Instance.FindScript(NextContainer.Instance.nextText);
+        DestroyEmpty();
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) // ���� ���� ���丮
         {
             if(script.sprite != "null")
@@ -43,17 +57,18 @@ public class AddText : MonoBehaviour
                 isimage.Add(false);
             }
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
-            textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
-            textBox[textBox.Count-1].text = script.text;
+            textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);   
+            Get_Typing(script.text, textBox[textBox.Count-1]);
             if(isimage[isimage.Count-2])
             {
                 GameObject.Find("Content").GetComponent<Scroll>().pos += 480;
             }
             GameObject.Find("Content").GetComponent<Scroll>().pos += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
             GameObject.Find("Content").GetComponent<Scroll>().pos += 200;
+            AddEmpty();
             GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
         }
-        else //���ο� ���丮
+        else
         {
             DestroyScript();
             DestroyPicture();
@@ -69,16 +84,17 @@ public class AddText : MonoBehaviour
             }
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
-            textBox[0].text = script.text;
+            Get_Typing(script.text, textBox[0]);
             GameObject.Find("Content").GetComponent<Scroll>().pos = 0;
+            AddEmpty();
             GameObject.Find("Content").GetComponent<Scroll>().IsScroll = true;
         }
         NextContainer.Instance.nextChoice = script.next;
         currentID = script.id;
-        Debug.Log(textBox[0].GetComponent<RectTransform>().rect.y);
     }
 
-    public void DestroyScript(){
+    public void DestroyScript()
+    {
         for(int i = 0; i < textBox.Count(); i++){
             Destroy(textBox[i].gameObject);
         }
@@ -93,12 +109,28 @@ public class AddText : MonoBehaviour
         //img.transform.position = textBox[textBox.Count-1].transform.position;
     }
 
-    public void DestroyPicture(){
+    public void DestroyPicture()
+    {
         for(int i = 0; i < imgarr.Count();i++){
-            Destroy(imgarr[i]);
+            Destroy(imgarr[i].gameObject);
         }
         imgarr.Clear();
     }
+
+    public void AddEmpty()
+    {
+        empty = Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/EmptyText"));
+        empty.transform.SetParent(GameObject.Find("Content").transform, true);
+    }
+    public void DestroyEmpty()
+    {
+        if(empty != null)
+        {
+            Destroy(empty.gameObject);
+            empty = null;
+        }
+    }
+    
     public void Stat()
     {
         for(int i = 0; i < script.result.Count; i++)
@@ -203,6 +235,63 @@ public class AddText : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void Get_Typing(string _fullText, TextMeshProUGUI textbox)
+    {
+        text_exit = false;
+        text_full = false;
+        text_cut = false;
+
+        fulltext = _fullText;
+        tb = textbox;
+
+        trigger = true;
+    }
+
+    public void End_Typing()
+    {
+        if (!text_full)
+        {
+            text_cut = true;
+        }
+    }
+
+    private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)
+    {
+        currentText = "";
+        for (int i = 0; i < _fullText.Length; i++)
+        {
+            if (text_cut == true)
+            {
+                break;
+            }
+            currentText = _fullText.Substring(0, i + 1);
+            _textBox.text = currentText;
+            yield return new WaitForSeconds(delay);
+        }
+        _textBox.text = _fullText;
+        text_exit = true;
+        StopCoroutine(coroutine);
+
+        text_full = true;
+    }
+    void Update() 
+    {
+        if (trigger)
+        {
+            coroutine = StartCoroutine(ShowText(fulltext, tb));
+            trigger = false;
+        }
+        if (text_exit)
+        {
+            int n = GameObject.Find("Panel").transform.childCount;
+            for (int i = 0; i < n; i++)
+            {
+                GameObject.Find("Panel").transform.GetChild(i).gameObject.SetActive(true);
+            }
+            text_exit = false;
         }
     }
 }
