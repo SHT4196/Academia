@@ -48,11 +48,11 @@ public class Scroll : MonoBehaviour
     {
         RectTransform set = content.gameObject.GetComponent<RectTransform>();
         yield return set.anchoredPosition += new Vector2(0, scrollAmount * 0.01f);
-        if(Mathf.Abs(set.anchoredPosition.y - pos) <= 1f)
+        if(set.anchoredPosition.y >= pos)
         {
             set.anchoredPosition.Set(set.anchoredPosition.x, pos);
             IsScroll = false;
-            StopAllCoroutines();
+            StopCoroutine(Scrollroutine());
         }
     }
     public void ScrollReset()

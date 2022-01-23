@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        imgSet();
+        //imgSet();
     }
 
     // Update is called once per frame
@@ -42,10 +42,10 @@ public class PlayerManager : MonoBehaviour
                 mental[i].gameObject.SetActive(false);
         }
     }
-    public void imgSet()
+    public void imgSet(int health, int mental)
     {
-        imgChange(0, 5);
-        imgChange(1, 5);
+        imgChange(0, health);
+        imgChange(1, mental);
     }
     public void changeability_amount(player_ability ability, int value)
     {

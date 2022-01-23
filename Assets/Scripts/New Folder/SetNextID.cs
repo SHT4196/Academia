@@ -9,7 +9,8 @@ public class SetNextID : MonoBehaviour
     {
         if (gameObject.name == "RANDOM")
         {
-            //Script next = MakeDialog.Instance.FindScript()
+            if(PlayerPrefs.GetInt("ME_interval") != 0)
+                MainEventController.Instance.SetInterval(PlayerPrefs.GetInt("ME_interval"));
             if (MainEventController.Instance.GetInterval() > 0) //Random «Æ ¡¯¿‘
             {
                 MainEventController.Instance.IntervalDecrease();
@@ -19,6 +20,7 @@ public class SetNextID : MonoBehaviour
                     temp = Random.Range(0, RandomPool.Instance.RandomPool_List.Count);
                 RandomPool.Instance.rand = temp;
                 NextContainer.Instance.nextText = RandomPool.Instance.RandomPool_List[temp].id;
+                PlayerPrefs.SetInt("ME_interval", MainEventController.Instance.GetInterval());
             }
             else 
             {
@@ -31,6 +33,7 @@ public class SetNextID : MonoBehaviour
             if(gameObject.name[0].Equals('M'))
             {
                 MainEventController.Instance.SetME_str(gameObject.name);
+                PlayerPrefs.SetString("ME_str", gameObject.name);
                 MainEventController.Instance.FirstSetInterval();
             }
             NextContainer.Instance.nextText = gameObject.name;

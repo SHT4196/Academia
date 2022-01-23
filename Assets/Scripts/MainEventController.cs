@@ -26,6 +26,7 @@ public class MainEventController
     {
         ME_str = _ME;
         ME_storyID = _ME[1] - '0';
+        PlayerPrefs.SetInt("ME_storyID", ME_storyID);
     }
     public string GetME_str()
     {
@@ -33,13 +34,16 @@ public class MainEventController
     }
     public string getNextME()
     {
+        ME_storyID = PlayerPrefs.GetInt("ME_storyID");
         ME_storyID++;
         return "M" + ME_storyID + "_1";
     }
     public void FirstSetInterval()
     {
-        ME_interval = MakeDialog.Instance.FindScript(ME_str).interval;
-        
+        if (PlayerPrefs.GetInt("ME_interval") == 0)
+            ME_interval = MakeDialog.Instance.FindScript(ME_str).interval;
+        else
+            ME_interval = PlayerPrefs.GetInt("ME_interval");
     }
     public void IntervalDecrease()
     {
@@ -48,5 +52,9 @@ public class MainEventController
     public int GetInterval()
     {
         return ME_interval;
+    }
+    public void SetInterval(int value)
+    {
+        ME_interval = value;
     }
 }
