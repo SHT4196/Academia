@@ -729,7 +729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &89141000
 Transform:
   m_ObjectHideFlags: 0
@@ -1147,7 +1147,7 @@ AudioSource:
   m_GameObject: {fileID: 235518158}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 6521373742031886266, guid: 7b7687bc4ad54f649ade631f1650ec30, type: 2}
+  OutputAudioMixerGroup: {fileID: -1747262354651197375, guid: 35f71ccce0f26f74282f79eb0e2836c0, type: 2}
   m_audioClip: {fileID: 8300000, guid: b41e60a8cdf35ba4b942d5b0391f61bb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3654,7 +3654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360e2d611bc40c344947d6633eb86758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: 7b7687bc4ad54f649ade631f1650ec30, type: 2}
+  masterMixer: {fileID: 24100000, guid: 35f71ccce0f26f74282f79eb0e2836c0, type: 2}
   BgmSlider: {fileID: 1766381423}
 --- !u!114 &744397763
 MonoBehaviour:
@@ -5023,7 +5023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 53.617676, y: -2586.1865}
+  m_AnchoredPosition: {x: 47, y: -2572}
   m_SizeDelta: {x: 808, y: 229.351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978674358
@@ -5102,7 +5102,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1278226662670573776, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 0.7372549
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573777, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: panel
@@ -5118,7 +5118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573778, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.42686564
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573778, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_RootOrder
@@ -5146,7 +5146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573778, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 399.9614
+      value: 540.15
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573778, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_LocalScale.x
@@ -5194,7 +5194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573778, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140.1886
+      value: 230.5705
       objectReference: {fileID: 0}
     - target: {fileID: 1278226662670573778, guid: 66787f477ec296b448ec83494fae7334, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
