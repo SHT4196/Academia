@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     public Text forceAmount;
     public Text manaAmount;
     public Text intellectAmount;
-
+    public Image diepanel;
 
     public Image[] stat_fill = new Image[3];    //force, intel, poli 순서로 사용
 
@@ -64,6 +65,14 @@ public class PlayerManager : MonoBehaviour
             manaAmount.text = value.ToString();
             stat_fill[2].fillAmount = value / 20.0f;
         }
+    }
+    public void DieAndSceneChange()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void Die()
+    {
+        Player.Instance.Die();
     }
 }
 

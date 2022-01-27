@@ -111,6 +111,7 @@ public class Player
     public void Die()
     {
         PlayerPrefs.DeleteAll();
+        gmr.diepanel.gameObject.SetActive(true);
         if(health == 0)
             Debug.Log("Die");
         else if(mental == 0)
