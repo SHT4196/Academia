@@ -44,7 +44,7 @@ public class MakeDialog
 
             if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), Int32.Parse(storyInterval.ToString())));
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), Int32.Parse(storyInterval.ToString())));
 
             }
            
@@ -53,7 +53,7 @@ public class MakeDialog
         for (int i = 0; i < ME_Dialog_choice.Count; i++)
         {
             if (ME_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && ME_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && ME_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
-                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString(), choiceNext.ToString()));
+                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString()));
         }
 
         for (int i = 0; i < BE_Dialog.Count; i++)
@@ -61,7 +61,7 @@ public class MakeDialog
 
             if (BE_Dialog[i].TryGetValue("StoryID", out storyID) && BE_Dialog[i].TryGetValue("StoryText", out storyText) && BE_Dialog[i].TryGetValue("StoryNext", out storyNext) && BE_Dialog[i].TryGetValue("StoryResult", out storyResult) && BE_Dialog[i].TryGetValue("Sprite", out spritename))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(),0);
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(),0);
 
                 Script_Dialog.Add(scr_temp);
                 if(scr_temp.id.Contains(story_start_str))
@@ -73,7 +73,7 @@ public class MakeDialog
         for (int i = 0; i < BE_Dialog_choice.Count; i++)
         {
             if (BE_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && BE_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && BE_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
-                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString(), choiceNext.ToString()));
+                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString()));
         }
 
         for (int i = 0; i < SE_Dialog.Count; i++)
@@ -81,7 +81,7 @@ public class MakeDialog
 
             if (SE_Dialog[i].TryGetValue("StoryID", out storyID) && SE_Dialog[i].TryGetValue("StoryText", out storyText) && SE_Dialog[i].TryGetValue("StoryNext", out storyNext) && SE_Dialog[i].TryGetValue("StoryResult", out storyResult) && SE_Dialog[i].TryGetValue("Sprite", out spritename))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('n', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(),0);
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(),0);
 
                 Script_Dialog.Add(scr_temp);
                 if (scr_temp.id.Contains(story_start_str))
@@ -91,7 +91,7 @@ public class MakeDialog
         for(int i = 0; i < SE_Dialog_choice.Count; i++)
         {
             if (SE_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && SE_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && SE_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
-                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString(), choiceNext.ToString()));
+                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString()));
         }
     }
 
