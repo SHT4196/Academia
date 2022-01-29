@@ -32,7 +32,7 @@ public class Player
     private int force;
     private int intellect;
     private int mana;
-    private PlayerManager gmr;
+    public PlayerManager gmr;
 
     private static List<Pocket> entirePocket = new List<Pocket>();
     private static List<Ability> abilityPocket = new List<Ability>();
@@ -44,37 +44,37 @@ public class Player
     private Item[] itemPocketSort;
     private State[] statePocketSort;
     public bool sortbytime = true;
+    public bool playerReset = false;
+
     public Player()
     {
         gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        health = PlayerPrefs.GetInt("Health") == 0 ? 5 : PlayerPrefs.GetInt("Health");
+        mental = PlayerPrefs.GetInt("Mental") == 0 ? 5 : PlayerPrefs.GetInt("Mental");
+        gmr.imgSet(health, mental);
+        
+        force = PlayerPrefs.GetInt("Force") == 0 ? 2 : PlayerPrefs.GetInt("Force");
+        intellect = PlayerPrefs.GetInt("Intellect") == 0 ? 2 : PlayerPrefs.GetInt("Intellect");
+        mana = PlayerPrefs.GetInt("Mana") == 0 ? 2 : PlayerPrefs.GetInt("Mana");
+        gmr.changeability_amount(player_ability.force, force);
+        gmr.changeability_amount(player_ability.intellect, intellect);
+        gmr.changeability_amount(player_ability.mana, mana);
+    }
+    public void ResetPlayer()
+    {
+        gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        Debug.Log("HI");
         health = 5;
         mental = 5;
-        force = 0;
-        intellect = 0;
-        mana = 0;
+        gmr.imgSet(health, mental);
+        force = 2;
+        intellect = 2;
+        mana = 2;
+        gmr.changeability_amount(player_ability.force, force);
+        gmr.changeability_amount(player_ability.intellect, intellect);
+        gmr.changeability_amount(player_ability.mana, mana);
     }
 
-    //public void gainHealth(int amount)
-    //{
-    //    if(health != 5)
-    //    {
-    //        this.health += amount;
-    //        gmr.imgChange(0, this.health);
-    //    }
-    //}
-    //public void loseHealth(int amount)
-    //{
-    //    if (this.health > 0) //Die
-    //    {
-    //        this.health -= amount;
-    //        gmr.imgChange(0, this.health);
-    //        if (this.health <= 0)
-    //            this.Die();
-    //    }
-    //    else
-    //        this.Die();
-
-    //}
     public void HealthChange(int value)
     {
         if (health > 0)
@@ -83,31 +83,11 @@ public class Player
             if (this.health >= 5)
                 this.health = 5;
             gmr.imgChange(0, this.health);
+            PlayerPrefs.SetInt("Health", this.health);
         }
         if (health <= 0)
             this.Die();
-        Debug.Log(health);
     }
-    //public void gainMental(int amount)
-    //{
-    //    if(mental != 5)
-    //    {
-    //        this.mental += amount;
-    //        gmr.imgChange(1, this.mental);
-    //    }
-    //}
-    //public void loseMental(int amount)
-    //{
-    //    if (this.mental != 0) //Die
-    //    {
-    //        this.mental -= amount;
-    //        gmr.imgChange(1, this.mental);
-    //        if (this.mental == 0)
-    //            this.Die();
-    //    }
-    //    else
-    //        this.Die();
-    //}
     public void MentalChange(int value)
     {
         if (mental > 0)
@@ -116,10 +96,10 @@ public class Player
             if (this.mental >= 5)
                 this.mental = 5;
             gmr.imgChange(1, this.mental);
+            PlayerPrefs.SetInt("Mental", this.mental);
         }
         if (mental <= 0)
             this.Die();
-        Debug.Log(mental);
     }
 
     public void Changeability(player_ability ability, int value) //value: Amount of ability Change
@@ -128,23 +108,26 @@ public class Player
         {
             this.force += value;
             gmr.changeability_amount(ability, this.force);
+            PlayerPrefs.SetInt("Force", this.force);
         }
         else if (ability == player_ability.intellect)
         {
             this.intellect += value;
             gmr.changeability_amount(ability, this.intellect);
+            PlayerPrefs.SetInt("Intellect", this.intellect);
         }
         else if (ability == player_ability.mana)
         {
-
             this.mana += value;
             gmr.changeability_amount(ability, this.mana);
-
+            PlayerPrefs.SetInt("Mana", this.mana);
         }
     }
 
     public void Die()
-    { 
+    {
+        PlayerPrefs.DeleteAll();
+        gmr.DiepanelActive();
         if(health == 0)
             Debug.Log("Die");
         else if(mental == 0)
@@ -273,9 +256,9 @@ public class Player
         putPocketElements(new State("감염", 1));
         putPocketElements(new Ability("근력", 1));
         putPocketElements(new Item("살충제", 1));
-        Changeability(player_ability.force, 2);
-        Changeability(player_ability.intellect, 2);
-        Changeability(player_ability.mana, 2);
+        //Changeability(player_ability.force, 2);
+        //Changeability(player_ability.intellect, 2);
+        //Changeability(player_ability.mana, 2);
 
     }
 

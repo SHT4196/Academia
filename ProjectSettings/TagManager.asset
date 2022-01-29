@@ -8,6 +8,12 @@ TagManager:
   - percent
   - Text
   - Choice
+  - forceAmount
+  - intellectAmount
+  - manaAmount
+  - DiePanel
+  - Health
+  - Mental
   layers:
   - Default
   - TransparentFX

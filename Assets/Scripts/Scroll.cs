@@ -16,6 +16,7 @@ public class Scroll : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            Scroll.instance.InitScrollManager();
         }
     }
     public static Scroll Instance
@@ -48,16 +49,20 @@ public class Scroll : MonoBehaviour
     {
         RectTransform set = content.gameObject.GetComponent<RectTransform>();
         yield return set.anchoredPosition += new Vector2(0, scrollAmount * 0.01f);
-        if(Mathf.Abs(set.anchoredPosition.y - pos) <= 1f)
+        if(set.anchoredPosition.y >= pos)
         {
             set.anchoredPosition.Set(set.anchoredPosition.x, pos);
             IsScroll = false;
-            StopAllCoroutines();
+            StopCoroutine(Scrollroutine());
         }
     }
     public void ScrollReset()
     {
         RectTransform set = content.gameObject.GetComponent<RectTransform>();
         set.localPosition = new Vector3(set.localPosition.x, 0);
+    }
+    public void InitScrollManager()
+    {
+        content = GameObject.Find("Content");
     }
 }
