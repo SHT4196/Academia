@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4285953654
       objectReference: {fileID: 0}
+    - target: {fileID: 1376196156921246310, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00050354004
+      objectReference: {fileID: 0}
     - target: {fileID: 3833076959464054114, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -57,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833076959464054114, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 83
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3833076959464054114, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -142,6 +146,10 @@ PrefabInstance:
     - target: {fileID: 6734506980808878812, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}
       propertyPath: m_Name
       value: ChoicePrefab_activefalse
+      objectReference: {fileID: 0}
+    - target: {fileID: 6734506980808878812, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c2c884334e9184ba9f5aa661d8b57f, type: 3}

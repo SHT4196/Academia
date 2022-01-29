@@ -107,7 +107,6 @@ public class AddText : MonoBehaviour
 
     public void DestroyScript()
     {
-        print(textBox.Count);
         for(int i = 0; i < textBox.Count(); i++){
             if(textBox[i] != null)
                 Destroy(textBox[i].gameObject);

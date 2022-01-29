@@ -3,24 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class PlayerManager : MonoBehaviour
 {
-    public List<Image> health;
-    public List<Image> mental;
-    public Text forceAmount;
-    public Text manaAmount;
-    public Text intellectAmount;
-    public Image diepanel;
+    [SerializeField] private List<Image> health;
+    [SerializeField] private List<Image> mental;
+    private GameObject Force;
+    private GameObject Intellect;
+    private GameObject Mana;
 
-    public Image[] stat_fill = new Image[3];    //force, intel, poli 순서로 사용
+    [SerializeField] private Text forceAmount;
+    [SerializeField] private Text manaAmount;
+    [SerializeField] private Text intellectAmount;
+    [SerializeField] private Image diepanel;
 
+    [SerializeField] private Image[] stat_fill = new Image[3];    //force, intel, poli 순서로 사용
+    
     // Start is called before the first frame update
     void Start()
     {
         //imgSet();
     }
+    private void Awake()
+    {
+        health = new List<Image>();
+        mental = new List<Image>();
+        GameObject HealthGO = GameObject.FindWithTag("Health");
+        GameObject MentalGO = GameObject.FindWithTag("Mental");
+        for(int i = 0; i < 5; i++)
+        {
+            health.Add(HealthGO.transform.GetChild(i).GetComponent<Image>());
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            mental.Add(MentalGO.transform.GetChild(i).GetComponent<Image>());
+        }
+        Force = GameObject.Find("Force");
+        Intellect = GameObject.Find("Intellect");
+        Mana = GameObject.Find("Mana");
+        forceAmount = Force.transform.GetChild(2).GetComponent<Text>();
+        manaAmount = Mana.transform.GetChild(2).GetComponent<Text>();
+        intellectAmount = Intellect.transform.GetChild(2).GetComponent<Text>();
+        stat_fill[0] = Force.transform.GetChild(1).GetComponent<Image>();
+        stat_fill[1] = Intellect.transform.GetChild(1).GetComponent<Image>();
+        stat_fill[2] = Mana.transform.GetChild(1).GetComponent<Image>();
+        diepanel = GameObject.Find("Canvas").transform.Find("DiePanel").GetComponent<Image>();
 
+        if (Player.Instance.playerReset)
+            Player.Instance.ResetPlayer();
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -68,11 +101,17 @@ public class PlayerManager : MonoBehaviour
     }
     public void DieAndSceneChange()
     {
-        SceneManager.LoadScene(1);
+        Application.Quit();
+        //EditorApplication.Exit(0);
     }
     public void Die()
     {
+        Player.Instance.playerReset = true;
         Player.Instance.Die();
+    }
+    public void DiepanelActive()
+    {
+        diepanel.gameObject.SetActive(true);
     }
 }
 

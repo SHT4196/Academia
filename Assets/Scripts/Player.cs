@@ -32,7 +32,7 @@ public class Player
     private int force;
     private int intellect;
     private int mana;
-    private PlayerManager gmr;
+    public PlayerManager gmr;
 
     private static List<Pocket> entirePocket = new List<Pocket>();
     private static List<Ability> abilityPocket = new List<Ability>();
@@ -44,6 +44,8 @@ public class Player
     private Item[] itemPocketSort;
     private State[] statePocketSort;
     public bool sortbytime = true;
+    public bool playerReset = false;
+
     public Player()
     {
         gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
@@ -54,6 +56,20 @@ public class Player
         force = PlayerPrefs.GetInt("Force") == 0 ? 2 : PlayerPrefs.GetInt("Force");
         intellect = PlayerPrefs.GetInt("Intellect") == 0 ? 2 : PlayerPrefs.GetInt("Intellect");
         mana = PlayerPrefs.GetInt("Mana") == 0 ? 2 : PlayerPrefs.GetInt("Mana");
+        gmr.changeability_amount(player_ability.force, force);
+        gmr.changeability_amount(player_ability.intellect, intellect);
+        gmr.changeability_amount(player_ability.mana, mana);
+    }
+    public void ResetPlayer()
+    {
+        gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        Debug.Log("HI");
+        health = 5;
+        mental = 5;
+        gmr.imgSet(health, mental);
+        force = 2;
+        intellect = 2;
+        mana = 2;
         gmr.changeability_amount(player_ability.force, force);
         gmr.changeability_amount(player_ability.intellect, intellect);
         gmr.changeability_amount(player_ability.mana, mana);
@@ -111,7 +127,7 @@ public class Player
     public void Die()
     {
         PlayerPrefs.DeleteAll();
-        gmr.diepanel.gameObject.SetActive(true);
+        gmr.DiepanelActive();
         if(health == 0)
             Debug.Log("Die");
         else if(mental == 0)

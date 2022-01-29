@@ -16,6 +16,7 @@ public class Scroll : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            Scroll.instance.InitScrollManager();
         }
     }
     public static Scroll Instance
@@ -59,5 +60,9 @@ public class Scroll : MonoBehaviour
     {
         RectTransform set = content.gameObject.GetComponent<RectTransform>();
         set.localPosition = new Vector3(set.localPosition.x, 0);
+    }
+    public void InitScrollManager()
+    {
+        content = GameObject.Find("Content");
     }
 }
