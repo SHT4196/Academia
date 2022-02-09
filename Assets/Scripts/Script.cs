@@ -6,7 +6,7 @@ using System.Linq;
 public class Script
 {
 
-    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, int __interval)
+    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, int __interval, string __afterInterval = "-")
 
     {
         id = __id;
@@ -15,7 +15,7 @@ public class Script
         result = __result;
         sprite = __sprite;
         interval = __interval;
-
+        afterInterval = __afterInterval;
     }
 
     private string _id;
@@ -27,7 +27,7 @@ public class Script
 
     private int _interval;
 
-    private string _ME_save;
+    private string _afterInterval;
 
 
     public string id
@@ -67,5 +67,10 @@ public class Script
         get { return _interval; }
         set { _interval = value; }
 
+    }
+    public string afterInterval
+    {
+        get { return _afterInterval; }
+        set { _afterInterval = value; }
     }
 }

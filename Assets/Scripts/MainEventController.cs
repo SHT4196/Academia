@@ -34,9 +34,12 @@ public class MainEventController
     }
     public string getNextME()
     {
-        ME_storyID = PlayerPrefs.GetInt("ME_storyID");
-        ME_storyID++;
-        return "M" + ME_storyID + "_1";
+        //ME_storyID = PlayerPrefs.GetInt("ME_storyID");
+        //ME_storyID++;
+        ME_str = PlayerPrefs.GetString("ME_str");
+        Script _script = MakeDialog.Instance.FindScript(ME_str);
+
+        return _script.afterInterval;
     }
     public void FirstSetInterval()
     {

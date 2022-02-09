@@ -36,15 +36,16 @@ public class MakeDialog
         object storyResult = null;
         object spritename = null;
         object storyInterval = null;
+        object afterInterval = null;
 
 
         string story_start_str = "_1";
         for (int i = 0; i < ME_Dialog.Count; i++)
         {
 
-            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval))
+            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && ME_Dialog[i].TryGetValue("AfterInterval", out afterInterval))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), Int32.Parse(storyInterval.ToString())));
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString()));
 
             }
            
