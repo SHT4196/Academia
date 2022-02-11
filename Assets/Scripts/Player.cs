@@ -128,6 +128,7 @@ public class Player
     {
         PlayerPrefs.DeleteAll();
         gmr.DiepanelActive();
+        
         if(health == 0)
             Debug.Log("Die");
         else if(mental == 0)
@@ -245,17 +246,17 @@ public class Player
     }
     public void test() // TEST
     {
-        putPocketElements(new Ability("¿ä¸®½Ç·Â", 1));
-        putPocketElements(new Item("ÃÊÄÝ¸´", 1));
-        putPocketElements(new State("°¨¿°", 1));
-        putPocketElements(new State("°¨¿°", 1));
-        putPocketElements(new State("°¨¿°", 1));
-        removePocketElement(new Item("ÃÊÄÝ¸´", 1));
-        removePocketElement(new State("°¨¿°", 1));
-        putPocketElements(new State("°¨¿°", 1));
-        putPocketElements(new State("°¨¿°", 1));
-        putPocketElements(new Ability("±Ù·Â", 1));
-        putPocketElements(new Item("»ìÃæÁ¦", 1));
+        putPocketElements(new Ability("ï¿½ä¸®ï¿½Ç·ï¿½", 1));
+        putPocketElements(new Item("ï¿½ï¿½ï¿½Ý¸ï¿½", 1));
+        putPocketElements(new State("ï¿½ï¿½ï¿½ï¿½", 1));
+        putPocketElements(new State("ï¿½ï¿½ï¿½ï¿½", 1));
+        putPocketElements(new State("ï¿½ï¿½ï¿½ï¿½", 1));
+        removePocketElement(new Item("ï¿½ï¿½ï¿½Ý¸ï¿½", 1));
+        removePocketElement(new State("ï¿½ï¿½ï¿½ï¿½", 1));
+        putPocketElements(new State("ï¿½ï¿½ï¿½ï¿½", 1));
+        putPocketElements(new State("ï¿½ï¿½ï¿½ï¿½", 1));
+        putPocketElements(new Ability("ï¿½Ù·ï¿½", 1));
+        putPocketElements(new Item("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 1));
         //Changeability(player_ability.force, 2);
         //Changeability(player_ability.intellect, 2);
         //Changeability(player_ability.mana, 2);
