@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Text intellectAmount;
     [SerializeField] private Image diepanel;
 
-    [SerializeField] private Image[] stat_fill = new Image[3];    //force, intel, poli ¼ø¼­·Î »ç¿ë
+    [SerializeField] private Image[] stat_fill = new Image[3];    //force, intel, poli ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     
     // Start is called before the first frame update
     void Start()
@@ -101,13 +101,16 @@ public class PlayerManager : MonoBehaviour
     }
     public void DieAndSceneChange()
     {
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene(1);
         //EditorApplication.Exit(0);
+        Achivement.Acv.change_scene();
     }
     public void Die()
     {
         Player.Instance.playerReset = true;
         Player.Instance.Die();
+        GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();
     }
     public void DiepanelActive()
     {

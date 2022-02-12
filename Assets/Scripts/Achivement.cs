@@ -18,16 +18,18 @@ public class Achivement
 
     private const int num = 8;     //number of achivement
 
-    private GameObject[] a = GameObject.FindGameObjectsWithTag("Acv");
-    private GameObject[] p = GameObject.FindGameObjectsWithTag("percent");
+    private static GameObject[] a;
+    private static GameObject[] p;
+    
+    private static bool scene_change;
 
-    private int[] now;
-    private int[] max;
-    private int[] state;
-    private string[] time;
+    private static int[] now;
+    private static int[] max;
+    private static int[] state;
+    private static string[] time;
 
-    private string[] hide_name;
-    private string[] hide_description;
+    private static string[] hide_name;
+    private static string[] hide_description;
 
     public Achivement()
     {
@@ -38,6 +40,10 @@ public class Achivement
 
         hide_name = new string[num];
         hide_description = new string[num];
+
+        scene_change = false;
+        load_acv(); 
+        get_variable();
     }
 
     public void _debug()
@@ -49,21 +55,33 @@ public class Achivement
             Debug.Log("Warning! 업적의 총 수를 확인하세요!");
         }
     }
+
+    public void get_variable()
+    {
+        a = GameObject.FindGameObjectsWithTag("Acv");
+        p = GameObject.FindGameObjectsWithTag("percent");
+    }
+    
+    public void change_scene()
+    {
+        scene_change = true;
+    }
     public void nowupdate(int n, int plus)
     {            //"n"th achivement "plus" value add
-        if(this.now[n-1] < this.max[n-1])
+        if(now[n-1] < max[n-1])
         {
-            this.now[n-1] += plus;
+            now[n-1] += plus;
 
-            if(this.now[n-1] >= this.max[n-1])
+            if(now[n-1] >= max[n-1])
             {
-                if(this.state[n-1]==-1){
-                    express(n-1, this.a[n-1]);
+                if(state[n-1]==-1){
+                    express(n-1, a[n-1]);
                 }
-                this.state[n-1] = 1;
-                this.now[n-1] = this.max[n-1];
-                this.time[n-1] = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
+                state[n-1] = 1;
+                now[n-1] = max[n-1];
+                time[n-1] = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
             }
+            save_acv();
         }
     }
     //graph and text of percent
@@ -72,7 +90,7 @@ public class Achivement
         float num = 0.0f;
         Image image = per.GetComponent<Image>();
         Text percent = per.transform.Find("percent").GetComponent<Text>();
-        if(this.state[n]!=-1){
+        if(state[n]!=-1){
             num = (now * 1.0f) / max;
             image.fillAmount = num;
             percent.text = now + " / " + max;
@@ -97,44 +115,84 @@ public class Achivement
     }
     public void drawpenel()
     {
+        if (scene_change)
+        {
+            get_variable();
+            hide_save();
+            save_acv();
+            scene_change = false;
+        }
         for (int i = 0; i < num; i++)
         {
-            if (this.state[i]!=-1)
+            if (state[i]!=-1)
             {
-                percentupdate(i, this.p[i], this.now[i], this.max[i]);
-                if (this.state[i] == 1)
+                percentupdate(i, p[i], now[i], max[i]);
+                if (state[i] == 1)
                 {
-                    penelmax(this.a[i]);
-                    dateupdate(this.p[i], this.time[i]);
+                    penelmax(a[i]);
+                    dateupdate(p[i], time[i]);
                 }
             }
             else{
-                percentupdate(i, this.p[i], this.now[i], this.max[i]);
+                percentupdate(i, p[i], now[i], max[i]);
             }
         }
     }
 
     public void hide(int n, GameObject a){
-        if(this.state[n] == -1){
+        if(state[n] == -1)
+        {
+            if (!scene_change)
+            {
             string _name = a.transform.Find("Acv_name").GetComponent<Text>().text;
             string _description = a.transform.Find("Acv_description").GetComponent<Text>().text;
-            this.hide_name[n] = _name;
-            this.hide_description[n] = _description;
-
+            hide_name[n] = _name;
+            hide_description[n] = _description;
+            }
             a.transform.Find("Acv_name").GetComponent<Text>().text = "???";
             a.transform.Find("Acv_description").GetComponent<Text>().text = "???";
         }
     }
     public void hide_save(){
-        for(int i = 0; i<num; i++){
-            hide(i, this.a[i]);
+        for(int i = 0; i < num; i++){
+            hide(i, a[i]);
         }
     }
 
     public void express(int n, GameObject a){
-        if(this.state[n] == -1){
-            a.transform.Find("Acv_name").GetComponent<Text>().text = this.hide_name[n];
-            a.transform.Find("Acv_description").GetComponent<Text>().text = this.hide_description[n];
+        if(state[n] == -1){
+            a.transform.Find("Acv_name").GetComponent<Text>().text = hide_name[n];
+            a.transform.Find("Acv_description").GetComponent<Text>().text = hide_description[n];
+        }
+    }
+
+    public void save_acv()
+    {
+        PlayerPrefs.SetInt("is_save", 1);
+        for (int i = 0; i < num; i++)
+        {
+            PlayerPrefs.SetInt("now_val" + i.ToString(), now[i]);
+            PlayerPrefs.SetInt("max_val" + i.ToString(), max[i]);
+            PlayerPrefs.SetInt("state_val" + i.ToString(), state[i]);
+            PlayerPrefs.SetString("clear_time" + i.ToString(), time[i]);
+            PlayerPrefs.SetString("hide_name" + i.ToString(), hide_name[i]);
+            PlayerPrefs.SetString("hide_description" + i.ToString(), hide_description[i]);
+        }
+    }
+
+    public void load_acv()
+    {
+        if (PlayerPrefs.GetInt("is_save") == 1)
+        {
+            for(int i = 0; i < num; i++)
+            {
+                now[i] = PlayerPrefs.GetInt("now_val" + i.ToString());
+                max[i] = PlayerPrefs.GetInt("max_val" + i.ToString());
+                state[i] = PlayerPrefs.GetInt("state_val" + i.ToString());
+                time[i] = PlayerPrefs.GetString("clear_time" + i.ToString());
+                hide_name[i] = PlayerPrefs.GetString("hide_name" + i.ToString());
+                hide_description[i] = PlayerPrefs.GetString("hide_description" + i.ToString());
+            }
         }
     }
 }
