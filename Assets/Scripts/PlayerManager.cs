@@ -108,13 +108,15 @@ public class PlayerManager : MonoBehaviour
     }
     public void Die()
     {
-        Player.Instance.playerReset = true;
+       
         Player.Instance.Die();
-        GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();
+        
     }
     public void DiepanelActive()
     {
         diepanel.gameObject.SetActive(true);
+        Player.Instance.playerReset = true;
+        GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();
     }
 }
 

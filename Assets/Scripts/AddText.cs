@@ -303,8 +303,6 @@ public class AddText : MonoBehaviour
             {
                 GameObject.Find("Panel").transform.GetChild(i).gameObject.SetActive(true);
             }
-            DestroyEmpty();
-            AddEmpty();
             text_exit = false;
         }
     }
