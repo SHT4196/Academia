@@ -63,6 +63,7 @@ public class AddText : MonoBehaviour
 
             Get_Typing(script.text, textBox[textBox.Count-1]);
 
+            //need fix
             if(isimage[isimage.Count-2])
             {
                 Scroll.Instance.pos += 480f;
