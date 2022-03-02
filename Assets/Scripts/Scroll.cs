@@ -40,6 +40,8 @@ public class Scroll : MonoBehaviour
 
     void Update()
     {
+        if(content == null)
+            content = GameObject.Find("Content");
         if (IsScroll && GameObject.Find("Content").activeInHierarchy)
         {
             StartCoroutine(Scrollroutine());

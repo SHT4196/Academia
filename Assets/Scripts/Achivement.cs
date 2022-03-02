@@ -144,13 +144,20 @@ public class Achivement
         {
             if (!scene_change)
             {
-            string _name = a.transform.Find("Acv_name").GetComponent<Text>().text;
-            string _description = a.transform.Find("Acv_description").GetComponent<Text>().text;
-            hide_name[n] = _name;
-            hide_description[n] = _description;
+                Text[] texts;
+                texts = a.transform.GetComponentsInChildren<Text>();
+                string _name = texts[0].text;
+                string _description = texts[1].text;
+                // string _name = a.transform.GetComponentInChildren<Text>().text;
+                // string _description = a.transform.Find("Acv_description").GetComponent<Text>().text;
+                hide_name[n] = _name;
+                hide_description[n] = _description;
             }
-            a.transform.Find("Acv_name").GetComponent<Text>().text = "???";
-            a.transform.Find("Acv_description").GetComponent<Text>().text = "???";
+
+            a.transform.GetComponentsInChildren<Text>()[0].text = "???";
+            a.transform.GetComponentsInChildren<Text>()[1].text = "???";
+            // a.transform.Find("Acv_name").GetComponent<Text>().text = "???";
+            // a.transform.Find("Acv_description").GetComponent<Text>().text = "???";
         }
     }
     public void hide_save(){
