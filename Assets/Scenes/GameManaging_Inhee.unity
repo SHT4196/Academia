@@ -8688,7 +8688,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 676466182202129941, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_VerticalFit
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676466182202129941, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
+      propertyPath: m_HorizontalFit
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_Pivot.x
@@ -8696,7 +8700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_RootOrder
@@ -8720,7 +8724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 784
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -8760,7 +8764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -457.1571
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4875876610290796756, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8788,7 +8792,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7906483315451588214, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_ChildAlignment
-      value: 4
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906483315451588214, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7906483315451588214, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_ChildScaleHeight

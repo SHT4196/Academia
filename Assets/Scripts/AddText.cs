@@ -33,6 +33,8 @@ public class AddText : MonoBehaviour
     private static bool text_cut;
     private static bool trigger = false;     //trigger coroutine
 
+    private float _emptyTextSize = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,14 +68,15 @@ public class AddText : MonoBehaviour
             if(isimage[isimage.Count-2])
             {
                 Scroll.Instance.pos += 480f;
-                ScrollAmount += 480f;
+                // ScrollAmount += 480f;
             }
-            Scroll.Instance.pos += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
-            ScrollAmount += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
-            Scroll.Instance.pos += 200f;
-            ScrollAmount += 200f;
+
+            Scroll.Instance.pos += textBox[textBox.Count - 2].rectTransform.sizeDelta.y * textBox[textBox.Count - 1].rectTransform.localScale.y + 200f;
+            // ScrollAmount += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
+            // Scroll.Instance.pos += 200f;
+            // ScrollAmount += 200f;
             AddEmpty();
-            Scroll.Instance.scrollAmount = ScrollAmount;
+            // Scroll.Instance.scrollAmount = ScrollAmount;
             Scroll.Instance.IsScroll = true;
         }
         else
@@ -133,6 +136,15 @@ public class AddText : MonoBehaviour
     {
         empty = Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/EmptyText"));
         empty.transform.SetParent(GameObject.Find("Content").transform, true);
+        // Debug.LogWarning($"{empty.rectTransform.sizeDelta.y * empty.rectTransform.localScale.y} + {textBox[textBox.Count - 1].rectTransform.sizeDelta.y*textBox[textBox.Count - 1].rectTransform.localScale.y} + 200 && {empty.transform.parent.GetComponent<RectTransform>().sizeDelta.y}");
+        if (empty.rectTransform.sizeDelta.y + textBox[textBox.Count - 1].rectTransform.sizeDelta.y*textBox[textBox.Count - 1].rectTransform.localScale.y + 200 <=
+            empty.transform.parent.parent.GetComponent<RectTransform>().rect.height)
+        {
+            Debug.Log(empty.transform.parent.parent.GetComponent<RectTransform>().rect.height);
+            empty.rectTransform.sizeDelta = new Vector2(textBox[textBox.Count - 1].rectTransform.sizeDelta.x,
+                Mathf.Abs(empty.transform.parent.parent.GetComponent<RectTransform>().rect.height - 200 -
+                          textBox[textBox.Count - 1].rectTransform.sizeDelta.y * textBox[textBox.Count - 1].rectTransform.localScale.y));
+        }
     }
     public void DestroyEmpty()
     {
