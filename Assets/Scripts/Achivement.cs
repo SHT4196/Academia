@@ -18,18 +18,18 @@ public class Achivement
 
     private const int num = 8;     //number of achivement
 
-    private static GameObject[] a;
-    private static GameObject[] p;
+    private static GameObject[] a;  //store achivement prefab array
+    private static GameObject[] p;  //store percent prefab array in achivement prefab array 
     
-    private static bool scene_change;
+    private static bool scene_change;  //check if scene is change
 
-    private static int[] now;
-    private static int[] max;
+    private static int[] now;  //now value
+    private static int[] max;  //max value
     private static int[] state;
-    private static string[] time;
+    private static string[] time;  //clear time
 
-    private static string[] hide_name;
-    private static string[] hide_description;
+    private static string[] hide_name;  //store hidden achivement name
+    private static string[] hide_description;  //store hidden achivement description
 
     public Achivement()
     {
@@ -56,7 +56,7 @@ public class Achivement
         }
     }
 
-    public void get_variable()
+    public void get_variable()  //store all existing achivement prefab
     {
         a = GameObject.FindGameObjectsWithTag("Acv");
         p = GameObject.FindGameObjectsWithTag("percent");
@@ -66,8 +66,8 @@ public class Achivement
     {
         scene_change = true;
     }
-    public void nowupdate(int n, int plus)
-    {            //"n"th achivement "plus" value add
+    public void nowupdate(int n, int plus)  //"n"th achivement "plus" value add
+    {
         if(now[n-1] < max[n-1])
         {
             now[n-1] += plus;
@@ -124,10 +124,10 @@ public class Achivement
         }
         for (int i = 0; i < num; i++)
         {
-            if (state[i]!=-1)
+            if (state[i]!=-1)  //check if (i)th achivement is hidden
             {
                 percentupdate(i, p[i], now[i], max[i]);
-                if (state[i] == 1)
+                if (state[i] == 1)  //check if (i)th achivement is cleared
                 {
                     penelmax(a[i]);
                     dateupdate(p[i], time[i]);
@@ -202,4 +202,6 @@ public class Achivement
             }
         }
     }
+
+    //need to add a function that nowupdate is run by excel file
 }
