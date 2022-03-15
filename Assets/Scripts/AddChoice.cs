@@ -87,17 +87,17 @@ public class AddChoice : MonoBehaviour
             if (need_complete)
             {
                 choiceBox = Instantiate(choicePrefab, Panel.transform.position, Panel.transform.rotation) as GameObject;
+                choiceBox.transform.position += new Vector3(0, -1 * i * choiceBox.GetComponent<RectTransform>().rect.height, 0);
                 choiceBox.transform.SetParent(Panel.transform, false);
 
-                choiceBox.transform.position += new Vector3(0, -50 * i, 0);
 
             }
             else
             {
                 choiceBox = Instantiate(choicePrefab_activefalse, Panel.transform.position, Panel.transform.rotation) as GameObject;
+                choiceBox.transform.position += new Vector3(0, -1 * i * choiceBox.GetComponent<RectTransform>().rect.height, 0);
                 choiceBox.transform.SetParent(Panel.transform, false);
 
-                choiceBox.transform.position += new Vector3(0, -50 * i, 0);
 
             }
 
