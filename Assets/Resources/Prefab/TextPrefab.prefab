@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9087180604187029328}
   - component: {fileID: 2126568562999981909}
   - component: {fileID: 4981541278878406689}
-  - component: {fileID: 3435020589906927426}
+  - component: {fileID: 3962794286090101479}
   m_Layer: 5
   m_Name: TextPrefab
   m_TagString: Text
@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 8543095533793149090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3435020589906927426
+--- !u!114 &3962794286090101479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

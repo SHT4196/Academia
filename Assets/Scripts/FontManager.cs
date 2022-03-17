@@ -25,14 +25,14 @@ public class FontManager : MonoBehaviour
     public void bigFontSize() 
     {
         Sample_Text.fontSize = 80;
-        storyText.fontSize = 80;
+        storyText.fontSize = 17;
     }
 
     // 폰트 중간
     public void middleFontSize()
     {
         Sample_Text.fontSize = 70;
-        storyText.fontSize = 70;
+        storyText.fontSize = 15;
 
     }
 
@@ -40,7 +40,7 @@ public class FontManager : MonoBehaviour
     public void smallFontSize()
     {
         Sample_Text.fontSize = 60;
-        storyText.fontSize = 60;
+        storyText.fontSize = 13;
 
     }
 

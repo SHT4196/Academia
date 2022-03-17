@@ -34,12 +34,14 @@ public class Scroll : MonoBehaviour
     public bool IsScroll = false;
     private bool first = true;
     public GameObject content;
-    [SerializeField] public float scrollAmount = 0f;
+    [SerializeField] public float scrollAmount;
 
     Vector2 endpos;
 
     void Update()
     {
+        if(content == null)
+            content = GameObject.Find("Content");
         if (IsScroll && GameObject.Find("Content").activeInHierarchy)
         {
             StartCoroutine(Scrollroutine());
@@ -49,6 +51,7 @@ public class Scroll : MonoBehaviour
     {
         RectTransform set = content.gameObject.GetComponent<RectTransform>();
         yield return set.anchoredPosition += new Vector2(0, scrollAmount * 0.01f);
+        Debug.Log($"content: {set.anchoredPosition.y}, pos: {pos}");
         if(set.anchoredPosition.y >= pos)
         {
             set.anchoredPosition.Set(set.anchoredPosition.x, pos);
