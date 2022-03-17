@@ -10,15 +10,14 @@ using UnityEngine.SceneManagement;
 
 public class AddText : MonoBehaviour
 {
-    //[SerializeField] private TextMeshProUGUI textPrefab;
     private static List<TextMeshProUGUI> textBox = new List<TextMeshProUGUI>();
     private static string currentID;
-    private Script script;
+    private Script script;     //store script information for current id (information read from Excel file)
     private List<Choice> choice;
 
-    private static List<Image> imgarr = new List<Image>();
+    private static List<Image> imgarr = new List<Image>();    //store image information and representation on one screen
 
-    private static List<bool> isimage = new List<bool>();
+    private static List<bool> isimage = new List<bool>();     //store is image exist
 
     private static TextMeshProUGUI empty;
 
@@ -49,10 +48,12 @@ public class AddText : MonoBehaviour
     public void AddScript()
     {
         script = MakeDialog.Instance.FindScript(NextContainer.Instance.nextText);
-        DestroyEmpty();
-        if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) // ���� ���� ���丮
+        DestroyEmpty(); //Destroy empty text prefab 
+        //float ScrollAmount = 0;
+        if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
+
         {
-            if(script.sprite != "null")
+            if(script.sprite != "null")  //Check if there's a picture that needs to be added
             {
                 Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
                 AddPicture(pic);
@@ -62,27 +63,34 @@ public class AddText : MonoBehaviour
             {
                 isimage.Add(false);
             }
-            textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
+            textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
-            PlayerPrefs.SetString("ScriptID", script.id);
+            PlayerPrefs.SetString("ScriptID", script.id); //save id
 
-            Get_Typing(script.text, textBox[textBox.Count-1]);
 
-            if(isimage[isimage.Count-2])
+            Get_Typing(script.text, textBox[textBox.Count-1]);  //typing animation start
+
+            if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
             {
                 // ScrollAmount += 480f;
             }
 
+            //Increase the amount of scrolling by the size of the text box
             Scroll.Instance.pos += textBox[textBox.Count - 2].GetComponent<RectTransform>().rect.height * textBox[textBox.Count - 2].rectTransform.localScale.y + 200f;
-            AddEmpty();
+            // ScrollAmount += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
+            // Scroll.Instance.pos += 200f;
+            // ScrollAmount += 200f;
+            AddEmpty();//add empty text
+            // Scroll.Instance.scrollAmount = ScrollAmount;
+
             Scroll.Instance.IsScroll = true;
         }
         else
         {
-            DestroyScript();
-            DestroyPicture();
-            if(script.sprite != "null")
+            DestroyScript();  //destroy previous text
+            DestroyPicture();  //destroy previous picture
+            if(script.sprite != "null")  //Check if there's a picture that needs to be added
             {
                 Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
                 AddPicture(pic);
@@ -92,14 +100,17 @@ public class AddText : MonoBehaviour
             {
                 isimage.Add(false);
             }
-            textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
+            textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
-            PlayerPrefs.SetString("ScriptID", script.id);
+            PlayerPrefs.SetString("ScriptID", script.id); //save id
 
-            Get_Typing(script.text, textBox[0]);
+
+            Get_Typing(script.text, textBox[0]);  //typing animation start
             
-            Scroll.Instance.pos = 0f;
+
+            Scroll.Instance.pos = 0f; //reset screen's position
+
             AddEmpty();
             Scroll.Instance.ScrollReset();
         }
@@ -115,7 +126,7 @@ public class AddText : MonoBehaviour
         }
         textBox.Clear();
     }
-    public void AddPicture(Sprite picture)          //n is changed by sprite size
+    public void AddPicture(Sprite picture)
     {
         Image img = Instantiate(Resources.Load<Image>("Prefab/Image"));
         imgarr.Add(img);
@@ -274,10 +285,10 @@ public class AddText : MonoBehaviour
         fulltext = _fullText;
         tb = textbox;
 
-        trigger = true;
+        trigger = true;  //if trigger is true, coroutine start at update fuction
     }
 
-    public void End_Typing()
+    public void End_Typing()  //skip typing effect
     {
         if (!text_full)
         {
@@ -285,7 +296,7 @@ public class AddText : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)
+    private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)  //typing effect
     {
         currentText = "";
         for (int i = 0; i < _fullText.Length; i++)
@@ -311,13 +322,15 @@ public class AddText : MonoBehaviour
             coroutine = StartCoroutine(ShowText(fulltext, tb));
             trigger = false;
         }
-        if (text_exit)
+        if (text_exit)  //if typing effect end, next button express.
         {
             int n = GameObject.Find("Panel").transform.childCount;
             for (int i = 0; i < n; i++)
             {
                 GameObject.Find("Panel").transform.GetChild(i).gameObject.SetActive(true);
             }
+
+            //empty prefab bug fix
             DestroyEmpty();
             AddEmpty();
 
