@@ -286,7 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: 0
-  IsScroll: 0
+  elapsedTime: 0
+  isScroll: 0
+  first: 1
   content: {fileID: 1392500844}
   scrollAmount: 2000
 --- !u!4 &7365129
@@ -824,7 +826,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1142994056}
   m_HandleRect: {fileID: 1142994055}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1842,7 +1844,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1375511073}
+      - m_Target: {fileID: 843538988}
         m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
         m_MethodName: GameQuitPanelClose_Btn
         m_Mode: 1
@@ -8038,7 +8040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375511072}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f5955a180a0a684fada11c1ea6d54d2, type: 3}
   m_Name: 
@@ -8210,7 +8212,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1375511073}
+      - m_Target: {fileID: 843538988}
         m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
         m_MethodName: GameQuit
         m_Mode: 1
@@ -8364,7 +8366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c49dd345a5af44ea7ffe18134858e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionTrigger: {fileID: 1577735418}
 --- !u!1 &1420755932
 GameObject:
   m_ObjectHideFlags: 0
@@ -8919,7 +8920,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577735418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f5955a180a0a684fada11c1ea6d54d2, type: 3}
   m_Name: 

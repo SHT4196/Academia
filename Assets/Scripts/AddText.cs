@@ -79,14 +79,14 @@ public class AddText : MonoBehaviour
             }
 
             //Increase the amount of scrolling by the size of the text box
-            Scroll.Instance.pos += textBox[textBox.Count - 2].GetComponent<RectTransform>().rect.height * textBox[textBox.Count - 2].rectTransform.localScale.y + 200f;
+            Scroll.instance.pos += textBox[textBox.Count - 2].GetComponent<RectTransform>().rect.height * textBox[textBox.Count - 2].rectTransform.localScale.y + 200f;
             // ScrollAmount += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
             // Scroll.Instance.pos += 200f;
             // ScrollAmount += 200f;
             AddEmpty();//add empty text
             // Scroll.Instance.scrollAmount = ScrollAmount;
 
-            Scroll.Instance.IsScroll = true;
+            Scroll.instance.isScroll = true;
         }
         else
         {
@@ -111,10 +111,10 @@ public class AddText : MonoBehaviour
             Get_Typing(script.text, textBox[0]);  //typing animation start
             
 
-            Scroll.Instance.pos = 0f; //reset screen's position
+            Scroll.instance.pos = 0f; //reset screen's position
 
             AddEmpty();
-            Scroll.Instance.ScrollReset();
+            Scroll.instance.ScrollReset();
         }
         NextContainer.Instance.nextChoice = script.next;
         currentID = script.id;
@@ -137,7 +137,7 @@ public class AddText : MonoBehaviour
             new Vector3(img.rectTransform.localScale.x - 0.4f, img.rectTransform.localScale.y - 0.4f);
         img.transform.SetParent(GameObject.Find("Content").transform, true);
         img.SetNativeSize();
-        Scroll.Instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
+        Scroll.instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
     }
 
     public void DestroyPicture()
@@ -187,7 +187,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val));
+                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val));
                     }
                     else
                     {
@@ -195,7 +195,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val) * (-1));
+                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '무')
@@ -206,7 +206,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val));
+                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val));
                     }
                     else
                     {
@@ -214,7 +214,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
+                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '마')
@@ -225,7 +225,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val));
+                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val));
                     }
                     else
                     {
@@ -233,7 +233,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val) * (-1));
+                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '체')
@@ -244,7 +244,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.HealthChange(Int32.Parse(string_val));
+                        Player.instance.HealthChange(Int32.Parse(string_val));
                     }
                     else
                     {
@@ -252,7 +252,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.HealthChange(Int32.Parse(string_val) * (-1));
+                        Player.instance.HealthChange(Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '정')
@@ -263,7 +263,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.MentalChange(Int32.Parse(string_val));
+                        Player.instance.MentalChange(Int32.Parse(string_val));
                     }
                     else
                     {
@@ -271,7 +271,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.MentalChange(Int32.Parse(string_val) * (-1));
+                        Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
                     }
                 }
             }

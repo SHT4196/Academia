@@ -44,7 +44,7 @@ public class AddChoice : MonoBehaviour
                     {
                         value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
                     }
-                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.force, value);
+                    AbilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Force, value);
                 }
                 else if (_val[0] == "Á¤")
                 {
@@ -55,7 +55,7 @@ public class AddChoice : MonoBehaviour
                         value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
                         
                     }
-                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.intellect, value);
+                    AbilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Intellect, value);
                 }
                 else if (_val[0] == "Áö")
                 {
@@ -64,7 +64,7 @@ public class AddChoice : MonoBehaviour
                     {
                         value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
                     }
-                    AbilityAvailableCheck = Player.Instance.AbilityAvailable(player_ability.mana, value);
+                    AbilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Mana, value);
                 }
                 if (AbilityAvailableCheck == false)
                 {

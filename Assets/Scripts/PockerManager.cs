@@ -24,12 +24,12 @@ public class PockerManager : MonoBehaviour
     void Start()
     {
         //Player pocket setup for test
-        Player.Instance.test();
+        Player.Test();
         SetPreviewUIpanel();
     }
     void SetPreviewUIpanel()
     {
-        Player.Instance.setPreviewStr().CopyTo(tmplist);
+        Player.instance.SetPreviewStr().CopyTo(tmplist);
         int length = tmplist.Length;
 
         if (length >= 1)
@@ -51,10 +51,10 @@ public class PockerManager : MonoBehaviour
         pocket_panel.SetActive(true);
 
         //panel text setup
-        pocket_text.text = Player.Instance.setStr(0);
-        ability_text.text = Player.Instance.setStr(1);
-        item_text.text = Player.Instance.setStr(2);
-        state_text.text = Player.Instance.setStr(3);
+        pocket_text.text = Player.instance.SetStr(0);
+        ability_text.text = Player.instance.SetStr(1);
+        item_text.text = Player.instance.SetStr(2);
+        state_text.text = Player.instance.SetStr(3);
     }
     public void ClosePanel()
     {
@@ -71,20 +71,20 @@ public class PockerManager : MonoBehaviour
         Debug.Log("Play Again");
 
         //Player Stats setup
-        Player.Instance.SetAgain();
+        Player.instance.SetAgain();
     }
     public void SortButton()
     {
-        Player.Instance.sortbytime = !Player.Instance.sortbytime;
-        sortbuttonBool = Player.Instance.sortbytime;
+        Player.instance.Sortbytime = !Player.instance.Sortbytime;
+        sortbuttonBool = Player.instance.Sortbytime;
         sortbutton1.SetActive(sortbuttonBool);
         sortbutton2.SetActive(!sortbuttonBool);
 
 
         //panel text setup
-        pocket_text.text = Player.Instance.setStr(0);
-        ability_text.text = Player.Instance.setStr(1);
-        item_text.text = Player.Instance.setStr(2);
-        state_text.text = Player.Instance.setStr(3);
+        pocket_text.text = Player.instance.SetStr(0);
+        ability_text.text = Player.instance.SetStr(1);
+        item_text.text = Player.instance.SetStr(2);
+        state_text.text = Player.instance.SetStr(3);
     }
 }

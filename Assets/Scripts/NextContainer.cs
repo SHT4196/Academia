@@ -10,10 +10,10 @@ public class NextContainer
     {
         get
         {
-            if (instance == null || Player.Instance.playerReset) 
+            if (instance == null || Player.instance.IsPlayerReset) 
             {
                 instance = new NextContainer();
-                Player.Instance.playerReset = false;
+                Player.instance.IsPlayerReset = false;
             }
             return instance;
         }
