@@ -12,42 +12,37 @@ public class Choice
         next = __next;
     }
 
-    private string _id;
     private string _text;
-    private string _next;
-    private List<string> _need;
+    /// <summary>
+    /// choice id
+    /// </summary>
+    public string id { get; set; }
 
-    public string id
-    {
-        get { return _id; }
-        set { _id = value; }
-    }
+    /// <summary>
+    /// 각 Choice에 보여지는 Text
+    /// </summary>
     public string text
     {
         get { return _text; }
-        set 
+        private set 
         {
-            string[] _val = value.Split('=');
-            if (_val.Length == 1) _text = _val[0];
+            string[] val = value.Split('=');
+            if (val.Length == 1) _text = val[0];
             else
             {
-                _text = _val[1];
-                _need = _val[0].Split('&').ToList();
+                _text = val[1];
+                need = val[0].Split('&').ToList(); // need 구별
             }
             
         }
     }
-    public string next
-    {
-        get { return _next; }
-        set { _next = value; }
-    }
+    /// <summary>
+    /// 각 Choice들을 선택하였을 때 이어지는 Script ID
+    /// </summary>
+    public string next { get; set; }
 
-    public List<string> need
-    {
-        get { return _need; }
-        set { _need = value; }
-    }
-
-
+    /// <summary>
+    /// 해당 Choice를 선택하기 위해 필요한 능력치 string List
+    /// </summary>
+    public List<string> need { get; private set; }
 }
