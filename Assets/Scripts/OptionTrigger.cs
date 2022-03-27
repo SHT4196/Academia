@@ -50,18 +50,20 @@ public class OptionTrigger : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
             if (GameQuit_Canvas.activeSelf == false)
             {
                 GameQuitPanel_Btn();
                 Debug.Log("open");
             }
-            else if (GameQuit_Canvas.activeSelf == true)
+            else //if (GameQuit_Canvas.activeSelf == true)
             {
                 GameQuitPanelClose_Btn();
                 Debug.Log("close");
             }
 
-        
+        }
     }
 
 }

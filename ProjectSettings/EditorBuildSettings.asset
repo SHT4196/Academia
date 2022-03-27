@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu_inhee.unity
     guid: ccdef28bd3e5a014b995839ed7ec6046
   - enabled: 1
-    path: Assets/Scenes/GameManaging_Inhee.unity
+    path: Assets/Scenes/InGame.unity
     guid: 21c62b497f5fade48be383add987975b
   m_configObjects: {}
