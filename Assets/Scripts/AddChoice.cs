@@ -3,119 +3,127 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 
 public class AddChoice : MonoBehaviour
 {
-
     [SerializeField] private GameObject choicePrefab;
-    [SerializeField] private GameObject choicePrefab_activefalse;
-    private GameObject Panel;
-    private GameObject choiceBox;
-    private TextMeshProUGUI choiceText;
-    private Choice choice;
+    [FormerlySerializedAs("choicePrefab_activefalse")] [SerializeField] private GameObject choicePrefabActivefalse;
+    private GameObject _panel;
+    private GameObject _choiceBox;
+    private TextMeshProUGUI _choiceText;
+    private Choice _choice;
     
     void Start()
     {
         MakeButton();
     }
 
+    /// <summary>
+    /// 선택지 Button 동적 생성
+    /// </summary>
     public void MakeButton()
     {
-        int i = NextContainer.Instance.nextChoice.Count -1;
-        foreach (string c in NextContainer.Instance.nextChoice)
+        int i = NextContainer.instance.NextChoice.Count -1;
+        foreach (string c in NextContainer.instance.NextChoice) // 각 choice 별로 선택지 생성
         {
             int choiceCount = 0;
-            bool need_complete = true;
-            choice = MakeDialog.Instance.FindChoice(c);
+            bool needComplete = true;
+            _choice = MakeDialog.instance.FindChoice(c);
             string tmpText = "";
-            if (choice.need != null)
+            if (_choice.need != null)
             {
-                choiceCount = choice.need.Count;
+                choiceCount = _choice.need.Count;
             }
-            for(int j = 0; j < choiceCount; j++)
+            for(int j = 0; j < choiceCount; j++) // choice available 여부 확인
             {
-                bool AbilityAvailableCheck = false;
-                string[] _val = choice.need[j].Split('%');
-                if(_val[0] == "무")
+                bool abilityAvailableCheck = false;
+                if (_choice.need != null)
                 {
-                    int value = 0;
-                    for(int k = 0; k < _val[1].ToIntArray().Length; k++)
+                    string[] val = _choice.need[j].Split('%');
+                    if(val[0] == "무") 
                     {
-                        value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
+                        int value = 0;
+                        for(int k = 0; k < val[1].ToIntArray().Length; k++)
+                        {
+                            value += (val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, val[1].ToIntArray().Length - k - 1);
+                        }
+                        abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Force, value);
                     }
-                    AbilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Force, value);
-                }
-                else if (_val[0] == "정")
-                {
-                    int value = 0;
+                    else if (val[0] == "정")
+                    {
+                        int value = 0;
                     
-                    for (int k = 0; k < _val[1].ToIntArray().Length; k++)
-                    {
-                        value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
+                        for (int k = 0; k < val[1].ToIntArray().Length; k++)
+                        {
+                            value += (val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, val[1].ToIntArray().Length - k - 1);
                         
+                        }
+                        abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Intellect, value);
                     }
-                    AbilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Intellect, value);
-                }
-                else if (_val[0] == "지")
-                {
-                    int value = 0;
-                    for (int k = 0; k < _val[1].ToIntArray().Length; k++)
+                    else if (val[0] == "지")
                     {
-                        value += (_val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, _val[1].ToIntArray().Length - k - 1);
+                        int value = 0;
+                        for (int k = 0; k < val[1].ToIntArray().Length; k++)
+                        {
+                            value += (val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, val[1].ToIntArray().Length - k - 1);
+                        }
+                        abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Mana, value);
                     }
-                    AbilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Mana, value);
                 }
-                if (AbilityAvailableCheck == false)
+
+                if (abilityAvailableCheck == false) // 선택지를 선택할 수 없을 때
                 {
                     tmpText += "<color=#8B0000>";
-                    tmpText += choice.need[j];
+                    tmpText += _choice.need[j];
                     tmpText += "</color>";
-                    need_complete = false;
+                    needComplete = false;
                 }
-                else
+                else // 선택지 선택 가능할 때
                 {
                     tmpText += "<color=#008000>";
-                    tmpText += choice.need[j];
+                    tmpText += _choice.need[j];
                     tmpText += "</color>";
                 }
                 if (j != choiceCount - 1)
                     tmpText += "  ";
             }
-            tmpText += " " + choice.text;
-            Panel = GameObject.Find("Panel");
-            if (need_complete)
+            tmpText += " " + _choice.text;
+            _panel = GameObject.Find("Panel");
+            
+            // 선택지 선택 가능 여부에 따른 Prefab Instantiation
+            if (needComplete)
             {
-                choiceBox = Instantiate(choicePrefab, Panel.transform.position, Panel.transform.rotation) as GameObject;
-                choiceBox.transform.position += new Vector3(0, -1 * i * choiceBox.GetComponent<RectTransform>().rect.height, 0);
-                choiceBox.transform.SetParent(Panel.transform, false);
-
-
+                _choiceBox = Instantiate(choicePrefab, _panel.transform.position, _panel.transform.rotation) as GameObject;
+                _choiceBox.transform.position += new Vector3(0, -1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, 0);
+                _choiceBox.transform.SetParent(_panel.transform, false);
             }
             else
             {
-                choiceBox = Instantiate(choicePrefab_activefalse, Panel.transform.position, Panel.transform.rotation) as GameObject;
-                choiceBox.transform.position += new Vector3(0, -1 * i * choiceBox.GetComponent<RectTransform>().rect.height, 0);
-                choiceBox.transform.SetParent(Panel.transform, false);
-
-
+                _choiceBox = Instantiate(choicePrefabActivefalse, _panel.transform.position, _panel.transform.rotation) as GameObject;
+                _choiceBox.transform.position += new Vector3(0, -1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, 0);
+                _choiceBox.transform.SetParent(_panel.transform, false);
             }
 
-            choiceText = choiceBox.GetComponentInChildren<TextMeshProUGUI>();
-            choiceText.text = tmpText;
-            choiceBox.name = choice.next;
+            _choiceText = _choiceBox.GetComponentInChildren<TextMeshProUGUI>();
+            _choiceText.text = tmpText;
+            _choiceBox.name = _choice.next;
 
             i--;
             
         }
     }
 
+    /// <summary>
+    /// 선택지 버튼 삭제
+    /// </summary>
     public void DestroyButton()
     {
-        Panel = GameObject.Find("Panel");
-        for (int i = 0; i < Panel.transform.childCount; i++)
+        _panel = GameObject.Find("Panel");
+        for (int i = 0; i < _panel.transform.childCount; i++)
         {
-            Destroy(Panel.transform.GetChild(i).gameObject);
+            Destroy(_panel.transform.GetChild(i).gameObject);
         }
     }
 

@@ -5,41 +5,41 @@ using UnityEngine;
 
 public class NextContainer
 {
-    private static NextContainer instance;
-    public static NextContainer Instance
+    private static NextContainer _instance;
+    public static NextContainer instance
     {
         get
         {
-            if (instance == null || Player.instance.IsPlayerReset) 
+            if (_instance == null || Player.instance.IsPlayerReset) 
             {
-                instance = new NextContainer();
+                _instance = new NextContainer();
                 Player.instance.IsPlayerReset = false;
             }
-            return instance;
+            return _instance;
         }
     }
     public NextContainer()
     {
-        nextChoice = new List<string>();
-        Debug.Log(PlayerPrefs.GetString("ScriptID"));
-        if(PlayerPrefs.GetString("ScriptID") == "")
+        NextChoice = new List<string>();
+        // Debug.Log(PlayerPrefs.GetString("ScriptID"));
+        if(PlayerPrefs.GetString("ScriptID") == "") // 저장된 값이 없을 때 -> 새로 시작
         {
-            nextChoice.Add("m1_1");
-            nextText = "M1_1";
-            MainEventController.Instance.SetME_str("M1_1");
+            NextChoice.Add("m1_1");
+            NextText = "M1_1";
+            MainEventController.instance.SetME_str("M1_1");
         }
-        else
+        else // 이어서 하기
         {
             string currentID = PlayerPrefs.GetString("ScriptID");
-            Script currentScript = MakeDialog.Instance.FindScript(currentID);
+            Script currentScript = MakeDialog.instance.FindScript(currentID);
             for(int i =0; i < currentScript.next.Count; i++)
             {
-                nextChoice.Add(currentScript.next[i]);
+                NextChoice.Add(currentScript.next[i]);
             }
-            nextText = currentID;
+            NextText = currentID;
         }
     }
 
-    public List<string> nextChoice;
-    public string nextText;
+    public List<string> NextChoice;
+    public string NextText;
 }

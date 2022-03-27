@@ -4,39 +4,41 @@ using UnityEngine;
 
 public class SetNextID : MonoBehaviour
 {
-    
+    /// <summary>
+    /// 다음 Script 설정
+    /// </summary>
     public void Next()
     {
-        if (gameObject.name == "RANDOM")
+        if (gameObject.name == "RANDOM") // 랜덤이벤트일 경우
         {
             if(PlayerPrefs.GetInt("ME_interval") != 0)
-                MainEventController.Instance.SetInterval(PlayerPrefs.GetInt("ME_interval"));
-            if (MainEventController.Instance.GetInterval() > 0) //Random 풀 진입
+                MainEventController.instance.SetInterval(PlayerPrefs.GetInt("ME_interval"));
+            if (MainEventController.instance.GetInterval() > 0) //Random 풀 진입
             {
-                MainEventController.Instance.IntervalDecrease();
-                int rand = RandomPool.Instance.rand;
+                MainEventController.instance.IntervalDecrease();
+                int rand = RandomPool.Instance.Rand;
                 int temp = rand;
                 while (temp == rand) // 연속 같은 스토리 방지
-                    temp = Random.Range(0, RandomPool.Instance.RandomPool_List.Count);
-                RandomPool.Instance.rand = temp;
-                NextContainer.Instance.nextText = RandomPool.Instance.RandomPool_List[temp].id;
-                PlayerPrefs.SetInt("ME_interval", MainEventController.Instance.GetInterval());
+                    temp = Random.Range(0, RandomPool.Instance.RandomPoolList.Count);
+                RandomPool.Instance.Rand = temp;
+                NextContainer.instance.NextText = RandomPool.Instance.RandomPoolList[temp].id;
+                PlayerPrefs.SetInt("ME_interval", MainEventController.instance.GetInterval());
             }
             else 
             {
-                NextContainer.Instance.nextText = MainEventController.Instance.getNextME();
-                MainEventController.Instance.SetME_str(NextContainer.Instance.nextText);
+                NextContainer.instance.NextText = MainEventController.instance.GetNextMe();
+                MainEventController.instance.SetME_str(NextContainer.instance.NextText);
             }
         }
-        else
+        else // 랜덤이벤트가 아닐 경우
         {
-            if(gameObject.name[0].Equals('M'))
+            if(gameObject.name[0].Equals('M')) // 메인 이벤트인 경우
             {
-                MainEventController.Instance.SetME_str(gameObject.name);
+                MainEventController.instance.SetME_str(gameObject.name);
                 PlayerPrefs.SetString("ME_str", gameObject.name);
-                MainEventController.Instance.FirstSetInterval();
+                MainEventController.instance.FirstSetInterval();
             }
-            NextContainer.Instance.nextText = gameObject.name;
+            NextContainer.instance.NextText = gameObject.name;
         }
     }
     

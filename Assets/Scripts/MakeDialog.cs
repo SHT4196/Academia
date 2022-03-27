@@ -6,18 +6,21 @@ using System.Linq;
 
 public class MakeDialog
 {
-    private static MakeDialog instance;
-    public static MakeDialog Instance
+    private static MakeDialog _instance;
+    public static MakeDialog instance
     {
         get
         {
-            if (instance == null) 
+            if (_instance == null) 
             { 
-                instance = new MakeDialog();
+                _instance = new MakeDialog();
             }
-            return instance;
+            return _instance;
         }
     }
+    /// <summary>
+    /// csv Parsing
+    /// </summary>
     public MakeDialog()
     {
         List<Dictionary<string, object>> ME_Dialog = CSVReader.Read("ME");
@@ -66,7 +69,7 @@ public class MakeDialog
 
                 Script_Dialog.Add(scr_temp);
                 if(scr_temp.id.Contains(story_start_str))
-                    RandomPool.Instance.RandomPool_List.Add(scr_temp); // RandomPool Add
+                    RandomPool.Instance.RandomPoolList.Add(scr_temp); // RandomPool Add
             }
            
         }
@@ -86,7 +89,7 @@ public class MakeDialog
 
                 Script_Dialog.Add(scr_temp);
                 if (scr_temp.id.Contains(story_start_str))
-                    RandomPool.Instance.RandomPool_List.Add(scr_temp); // RandomPool Add
+                    RandomPool.Instance.RandomPoolList.Add(scr_temp); // RandomPool Add
             }
         }
         for(int i = 0; i < SE_Dialog_choice.Count; i++)
@@ -99,24 +102,33 @@ public class MakeDialog
     private List<Script> Script_Dialog = new List<Script>();
     private List<Choice> Choice_Dialog = new List<Choice>();
 
-    public Script FindScript(string _storyID)
+    /// <summary>
+    /// storyID를 통해 Script를 찾을 수 있는 함수
+    /// </summary>
+    /// <param name="storyID">Script story ID</param>
+    /// <returns>해당 story ID를 가진 Script</returns>
+    public Script FindScript(string storyID)
     {
-        if (_storyID[0].Equals('B'))
+        if (storyID[0].Equals('B'))
         {
-            RandomPool.Instance.DeleteFromRandomPool(_storyID);
+            RandomPool.Instance.DeleteFromRandomPool(storyID);
         }
         foreach (Script s in Script_Dialog)
         {
-            if (s.id == _storyID) return s;
+            if (s.id == storyID) return s;
         }
         return null;
     }
-
-    public Choice FindChoice(string _choiceID)
+    /// <summary>
+    /// choiceID를 통해 Choice를 찾을 수 있는 함수
+    /// </summary>
+    /// <param name="choiceID">Choice choiceID</param>
+    /// <returns>해당 choiceID를 가진 Choice</returns>
+    public Choice FindChoice(string choiceID)
     {
         foreach (Choice c in Choice_Dialog)
         {
-            if (c.id == _choiceID) return c;
+            if (c.id == choiceID) return c;
         }
         return null;
     }

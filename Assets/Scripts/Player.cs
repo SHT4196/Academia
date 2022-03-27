@@ -79,7 +79,7 @@ public class Player
         _gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         _health = PlayerPrefs.GetInt("Health") == 0 ? 5 : PlayerPrefs.GetInt("Health");
         _mental = PlayerPrefs.GetInt("Mental") == 0 ? 5 : PlayerPrefs.GetInt("Mental");
-        _gmr.imgSet(_health, _mental);
+        _gmr.ImgSet(_health, _mental);
         
         // player force, intellect, mana 수치 초기화 or 저장 값 불러옴
         _force = PlayerPrefs.GetInt("Force") == 0 ? 2 : PlayerPrefs.GetInt("Force");
@@ -90,7 +90,7 @@ public class Player
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
     }
     /// <summary>
-    /// Player 능력치 & 스탯 reset (게임 오버 후 실행)
+    /// Player 능력치, 스탯 reset (게임 오버 후 실행)
     /// </summary>
     public void ResetPlayer()
     {
@@ -98,7 +98,7 @@ public class Player
         
         _health = 5;
         _mental = 5;
-        _gmr.imgSet(_health, _mental);
+        _gmr.ImgSet(_health, _mental);
         
         _force = 2;
         _intellect = 2;
@@ -119,7 +119,7 @@ public class Player
             this._health += value;
             if (this._health >= 5)
                 this._health = 5;
-            _gmr.imgChange(0, this._health);
+            _gmr.ImgChange(0, this._health);
             PlayerPrefs.SetInt("Health", this._health); //변경된 health값 저장
         }
         if (_health <= 0)
@@ -137,7 +137,7 @@ public class Player
             this._mental += value;
             if (this._mental >= 5)
                 this._mental = 5;
-            _gmr.imgChange(1, this._mental);
+            _gmr.ImgChange(1, this._mental);
             PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
         }
         if (_mental <= 0)
@@ -228,8 +228,8 @@ public class Player
     {
         this._health = 5;
         this._mental = 5;
-        _gmr.imgChange(0, _health);
-        _gmr.imgChange(1, _mental);
+        _gmr.ImgChange(0, _health);
+        _gmr.ImgChange(1, _mental);
     }
     
     /// <summary>
