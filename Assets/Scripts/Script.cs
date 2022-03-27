@@ -18,59 +18,43 @@ public class Script
         afterInterval = __afterInterval;
     }
 
-    private string _id;
-    private string _text;
-    private List<string> _next;
-    private List<string> _result;
 
-    private string _sprite;
+    /// <summary>
+    /// Script ID
+    /// </summary>
+    public string id { get; set; }
 
-    private int _interval;
+    /// <summary>
+    /// Script 내용 - Text
+    /// </summary>
+    public string text { get; set; }
 
-    private string _afterInterval;
-
-
-    public string id
-    {
-        get { return _id; }
-        set { _id = value; }
-    }
-    public string text
-    {
-        get { return _text; }
-        set { _text = value; }
-    }
-    public List<string> next
-    {
-        get { return _next; }
-        set { _next = value; }
-    }
+    /// <summary>
+    /// Script 선택지 List
+    /// </summary>
+    public List<string> next { get; private set; }
 
     private void Awake() 
     {
-        _next = new List<string>();
+        next = new List<string>();
     }
-    public List<string> result
-    {
-        get { return _result; }
-        set { _result = value; }
-    }
+    /// <summary>
+    /// Script가 나타나면 플레이어에게 주는 결과 값 - 스탯 변화
+    /// </summary>
+    public List<string> result { get; set; }
 
-    public string sprite
-    {
-        get { return _sprite; }
-        set { _sprite = value; }
-    }
+    /// <summary>
+    /// 해당 Script와 같이 나타나는 sprite 이름 string
+    /// </summary>
+    public string sprite { get; set; }
 
-    public int interval
-    {
-        get { return _interval; }
-        set { _interval = value; }
-
-    }
-    public string afterInterval
-    {
-        get { return _afterInterval; }
-        set { _afterInterval = value; }
-    }
+    /// <summary>
+    /// interval 존재 시: 랜덤 이벤트 진입 후 다시 메인 이벤트로 돌아올 간격 (interval 만큼의 SE script 후에 돌아옴)
+    /// </summary>
+    public int interval { get; set; }
+    
+    /// <summary>
+    /// interval을 모두 지난 후 돌아올 Main Event의 id값
+    /// </summary>
+    public string afterInterval { get; set; }
 }

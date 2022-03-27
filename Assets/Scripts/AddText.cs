@@ -10,28 +10,45 @@ using UnityEngine.SceneManagement;
 
 public class AddText : MonoBehaviour
 {
+    /// <summary>
+    /// 씬 안에서 스크립트가 표시되는 모든 textbox
+    /// </summary>
     private static List<TextMeshProUGUI> textBox = new List<TextMeshProUGUI>();
+    /// <summary>
+    /// 현재 ID값
+    /// </summary>
     private static string currentID;
-    private Script script;     //store script information for current id (information read from Excel file)
+    /// <summary>
+    /// 엑셀파일에서 읽어온 현재 id에 대한 스크립트의 정보
+    /// </summary>
+    private Script script;
     private List<Choice> choice;
-
-    private static List<Image> imgarr = new List<Image>();    //store image information and representation on one screen
-
-    private static List<bool> isimage = new List<bool>();     //store is image exist
-
+    /// <summary>
+    /// 씬 안에서 표시되는 모든 image
+    /// </summary>
+    private static List<Image> imgarr = new List<Image>();
+    private static List<bool> isimage = new List<bool>();
+    /// <summary>
+    /// 공백의 textbox
+    /// </summary>
     private static TextMeshProUGUI empty;
-
+    /// <summary>
+    /// typing 효과를 주는 coroutine 함수에게 주는 delay값
+    /// </summary>
 	public static float delay = 0.01f;
     private static Coroutine coroutine;
 
     private static string fulltext;
     private string currentText;
-    private static TextMeshProUGUI tb;      //current text box
+    private static TextMeshProUGUI tb;
 
     private static bool text_exit;
     private static bool text_full;
     private static bool text_cut;
-    private static bool trigger = false;     //trigger coroutine
+    /// <summary>
+    /// typing 효과를 주는 coroutine을 시작하는 trigger
+    /// </summary>
+    private static bool trigger = false;
 
     private float _emptyTextSize = 0f;
 
@@ -45,13 +62,15 @@ public class AddText : MonoBehaviour
         AddScript();
     }
 
+    /// <summary>
+    /// 스크립트를 텍스트박스에 추가 및 스크롤과 그림에 대한 값 제어
+    /// </summary>
     public void AddScript()
     {
         script = MakeDialog.Instance.FindScript(NextContainer.Instance.nextText);
         DestroyEmpty(); //Destroy empty text prefab 
         //float ScrollAmount = 0;
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
-
         {
             if(script.sprite != "null")  //Check if there's a picture that needs to be added
             {
@@ -79,14 +98,14 @@ public class AddText : MonoBehaviour
             }
 
             //Increase the amount of scrolling by the size of the text box
-            Scroll.Instance.pos += textBox[textBox.Count - 2].GetComponent<RectTransform>().rect.height * textBox[textBox.Count - 2].rectTransform.localScale.y + 200f;
+            Scroll.instance.pos += textBox[textBox.Count - 2].GetComponent<RectTransform>().rect.height * textBox[textBox.Count - 2].rectTransform.localScale.y + 200f;
             // ScrollAmount += textBox[textBox.Count-2].GetComponent<RectTransform>().rect.height * 0.555f;
             // Scroll.Instance.pos += 200f;
             // ScrollAmount += 200f;
             AddEmpty();//add empty text
             // Scroll.Instance.scrollAmount = ScrollAmount;
 
-            Scroll.Instance.IsScroll = true;
+            Scroll.instance.isScroll = true;
         }
         else
         {
@@ -111,15 +130,18 @@ public class AddText : MonoBehaviour
             Get_Typing(script.text, textBox[0]);  //typing animation start
             
 
-            Scroll.Instance.pos = 0f; //reset screen's position
+            Scroll.instance.pos = 0f; //reset screen's position
 
             AddEmpty();
-            Scroll.Instance.ScrollReset();
+            Scroll.instance.ScrollReset();
         }
         NextContainer.Instance.nextChoice = script.next;
         currentID = script.id;
     }
 
+    /// <summary>
+    /// 아이디가 바뀔 때 씬의 텍스트 박스 모두 제거하여 씬 초기화
+    /// </summary>
     public void DestroyScript()
     {
         for(int i = 0; i < textBox.Count(); i++){
@@ -128,6 +150,10 @@ public class AddText : MonoBehaviour
         }
         textBox.Clear();
     }
+
+    /// <summary>
+    /// 그림 추가
+    /// </summary>
     public void AddPicture(Sprite picture)
     {
         Image img = Instantiate(Resources.Load<Image>("Prefab/Image"));
@@ -137,9 +163,12 @@ public class AddText : MonoBehaviour
             new Vector3(img.rectTransform.localScale.x - 0.4f, img.rectTransform.localScale.y - 0.4f);
         img.transform.SetParent(GameObject.Find("Content").transform, true);
         img.SetNativeSize();
-        Scroll.Instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
+        Scroll.instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
     }
 
+    /// <summary>
+    /// 아이디가 바뀔 때 씬의 그림 모두 제거하여 씬 초기화
+    /// </summary>
     public void DestroyPicture()
     {
         for(int i = 0; i < imgarr.Count();i++){
@@ -148,6 +177,9 @@ public class AddText : MonoBehaviour
         imgarr.Clear();
     }
 
+    /// <summary>
+    /// empty text 추가하여 텍스트가 화면 상단에 오게 content 크기 조절
+    /// </summary>
     public void AddEmpty()
     {
         empty = Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/EmptyText"));
@@ -162,6 +194,10 @@ public class AddText : MonoBehaviour
         }
         empty.rectTransform.localScale = Vector3.one;
     }
+
+    /// <summary>
+    /// 이미 사용한 empty text 제거
+    /// </summary>
     public void DestroyEmpty()
     {
         if(empty != null)
@@ -171,6 +207,9 @@ public class AddText : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// 선택지를 선택했을 때 stat update 동작 (excel 파일에서 받아옴)
+    /// </summary>
     public void Stat()
     {
         for(int i = 0; i < script.result.Count; i++)
@@ -187,7 +226,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val));
+                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val));
                     }
                     else
                     {
@@ -195,7 +234,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.intellect, Int32.Parse(string_val) * (-1));
+                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '무')
@@ -206,7 +245,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val));
+                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val));
                     }
                     else
                     {
@@ -214,7 +253,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.force, Int32.Parse(string_val) * (-1));
+                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '마')
@@ -225,7 +264,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val));
+                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val));
                     }
                     else
                     {
@@ -233,7 +272,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.Changeability(player_ability.mana, Int32.Parse(string_val) * (-1));
+                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '체')
@@ -244,7 +283,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.HealthChange(Int32.Parse(string_val));
+                        Player.instance.HealthChange(Int32.Parse(string_val));
                     }
                     else
                     {
@@ -252,7 +291,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.HealthChange(Int32.Parse(string_val) * (-1));
+                        Player.instance.HealthChange(Int32.Parse(string_val) * (-1));
                     }
                 }
                 if (temp_str[0] == '정')
@@ -263,7 +302,7 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.MentalChange(Int32.Parse(string_val));
+                        Player.instance.MentalChange(Int32.Parse(string_val));
                     }
                     else
                     {
@@ -271,13 +310,18 @@ public class AddText : MonoBehaviour
                         {
                             string_val += temp_str[j];
                         }
-                        Player.Instance.MentalChange(Int32.Parse(string_val) * (-1));
+                        Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
                     }
                 }
             }
         }
     }
 
+    /// <summary>
+    /// 타이핑 시작
+    /// </summary>
+    /// <param name="_fullText">타이핑 효과를 줄 텍스트의 문자열</param>
+    /// <param name="textbox">텍스트를 넣을 textbox</param>
     public void Get_Typing(string _fullText, TextMeshProUGUI textbox)
     {
         text_exit = false;
@@ -290,15 +334,22 @@ public class AddText : MonoBehaviour
         trigger = true;  //if trigger is true, coroutine start at update fuction
     }
 
-    public void End_Typing()  //skip typing effect
+    /// <summary>
+    /// 타이핑 효과 즉시 종료
+    /// </summary>
+    public void End_Typing()
     {
         if (!text_full)
         {
             text_cut = true;
         }
     }
-
-    private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)  //typing effect
+    /// <summary>
+    /// 타이핑 효과 coroutine
+    /// </summary>
+    /// <param name="_fullText">타이핑 효과를 줄 텍스트의 문자열</param>
+    /// <param name="textbox">텍스트를 넣을 textbox</param>
+    private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)
     {
         currentText = "";
         for (int i = 0; i < _fullText.Length; i++)
@@ -317,6 +368,10 @@ public class AddText : MonoBehaviour
 
         text_full = true;
     }
+
+    /// <summary>
+    /// 타이핑 효과 coroutine 제어 및 타이핑 효과 스킵시 동작
+    /// </summary>
     void Update() 
     {
         if (trigger)

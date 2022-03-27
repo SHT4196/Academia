@@ -1,38 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Scroll : MonoBehaviour
 {
-    private static Scroll instance = null;
+    private static Scroll _instance = null;
 
     void Awake()
     {
-        if(null == instance)
+        if(null == _instance)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
-            Scroll.instance.InitScrollManager();
+            Scroll._instance.InitScrollManager();
         }
     }
-    public static Scroll Instance
+    public static Scroll instance
     {
         get 
         { 
-            if (null == instance) return null;
-            return instance;
+            if (null == _instance) return null;
+            return _instance;
 
         }
     }
 
     public float pos;
-    private float elapsedTime = 0;
-    public bool IsScroll = false;
-    private bool first = true;
+    [FormerlySerializedAs("_elapsedTime")] [SerializeField] private float elapsedTime = 0;
+    [FormerlySerializedAs("IsScroll")] public bool isScroll = false;
+    [FormerlySerializedAs("_first")] [SerializeField] private bool first = true;
     public GameObject content;
     [SerializeField] public float scrollAmount;
 
@@ -42,7 +43,7 @@ public class Scroll : MonoBehaviour
     {
         if(content == null)
             content = GameObject.Find("Content");
-        if (IsScroll && GameObject.Find("Content").activeInHierarchy)
+        if (isScroll && GameObject.Find("Content").activeInHierarchy)
         {
             StartCoroutine(Scrollroutine());
         }
@@ -55,7 +56,7 @@ public class Scroll : MonoBehaviour
         if(set.anchoredPosition.y >= pos)
         {
             set.anchoredPosition.Set(set.anchoredPosition.x, pos);
-            IsScroll = false;
+            isScroll = false;
             StopCoroutine(Scrollroutine());
         }
     }

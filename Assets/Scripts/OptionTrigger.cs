@@ -57,13 +57,15 @@ public class OptionTrigger : MonoBehaviour
                 GameQuitPanel_Btn();
                 Debug.Log("open");
             }
-            else //if (GameQuit_Canvas.activeSelf == true)
+
+            else
             {
                 GameQuitPanelClose_Btn();
                 Debug.Log("close");
             }
-
         }
+
+        
     }
 
 }

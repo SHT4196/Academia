@@ -50,8 +50,8 @@ public class PlayerManager : MonoBehaviour
         stat_fill[2] = Mana.transform.GetChild(1).GetComponent<Image>();
         diepanel = GameObject.Find("Canvas").transform.Find("DiePanel").GetComponent<Image>();
 
-        if (Player.Instance.playerReset)
-            Player.Instance.ResetPlayer();
+        if (Player.instance.IsPlayerReset)
+            Player.instance.ResetPlayer();
 
     }
     // Update is called once per frame
@@ -81,19 +81,19 @@ public class PlayerManager : MonoBehaviour
         imgChange(0, health);
         imgChange(1, mental);
     }
-    public void changeability_amount(player_ability ability, int value)
+    public void changeability_amount(PlayerAbility ability, int value)
     {
-        if (ability == player_ability.force)
+        if (ability == PlayerAbility.Force)
         {
             forceAmount.text = value.ToString();
             stat_fill[0].fillAmount = value / 20.0f;
         }
-        else if (ability == player_ability.intellect)
+        else if (ability == PlayerAbility.Intellect)
         {
             intellectAmount.text = value.ToString();
             stat_fill[1].fillAmount = value / 20.0f;
         }
-        else if (ability == player_ability.mana)
+        else if (ability == PlayerAbility.Mana)
         {
             manaAmount.text = value.ToString();
             stat_fill[2].fillAmount = value / 20.0f;
@@ -109,13 +109,13 @@ public class PlayerManager : MonoBehaviour
     public void Die()
     {
        
-        Player.Instance.Die();
+        Player.instance.Die();
         
     }
     public void DiepanelActive()
     {
         diepanel.gameObject.SetActive(true);
-        Player.Instance.playerReset = true;
+        Player.instance.IsPlayerReset = true;
         GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();
     }
 }
