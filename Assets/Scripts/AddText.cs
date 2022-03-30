@@ -156,13 +156,28 @@ public class AddText : MonoBehaviour
     /// </summary>
     public void AddPicture(Sprite picture)
     {
+        int screen_width = Screen.width;
+        int screen_height = Screen.height;
+
         Image img = Instantiate(Resources.Load<Image>("Prefab/Image"));
         imgarr.Add(img);
         img.sprite = picture;
-        img.rectTransform.localScale =
-            new Vector3(img.rectTransform.localScale.x - 0.4f, img.rectTransform.localScale.y - 0.4f);
+        //img.rectTransform.localScale =
+        //    new Vector3(img.rectTransform.localScale.x - 0.4f, img.rectTransform.localScale.y - 0.4f);
         img.transform.SetParent(GameObject.Find("Content").transform, true);
         img.SetNativeSize();
+
+        float width = img.rectTransform.rect.width;
+        float height = img.rectTransform.rect.height;
+
+        if (width >= screen_width)
+        {
+            img.rectTransform.sizeDelta = new Vector2(screen_width, height*screen_width/width);
+        }
+        else
+        {
+            img.rectTransform.sizeDelta = new Vector2(width*screen_height/height, screen_height);
+        }
         Scroll.instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
     }
 
