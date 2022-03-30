@@ -53,6 +53,11 @@ public class Player
     /// player 마력 수치
     /// </summary>
     private int _mana;
+
+    /// <summary>
+    /// player 이름
+    /// </summary>
+    private string _playerName;
     
     private PlayerManager _gmr;
 
@@ -76,19 +81,49 @@ public class Player
     private Player()
     {
         // gmr 및 player 기본 health, mental 수치 초기화 or 저장 값 불러오기
-        _gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         _health = PlayerPrefs.GetInt("Health") == 0 ? 5 : PlayerPrefs.GetInt("Health");
         _mental = PlayerPrefs.GetInt("Mental") == 0 ? 5 : PlayerPrefs.GetInt("Mental");
-        _gmr.ImgSet(_health, _mental);
         
         // player force, intellect, mana 수치 초기화 or 저장 값 불러옴
         _force = PlayerPrefs.GetInt("Force") == 0 ? 2 : PlayerPrefs.GetInt("Force");
         _intellect = PlayerPrefs.GetInt("Intellect") == 0 ? 2 : PlayerPrefs.GetInt("Intellect");
         _mana = PlayerPrefs.GetInt("Mana") == 0 ? 2 : PlayerPrefs.GetInt("Mana");
+        
+        //player 이름 설정
+        _playerName = PlayerPrefs.GetString("PlayerName");
+    }
+
+    /// <summary>
+    /// Set _gmr variable
+    /// </summary>
+    public void SetGameManager()
+    {
+        _gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        _gmr.ImgSet(_health, _mental);
         _gmr.changeability_amount(PlayerAbility.Force, _force);
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
     }
+    
+    /// <summary>
+    /// Player Name 설정
+    /// </summary>
+    /// <param name="name">설정할 Player 이름</param>
+    public void SetPlayerName(string name)
+    {
+        _playerName = name;
+        PlayerPrefs.SetString("PlayerName", name);
+    }
+
+    /// <summary>
+    /// Get Player Name
+    /// </summary>
+    /// <returns></returns>
+    public string GetPlayerName()
+    {
+        return _playerName;
+    }
+    
     /// <summary>
     /// Player 능력치, 스탯 reset (게임 오버 후 실행)
     /// </summary>

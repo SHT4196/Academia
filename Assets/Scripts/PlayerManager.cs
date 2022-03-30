@@ -54,7 +54,8 @@ public class PlayerManager : MonoBehaviour
 
         if (Player.instance.IsPlayerReset) // Player 상태 초기화
             Player.instance.ResetPlayer();
-
+        
+        Player.instance.SetGameManager();
     }
     // Update is called once per frame
     void Update()
