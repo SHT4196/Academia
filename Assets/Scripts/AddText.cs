@@ -54,11 +54,16 @@ public class AddText : MonoBehaviour
 
     private float widthRatio = 2.5f;
     private float heightRatio = 2.5f;
+    /// <summary>
+    /// 스크롤이 밀리는 현상을 없애기 위해 보정값 추가할지 여부
+    /// </summary>
+    private static bool correction = true;
 
     // Start is called before the first frame update
     void Start()
     {
         currentID = "M0_0";
+        correction = true;
         AddScript();
     }
 
@@ -92,8 +97,8 @@ public class AddText : MonoBehaviour
 
 
             if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
-
             {
+                Scroll.instance.pos += imgarr[imgarr.Count-1].rectTransform.rect.height * imgarr[imgarr.Count-1].rectTransform.localScale.y + 200f;
                 // ScrollAmount += 480f;
             }
 
@@ -104,7 +109,12 @@ public class AddText : MonoBehaviour
             // ScrollAmount += 200f;
             AddEmpty();//add empty text
             // Scroll.Instance.scrollAmount = ScrollAmount;
-
+            if (correction)    //보정값 추가
+            {
+                Debug.Log("보정값 넣기");
+                Scroll.instance.pos -= 20;
+                correction = false;
+            }
             Scroll.instance.isScroll = true;
         }
         else
@@ -131,6 +141,7 @@ public class AddText : MonoBehaviour
             
 
             Scroll.instance.pos = 0f; //reset screen's position
+            correction = true; //이제 보정값을 추가해야 함.
 
             AddEmpty();
             Scroll.instance.ScrollReset();
@@ -160,7 +171,6 @@ public class AddText : MonoBehaviour
         int screen_height = Screen.height;
 
         Image img = Instantiate(Resources.Load<Image>("Prefab/Image"));
-        imgarr.Add(img);
         img.sprite = picture;
         //img.rectTransform.localScale =
         //    new Vector3(img.rectTransform.localScale.x - 0.4f, img.rectTransform.localScale.y - 0.4f);
@@ -178,7 +188,8 @@ public class AddText : MonoBehaviour
         {
             img.rectTransform.sizeDelta = new Vector2(width*screen_height/height, screen_height);
         }
-        Scroll.instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
+        imgarr.Add(img);
+        //Scroll.instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
     }
 
     /// <summary>
