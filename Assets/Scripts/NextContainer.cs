@@ -25,6 +25,7 @@ public class NextContainer
         if(PlayerPrefs.GetString("ScriptID") == "") // 저장된 값이 없을 때 -> 새로 시작
         {
             NextChoice.Add("m1_1");
+            NextChoice.Add("m1_2");
             NextText = "M1_1";
             MainEventController.instance.SetME_str("M1_1");
         }

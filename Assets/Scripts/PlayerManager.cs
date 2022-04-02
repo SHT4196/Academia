@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour
         
     }
     /// <summary>
-    /// 플레이어 상태 이미지 change
+    /// 플레이어 상태 이미지 change 
     /// </summary>
     /// <param name="state">0: health, 1: mental</param>
     /// <param name="value">health 또는 mental 수치</param>
