@@ -180,13 +180,22 @@ public class AddText : MonoBehaviour
         float width = img.rectTransform.rect.width;
         float height = img.rectTransform.rect.height;
 
-        if (width >= screen_width)
+        if ((width >= screen_width && height >= screen_height && width-screen_width >= height-screen_height)||
+            (width >= screen_width && height < screen_height)||
+            (width < screen_width && height < screen_height && screen_width-width <= screen_height-height))
         {
             img.rectTransform.sizeDelta = new Vector2(screen_width, height*screen_width/width);
         }
-        else
+        else if ((width >= screen_width && height >= screen_height && width-screen_width < height-screen_height)||
+                (width < screen_width && height >= screen_height)||
+                (width < screen_width && height < screen_height && screen_width-width > screen_height-height))
         {
             img.rectTransform.sizeDelta = new Vector2(width*screen_height/height, screen_height);
+        }
+        else
+        {
+            img.rectTransform.sizeDelta = new Vector2(screen_width, height*screen_width/width);
+            Debug.Log("Unknown Case");
         }
         imgarr.Add(img);
         //Scroll.instance.pos += img.rectTransform.rect.height * img.rectTransform.localScale.y + 200f;
