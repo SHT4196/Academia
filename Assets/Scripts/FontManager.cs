@@ -21,30 +21,41 @@ public class FontManager : MonoBehaviour
     {
 
     }
-    // 폰트 크게
+
+    /// <summary>
+    /// 폰트 크게
+    /// </summary>
     public void bigFontSize() 
     {
-        Sample_Text.fontSize = 80;
+        Sample_Text.fontSize = 17;
         storyText.fontSize = 17;
     }
 
-    // 폰트 중간
+    /// <summary>
+    ///   폰트 중간
+    /// </summary>
     public void middleFontSize()
     {
-        Sample_Text.fontSize = 70;
+        Sample_Text.fontSize = 15;
         storyText.fontSize = 15;
 
     }
 
-    // 폰트 작게
+    /// <summary>
+    /// 폰트 작게
+    /// </summary>    
+
     public void smallFontSize()
     {
-        Sample_Text.fontSize = 60;
+        Sample_Text.fontSize = 13;
         storyText.fontSize = 13;
 
     }
 
-    // 줄간격 넓게
+    /// <summary>
+    /// 줄간격 넓게
+    /// </summary>
+
     public void wideLineSpace()
     {
         Sample_Text.lineSpacing = 20f;
@@ -53,7 +64,9 @@ public class FontManager : MonoBehaviour
 
     }
 
-    // 줄간격 보통
+    /// <summary>
+    /// 줄간격 보통
+    /// </summary>
     public void middleLineSpace()
     {
         Sample_Text.lineSpacing = 0f;
@@ -62,7 +75,9 @@ public class FontManager : MonoBehaviour
 
     }
 
-    // 줄간격 좁게
+    /// <summary>
+    /// 줄간격 좁게
+    /// </summary>
     public void narrowLineSpace()
     {
         Sample_Text.lineSpacing = -20f;

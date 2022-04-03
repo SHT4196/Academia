@@ -11,7 +11,9 @@ public class SoundManger : MonoBehaviour
     public AudioMixer masterMixer;
     public Slider BgmSlider;
 
-
+    /// <summary>
+    /// º¼·ý Á¶Àý
+    /// </summary>
     public void AudioControl()
     {
         float sound = BgmSlider.value;

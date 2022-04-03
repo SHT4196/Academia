@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1577735421}
+      - m_Target: {fileID: 843538988}
         m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
-        m_MethodName: GameQuitPanel_Btn
+        m_MethodName: GameQuitPanelOpen_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1142994056}
   m_HandleRect: {fileID: 1142994055}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1577735421}
+      - m_Target: {fileID: 843538988}
         m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
         m_MethodName: OptionClose_Btn
         m_Mode: 1
@@ -2563,7 +2563,7 @@ MonoBehaviour:
   manaAmount: {fileID: 415397967}
   intellectAmount: {fileID: 415397969}
   diepanel: {fileID: 16234408}
-  stat_fill:
+  statFill:
   - {fileID: 415397972}
   - {fileID: 415397970}
   - {fileID: 415397968}
@@ -7565,8 +7565,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7624,15 +7624,15 @@ RectTransform:
   m_GameObject: {fileID: 1338406000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1742930394}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.18924, y: 161.17}
-  m_SizeDelta: {x: 799.622, y: 265.26}
+  m_AnchoredPosition: {x: 0.000005126, y: 117}
+  m_SizeDelta: {x: 228.4131, y: 62.8737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1346811233
 GameObject:
@@ -8025,7 +8025,6 @@ GameObject:
   - component: {fileID: 1375511076}
   - component: {fileID: 1375511075}
   - component: {fileID: 1375511074}
-  - component: {fileID: 1375511073}
   m_Layer: 5
   m_Name: GameQuitCanvas
   m_TagString: Untagged
@@ -8033,20 +8032,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1375511073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375511072}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5955a180a0a684fada11c1ea6d54d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Option_Canvas: {fileID: 1577735418}
-  GameQuit_Canvas: {fileID: 1375511072}
 --- !u!114 &1375511074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8366,6 +8351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c49dd345a5af44ea7ffe18134858e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionTrigger: {fileID: 843538983}
 --- !u!1 &1420755932
 GameObject:
   m_ObjectHideFlags: 0
@@ -8875,7 +8861,6 @@ GameObject:
   - component: {fileID: 1577735424}
   - component: {fileID: 1577735423}
   - component: {fileID: 1577735422}
-  - component: {fileID: 1577735421}
   - component: {fileID: 1577735420}
   - component: {fileID: 1577735419}
   m_Layer: 5
@@ -8913,20 +8898,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sample_Text: {fileID: 1338406001}
   storyText: {fileID: 4981541278878406689, guid: c9f047395f875484aaf053d229c10ad5, type: 3}
---- !u!114 &1577735421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577735418}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5955a180a0a684fada11c1ea6d54d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Option_Canvas: {fileID: 1577735418}
-  GameQuit_Canvas: {fileID: 1375511072}
 --- !u!114 &1577735422
 MonoBehaviour:
   m_ObjectHideFlags: 0
