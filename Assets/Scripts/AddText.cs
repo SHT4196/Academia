@@ -93,7 +93,7 @@ public class AddText : MonoBehaviour
             PlayerPrefs.SetString("ScriptID", script.id); //save id
 
 
-            Get_Typing(script.text, textBox[textBox.Count-1]);  //typing animation start
+            Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[textBox.Count-1]);  //typing animation start
 
 
             if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
@@ -137,7 +137,7 @@ public class AddText : MonoBehaviour
             PlayerPrefs.SetString("ScriptID", script.id); //save id
 
 
-            Get_Typing(script.text, textBox[0]);  //typing animation start
+            Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[0]);  //typing animation start
             
 
             Scroll.instance.pos = 0f; //reset screen's position
