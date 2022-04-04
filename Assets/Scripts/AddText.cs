@@ -180,21 +180,26 @@ public class AddText : MonoBehaviour
         float width = img.rectTransform.rect.width;
         float height = img.rectTransform.rect.height;
 
+        /// <summary>
+        /// 화면 크기에 대한 삽화의 비율, 0~1사이의 실수값
+        /// </summary>
+        float image_ratio = 0.7f;
+
         if ((width >= screen_width && height >= screen_height && width-screen_width >= height-screen_height)||
             (width >= screen_width && height < screen_height)||
             (width < screen_width && height < screen_height && screen_width-width <= screen_height-height))
         {
-            img.rectTransform.sizeDelta = new Vector2(screen_width, height*screen_width/width);
+            img.rectTransform.sizeDelta = new Vector2(screen_width*image_ratio, height*screen_width/width*image_ratio);
         }
         else if ((width >= screen_width && height >= screen_height && width-screen_width < height-screen_height)||
                 (width < screen_width && height >= screen_height)||
                 (width < screen_width && height < screen_height && screen_width-width > screen_height-height))
         {
-            img.rectTransform.sizeDelta = new Vector2(width*screen_height/height, screen_height);
+            img.rectTransform.sizeDelta = new Vector2(width*screen_height/height*image_ratio, screen_height*image_ratio);
         }
         else
         {
-            img.rectTransform.sizeDelta = new Vector2(screen_width, height*screen_width/width);
+            img.rectTransform.sizeDelta = new Vector2(screen_width*image_ratio, height*screen_width/width*image_ratio);
             Debug.Log("Unknown Case");
         }
         imgarr.Add(img);
