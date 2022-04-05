@@ -8351,7 +8351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c49dd345a5af44ea7ffe18134858e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionTrigger: {fileID: 843538983}
 --- !u!1 &1420755932
 GameObject:
   m_ObjectHideFlags: 0
@@ -9950,7 +9949,7 @@ PrefabInstance:
       objectReference: {fileID: 258538842566997391, guid: eba34d0eeacda20439afff7aeecb531e, type: 3}
     - target: {fileID: 7906483315451588214, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_Spacing
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7906483315451588214, guid: cd3b982418fb5ce49b2c5d44d254d7a7, type: 3}
       propertyPath: m_ChildAlignment
