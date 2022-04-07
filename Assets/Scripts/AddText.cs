@@ -117,7 +117,7 @@ public class AddText : MonoBehaviour
             if (correction)    //보정값 추가
             {
                 Debug.Log("보정값 넣기");
-                Scroll.instance.pos -= 20;
+                Scroll.instance.pos -= 10;
                 correction = false;
             }
             Scroll.instance.isScroll = true;

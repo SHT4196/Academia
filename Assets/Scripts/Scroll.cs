@@ -6,6 +6,14 @@ using UnityEngine.Serialization;
 public class Scroll : MonoBehaviour
 {
     private static Scroll _instance = null;
+    /// <summary>
+    /// 스크롤 되는 총량
+    /// </summary>
+    private static float scrollquantity = 0f;
+    /// <summary>
+    /// 코루틴이 실행된 횟수
+    /// </summary>
+    private static int time = 0;
 
     void Awake()
     {
@@ -35,7 +43,7 @@ public class Scroll : MonoBehaviour
     [FormerlySerializedAs("IsScroll")] public bool isScroll = false;
     [FormerlySerializedAs("_first")] [SerializeField] private bool first = true;
     public GameObject content;
-    [SerializeField] public float scrollAmount;
+    [SerializeField] private float scrollAmount;
 
     Vector2 endpos;
 
@@ -55,13 +63,26 @@ public class Scroll : MonoBehaviour
     public IEnumerator Scrollroutine()
     {
         RectTransform set = content.gameObject.GetComponent<RectTransform>();
-        yield return set.anchoredPosition += new Vector2(0, scrollAmount * 0.01f);
-        // Debug.Log($"content: {set.anchoredPosition.y}, pos: {pos}");
-        if(set.anchoredPosition.y >= pos)
+        if (time == 0)
         {
-            set.anchoredPosition.Set(set.anchoredPosition.x, pos);
+            scrollquantity = pos - set.anchoredPosition.y;
+        }
+        time++;
+        // Debug.Log($"content: {set.anchoredPosition.y}, pos: {pos}");
+        if(time >= 30)
+        {
+            if (set.anchoredPosition.y < pos)
+            {
+                yield return set.anchoredPosition += new Vector2(0, Mathf.Abs(pos - set.anchoredPosition.y));
+            }
+            time = 0;
             isScroll = false;
             StopCoroutine(Scrollroutine());
+        }
+        else
+        {
+            scrollAmount = scrollquantity/900f * (Mathf.Pow(time - 31, 2) - Mathf.Pow(time - 30, 2));
+            yield return set.anchoredPosition += new Vector2(0, scrollAmount);
         }
     }
     /// <summary>
