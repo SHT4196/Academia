@@ -68,8 +68,9 @@ public class Scroll : MonoBehaviour
             scrollquantity = pos - set.anchoredPosition.y;
         }
         time++;
+        scrollAmount = scrollquantity/900f * (Mathf.Pow(time - 31, 2) - Mathf.Pow(time - 30, 2));
         // Debug.Log($"content: {set.anchoredPosition.y}, pos: {pos}");
-        if(time >= 30)
+        if(time >= 31)
         {
             if (set.anchoredPosition.y < pos)
             {
@@ -81,7 +82,6 @@ public class Scroll : MonoBehaviour
         }
         else
         {
-            scrollAmount = scrollquantity/900f * (Mathf.Pow(time - 31, 2) - Mathf.Pow(time - 30, 2));
             yield return set.anchoredPosition += new Vector2(0, scrollAmount);
         }
     }
