@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -109,27 +108,7 @@ public class AddChoice : MonoBehaviour
 
             _choiceText = _choiceBox.GetComponentInChildren<TextMeshProUGUI>();
             _choiceText.text = tmpText;
-            
-            //선택지 확률 설정
-            if (_choice.next.Count == 1) //확률 없음 - choicenext 한개
-            {
-                _choiceBox.name = _choice.next[0];
-            }
-            else
-            {
-                int randomValue = Random.Range(1, 11);
-                Debug.Log(randomValue);
-                int num = 0;
-                foreach (var choiceNext in _choice.next)
-                {
-                    num += choiceNext[choiceNext.IndexOf('(') + 1] - '0';
-                    if (randomValue <= num)
-                    {
-                        _choiceBox.name = choiceNext.Split('(')[0];
-                        break;
-                    }
-                }   
-            }
+            _choiceBox.name = _choice.next;
 
             i--;
             
