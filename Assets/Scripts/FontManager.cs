@@ -27,8 +27,8 @@ public class FontManager : MonoBehaviour
     /// </summary>
     public void bigFontSize() 
     {
-        Sample_Text.fontSize = 17;
-        storyText.fontSize = 17;
+        Sample_Text.fontSize = 16;
+        storyText.fontSize = 16;
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ public class FontManager : MonoBehaviour
     /// </summary>
     public void middleFontSize()
     {
-        Sample_Text.fontSize = 15;
-        storyText.fontSize = 15;
+        Sample_Text.fontSize = 14;
+        storyText.fontSize = 14;
 
     }
 
@@ -47,8 +47,8 @@ public class FontManager : MonoBehaviour
 
     public void smallFontSize()
     {
-        Sample_Text.fontSize = 13;
-        storyText.fontSize = 13;
+        Sample_Text.fontSize = 12;
+        storyText.fontSize = 12;
 
     }
 
