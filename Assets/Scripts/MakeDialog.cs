@@ -57,7 +57,7 @@ public class MakeDialog
         for (int i = 0; i < ME_Dialog_choice.Count; i++)
         {
             if (ME_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && ME_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && ME_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
-                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString().Split('&').ToList()));
+                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString()));
         }
 
         for (int i = 0; i < BE_Dialog.Count; i++)
@@ -77,7 +77,7 @@ public class MakeDialog
         for (int i = 0; i < BE_Dialog_choice.Count; i++)
         {
             if (BE_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && BE_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && BE_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
-                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString().Split('&').ToList()));
+                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString()));
         }
 
         for (int i = 0; i < SE_Dialog.Count; i++)
@@ -95,7 +95,7 @@ public class MakeDialog
         for(int i = 0; i < SE_Dialog_choice.Count; i++)
         {
             if (SE_Dialog_choice[i].TryGetValue("ChoiceID", out choiceID) && SE_Dialog_choice[i].TryGetValue("ChoiceText", out choiceText) && SE_Dialog_choice[i].TryGetValue("ChoiceNext", out choiceNext))
-                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString().Split('&').ToList()));
+                Choice_Dialog.Add(new Choice(choiceID.ToString(), choiceText.ToString().Replace('$', '\n'), choiceNext.ToString()));
         }
     }
 

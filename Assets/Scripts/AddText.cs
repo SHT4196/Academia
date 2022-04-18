@@ -15,6 +15,10 @@ public class AddText : MonoBehaviour
     /// </summary>
     private static List<TextMeshProUGUI> textBox = new List<TextMeshProUGUI>();
     /// <summary>
+    /// 텍스트 박스 사이에 빈 공간 효과를 주는 empty text
+    /// </summary>
+    private static List<TextMeshProUGUI> space = new List<TextMeshProUGUI>();
+    /// <summary>
     /// 현재 ID값
     /// </summary>
     private static string currentID;
@@ -77,6 +81,7 @@ public class AddText : MonoBehaviour
         //float ScrollAmount = 0;
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
+            AddSpace();
             if(script.sprite != "null")  //Check if there's a picture that needs to be added
             {
                 Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
@@ -98,7 +103,7 @@ public class AddText : MonoBehaviour
 
             if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
             {
-                Scroll.instance.pos += imgarr[imgarr.Count-1].rectTransform.rect.height * imgarr[imgarr.Count-1].rectTransform.localScale.y + 200f;
+                Scroll.instance.pos += imgarr[imgarr.Count-1].rectTransform.rect.height * imgarr[imgarr.Count-1].rectTransform.localScale.y;// + 200f;
                 // ScrollAmount += 480f;
             }
 
@@ -112,7 +117,7 @@ public class AddText : MonoBehaviour
             if (correction)    //보정값 추가
             {
                 Debug.Log("보정값 넣기");
-                Scroll.instance.pos -= 20;
+                Scroll.instance.pos -= 10;
                 correction = false;
             }
             Scroll.instance.isScroll = true;
@@ -121,6 +126,7 @@ public class AddText : MonoBehaviour
         {
             DestroyScript();  //destroy previous text
             DestroyPicture();  //destroy previous picture
+            DestroySpace();  //destroy previous empty text box
             if(script.sprite != "null")  //Check if there's a picture that needs to be added
             {
                 Sprite pic = Resources.Load<Sprite>("Images/" + script.sprite);
@@ -224,11 +230,11 @@ public class AddText : MonoBehaviour
     {
         empty = Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/EmptyText"));
         empty.transform.SetParent(GameObject.Find("Content").transform, true);
-         if (empty.rectTransform.sizeDelta.y + textBox[textBox.Count - 1].rectTransform.sizeDelta.y*textBox[textBox.Count - 1].rectTransform.localScale.y + 200 <=
+         if (empty.rectTransform.sizeDelta.y + textBox[textBox.Count - 1].rectTransform.sizeDelta.y*textBox[textBox.Count - 1].rectTransform.localScale.y <=
             empty.transform.parent.parent.GetComponent<RectTransform>().rect.height)
         {
             empty.rectTransform.sizeDelta = new Vector2(textBox[textBox.Count - 1].rectTransform.sizeDelta.x,
-                Mathf.Abs(empty.transform.parent.parent.GetComponent<RectTransform>().rect.height - 200 -
+                Mathf.Abs(empty.transform.parent.parent.GetComponent<RectTransform>().rect.height -
                           textBox[textBox.Count - 1].rectTransform.sizeDelta.y * textBox[textBox.Count - 1].rectTransform.localScale.y));
             
         }
@@ -245,6 +251,29 @@ public class AddText : MonoBehaviour
             Destroy(empty.gameObject);
             empty = null;
         }
+    }
+
+    /// <summary>
+    /// space 효과
+    /// </summary>
+    public void AddSpace()
+    {
+        space.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/EmptyText")));
+        space[space.Count()-1].transform.SetParent(GameObject.Find("Content").transform, true);
+        space[space.Count()-1].rectTransform.localScale = Vector3.one;
+        space[space.Count()-1].rectTransform.sizeDelta = new Vector2(200, 200);
+    }
+
+    /// <summary>
+    /// id 전환 시 space 효과 주던 empty text 삭제
+    /// </summary>
+    public void DestroySpace()
+    {
+        for (int i = 0; i < space.Count(); i++)
+        {
+            Destroy(space[i].gameObject);
+        }
+        space.Clear();
     }
     
     /// <summary>
