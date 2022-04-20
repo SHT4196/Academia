@@ -132,6 +132,10 @@ public class Achivement
                 now[n-1] = max[n-1];
                 time[n-1] = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
             }
+            else if(now[n-1] < 0)
+            {
+                now[n-1] = 0;
+            }
             save_acv();
         }
     }
