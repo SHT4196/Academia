@@ -79,6 +79,8 @@ public class AddText : MonoBehaviour
         script = MakeDialog.instance.FindScript(NextContainer.instance.NextText);
         DestroyEmpty(); //Destroy empty text prefab 
         //float ScrollAmount = 0;
+        if (script.acvUpdate[0] != "-" && PlayerPrefs.GetString("ScriptID") != script.id)
+            AcvUpdate_By_CSV(script.acvUpdate);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
             AddSpace();
@@ -152,8 +154,6 @@ public class AddText : MonoBehaviour
             AddEmpty();
             Scroll.instance.ScrollReset();
         }
-        if (script.acvUpdate[0] != "-")
-            AcvUpdate_By_CSV(script.acvUpdate);
         NextContainer.instance.NextChoice = script.next;
         currentID = script.id;
     }
