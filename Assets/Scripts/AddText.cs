@@ -152,6 +152,8 @@ public class AddText : MonoBehaviour
             AddEmpty();
             Scroll.instance.ScrollReset();
         }
+        if (script.acvUpdate[0] != "-")
+            AcvUpdate_By_CSV(script.acvUpdate);
         NextContainer.instance.NextChoice = script.next;
         currentID = script.id;
     }
@@ -436,6 +438,34 @@ public class AddText : MonoBehaviour
         StopCoroutine(coroutine);
 
         text_full = true;
+    }
+
+    /// <summary>
+    /// CSV 파일에 의한 업적 값 update
+    /// </summary>
+    /// <param name ="ABC">update할 script의 acvUpdate값</param>
+    private void AcvUpdate_By_CSV(List<string> ABC)
+    {
+        if(ABC.Count != 2)
+        {
+            Debug.Log("Unknown Case");
+            return;
+        }
+        int acv_num = Int32.Parse(ABC[0]);
+        int acv_add;
+        if (ABC[1][0] == '-')
+        {
+            acv_add = Int32.Parse(ABC[1].Substring(1)) * -1;
+        }
+        else if (ABC[1][0] == '+')
+        {
+            acv_add = Int32.Parse(ABC[1].Substring(1));
+        }
+        else
+        {
+            acv_add = Int32.Parse(ABC[1]);
+        }
+        Achivement.Acv.nowupdate(acv_num, acv_add);
     }
 
     /// <summary>
