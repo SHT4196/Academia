@@ -3402,8 +3402,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1994262090}
   m_HandleRect: {fileID: 1994262089}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.6381613
+  m_Value: 1.0000002
+  m_Size: 0.4138597
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4049,7 +4049,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862928631}
         m_TargetAssemblyTypeName: FontManager, Assembly-CSharp
-        m_MethodName: bigFontSize
+        m_MethodName: fontBigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5326,7 +5326,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862928631}
         m_TargetAssemblyTypeName: FontManager, Assembly-CSharp
-        m_MethodName: smallFontSize
+        m_MethodName: fontSmaller
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5459,7 +5459,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 862928631}
         m_TargetAssemblyTypeName: FontManager, Assembly-CSharp
-        m_MethodName: middleFontSize
+        m_MethodName: currentFontSize
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
