@@ -212,7 +212,8 @@ public class Player
     public void Die()
     {
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-        PlayerPrefs.DeleteAll(); // 저장값 초기화
+        PlayerPrefs.DeleteAll(); //저장값 초기화
+        Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
         _gmr.DiepanelActive(); // die 창 활성화
         
         // 후에 health와 mental의 다른 대처? 
