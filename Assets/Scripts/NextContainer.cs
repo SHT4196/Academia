@@ -21,7 +21,10 @@ public class NextContainer
     public NextContainer()
     {
         NextChoice = new List<string>();
-        // Debug.Log(PlayerPrefs.GetString("ScriptID"));
+        if (Player.instance.isAdmin)
+        {
+            return;
+        }
         if(PlayerPrefs.GetString("ScriptID") == "") // 저장된 값이 없을 때 -> 새로 시작
         {
             NextChoice.Add("m1_1");
@@ -39,6 +42,18 @@ public class NextContainer
             }
             NextText = currentID;
         }
+    }
+
+    public void EnterAdminMode(string mainId, int health, int mental, int force, int intellect, int mana, string playerName)
+    {
+        NextChoice = new List<string>();
+        NextText = mainId;
+        Script currentScript = MakeDialog.instance.FindScript(mainId);
+        for(int i =0; i < currentScript.next.Count; i++)
+        {
+            NextChoice.Add(currentScript.next[i]);
+        }
+        Player.instance.SetAdminVersion(health, mental, force, intellect, mana, playerName);
     }
 
     public List<string> NextChoice;

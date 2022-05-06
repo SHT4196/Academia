@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [FormerlySerializedAs("NamePanel")] [SerializeField] private GameObject namePanel;
-
+    [FormerlySerializedAs("AdminCanvas")] [SerializeField] private Canvas adminCanvas;
+    [SerializeField] private Button adminButton;
     [SerializeField] private TMP_InputField nameInputField;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void GoInGame()
     {
+        Player.instance.isAdmin = false;
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
             namePanel.SetActive(true);
@@ -39,5 +41,11 @@ public class MainMenu : MonoBehaviour
     {
         Player.instance.SetPlayerName(nameInputField.text);
         SceneManager.LoadScene(2);
+    }
+
+    public void OpenAdminCanvas()
+    {
+        adminCanvas.gameObject.SetActive(true);
+        adminCanvas.GetComponent<Admin>().idPanel.SetActive(true);
     }
 }

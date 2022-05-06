@@ -67,7 +67,7 @@ public class AddText : MonoBehaviour
     void Start()
     {
         currentID = "M0_0";
-        correction = true;
+        correction = true;  
         AddScript();
     }
 
@@ -95,10 +95,18 @@ public class AddText : MonoBehaviour
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
-            PlayerPrefs.SetString("ScriptID", script.id); //save id
+            if (!Player.instance.isAdmin)
+            {
+                PlayerPrefs.SetString("ScriptID", script.id); //save id
+                Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[textBox.Count-1]);  //typing animation start
+            }
+            else
+            {
+                textBox[textBox.Count - 1].text = script.text.Replace("{name}", Player.instance.GetPlayerName());
+                text_exit = true;
+            }
 
 
-            Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[textBox.Count-1]);  //typing animation start
 
 
             if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
@@ -140,10 +148,17 @@ public class AddText : MonoBehaviour
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
-            PlayerPrefs.SetString("ScriptID", script.id); //save id
-
-
-            Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[0]);  //typing animation start
+            
+            if (!Player.instance.isAdmin)
+            {
+                PlayerPrefs.SetString("ScriptID", script.id); //save id
+                Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[0]);  //typing animation start
+            }
+            else
+            {
+                textBox[0].text = script.text.Replace("{name}", Player.instance.GetPlayerName());
+                text_exit = true;
+            }
             
 
             Scroll.instance.pos = 0f; //reset screen's position
@@ -186,9 +201,7 @@ public class AddText : MonoBehaviour
         float width = img.rectTransform.rect.width;
         float height = img.rectTransform.rect.height;
 
-        /// <summary>
-        /// 화면 크기에 대한 삽화의 비율, 0~1사이의 실수값
-        /// </summary>
+        // 화면 크기에 대한 삽화의 비율, 0~1사이의 실수값
         float image_ratio = 0.7f;
 
         if ((width >= screen_width && height >= screen_height && width-screen_width >= height-screen_height)||
@@ -423,7 +436,7 @@ public class AddText : MonoBehaviour
         currentText = "";
         for (int i = 0; i < _fullText.Length; i++)
         {
-            if (text_cut == true)
+            if (text_cut)
             {
                 break;
             }
@@ -433,8 +446,8 @@ public class AddText : MonoBehaviour
         }
         _textBox.text = _fullText;
         text_exit = true;
-        StopCoroutine(coroutine);
 
+        StopCoroutine(coroutine);
         text_full = true;
     }
 
@@ -443,10 +456,13 @@ public class AddText : MonoBehaviour
     /// </summary>
     void Update() 
     {
-        if (trigger)
+        if (!Player.instance.isAdmin)
         {
-            coroutine = StartCoroutine(ShowText(fulltext, tb));
-            trigger = false;
+            if (trigger)
+            {
+                coroutine = StartCoroutine(ShowText(fulltext, tb));
+                trigger = false;
+            }
         }
         if (text_exit)  //if typing effect end, next button express.
         {

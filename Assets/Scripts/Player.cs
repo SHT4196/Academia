@@ -61,6 +61,7 @@ public class Player
     
     private PlayerManager _gmr;
 
+    public bool isAdmin { get; set; }
     
     private static readonly List<Pocket> EntirePocket = new List<Pocket>();
     private static readonly List<Ability> AbilityPocket = new List<Ability>();
@@ -80,6 +81,10 @@ public class Player
 
     private Player()
     {
+        if (isAdmin)
+        {
+            return;
+        }
         // gmr 및 player 기본 health, mental 수치 초기화 or 저장 값 불러오기
         _health = PlayerPrefs.GetInt("Health") == 0 ? 5 : PlayerPrefs.GetInt("Health");
         _mental = PlayerPrefs.GetInt("Mental") == 0 ? 5 : PlayerPrefs.GetInt("Mental");
@@ -123,7 +128,16 @@ public class Player
     {
         return _playerName;
     }
-    
+
+    public void SetAdminVersion(int health, int mental, int force, int intellect, int mana, string playerName)
+    {
+        _health = health;
+        _mental = mental;
+        _force = force;
+        _intellect = intellect;
+        _mana = mana;
+        _playerName = playerName;
+    }
     /// <summary>
     /// Player 능력치, 스탯 reset (게임 오버 후 실행)
     /// </summary>
@@ -155,6 +169,10 @@ public class Player
             if (this._health >= 5)
                 this._health = 5;
             _gmr.ImgChange(0, this._health);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Health", this._health); //변경된 health값 저장
         }
         if (_health <= 0)
@@ -173,7 +191,10 @@ public class Player
             if (this._mental >= 5)
                 this._mental = 5;
             _gmr.ImgChange(1, this._mental);
-            PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
+            if (!isAdmin)
+            {
+                PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
+            }
         }
         if (_mental <= 0)
             this.Die();
@@ -190,18 +211,30 @@ public class Player
         {
             this._force += value;
             _gmr.changeability_amount(ability, this._force);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Force", this._force);
         }
         else if (ability == PlayerAbility.Intellect)
         {
             this._intellect += value;
             _gmr.changeability_amount(ability, this._intellect);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Intellect", this._intellect);
         }
         else if (ability == PlayerAbility.Mana)
         {
             this._mana += value;
             _gmr.changeability_amount(ability, this._mana);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Mana", this._mana);
         }
     }
@@ -211,10 +244,14 @@ public class Player
     /// </summary>
     public void Die()
     {
-        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-        PlayerPrefs.DeleteAll(); // 저장값 초기화
-        _gmr.DiepanelActive(); // die 창 활성화
         
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        _gmr.DiepanelActive(); // die 창 활성화
+        if (isAdmin)
+        {
+            return;
+        }
+        PlayerPrefs.DeleteAll(); // 저장값 초기화
         
         // 후에 health와 mental의 다른 대처? 
         // if(_health == 0)
