@@ -15,6 +15,11 @@ public class AchivementManager : MonoBehaviour
     /// </summary>
     public static void acv_clear(int n)
     {
+        if (StaticCoroutine.is_play == true)  //동시에 여러개의 업적 달성될 경우 대응
+        {
+            Achivement.is_fail = true;
+            return;
+        }
         GameObject acv = UnityEngine.Object.Instantiate<GameObject>(Resources.Load<GameObject>("Prefab/Acv"));
         RectTransform acv_rect = acv.GetComponent<RectTransform>();
         float acv_height = 172.5f;
@@ -45,8 +50,6 @@ public class AchivementManager : MonoBehaviour
 
         StaticCoroutine.DoCoroutine(AchivementManager.ClearAction(acv, acv_height, acv_rect));
 
-        //acv.transform.localPosition = new Vector2(Camera.main.w)
-        //UnityEngine.Object.Destroy(acv);
     }
 
     /// <summary>
@@ -54,6 +57,7 @@ public class AchivementManager : MonoBehaviour
     /// </summary>
     public static IEnumerator ClearAction(GameObject acv, float acv_height, RectTransform acv_rect)
     {
+        StaticCoroutine.is_play = true;
         int velocity = 60;  //업적 클리어창 내려오는 속도
         while (n < velocity)
         {
@@ -69,6 +73,7 @@ public class AchivementManager : MonoBehaviour
         }
         n = 0;
         Destroy(acv);
+        StaticCoroutine.is_play = false;
     }
 
     void Start() {

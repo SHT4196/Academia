@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void GoInGame()
     {
+        StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
             namePanel.SetActive(true);
