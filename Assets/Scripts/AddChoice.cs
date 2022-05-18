@@ -108,7 +108,25 @@ public class AddChoice : MonoBehaviour
 
             _choiceText = _choiceBox.GetComponentInChildren<TextMeshProUGUI>();
             _choiceText.text = tmpText;
-            _choiceBox.name = _choice.next;
+            if (_choice.next.Count == 1) //확률 없음 - choicenext 한개
+            {
+                _choiceBox.name = _choice.next[0];
+            }
+            else
+            {
+                int randomValue = Random.Range(1, 11);
+                Debug.Log(randomValue);
+                int num = 0;
+                foreach (var choiceNext in _choice.next)
+                {
+                    num += choiceNext[choiceNext.IndexOf('(') + 1] - '0';
+                    if (randomValue <= num)
+                    {
+                        _choiceBox.name = choiceNext.Split('(')[0];
+                        break;
+                    }
+                }   
+            }
 
             i--;
             
