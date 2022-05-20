@@ -492,5 +492,10 @@ public class AddText : MonoBehaviour
 
             text_exit = false;
         }
+        if (StaticCoroutine.is_play == false && Achivement.acv_delay.Count >= 1)
+        {
+            AchivementManager.acv_clear(Achivement.acv_delay[0]);
+            Achivement.acv_delay.RemoveAt(0);
+        }
     }
 }

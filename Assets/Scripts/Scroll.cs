@@ -14,6 +14,10 @@ public class Scroll : MonoBehaviour
     /// 코루틴이 실행된 횟수
     /// </summary>
     private static int time = 0;
+    /// <summary>
+    /// 스크롤의 속도 (시간 개념이므로 값이 클수록 느려짐)
+    /// </summary>
+    [SerializeField] private static int ScrollTime = 40;
 
     void Awake()
     {
@@ -67,9 +71,9 @@ public class Scroll : MonoBehaviour
             scrollquantity = pos - set.anchoredPosition.y;
         }
         time++;
-        scrollAmount = scrollquantity/900f * (Mathf.Pow(time - 31, 2) - Mathf.Pow(time - 30, 2));
+        scrollAmount = scrollquantity/(Mathf.Pow(ScrollTime, 2)) * (Mathf.Pow(time - ScrollTime - 1, 2) - Mathf.Pow(time - ScrollTime, 2));
         // Debug.Log($"content: {set.anchoredPosition.y}, pos: {pos}");
-        if(time >= 31)
+        if(time >= ScrollTime + 1)
         {
             if (set.anchoredPosition.y < pos)
             {

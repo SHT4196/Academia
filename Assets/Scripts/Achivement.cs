@@ -70,6 +70,14 @@ public class Achivement
     /// 업적의 그림 저장
     /// </summary>
     public static Sprite[] image;
+    /// <summary>
+    /// 함수 실행 성공 여부
+    /// </summary>
+    public static bool is_fail = false;
+    /// <summary>
+    /// 업적 코루틴 실행 대기열
+    /// </summary>
+    public static List<int> acv_delay = new List<int>();
 
     public Achivement()
     {
@@ -150,6 +158,12 @@ public class Achivement
                 now[n-1] = max[n-1];
                 time[n-1] = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
                 AchivementManager.acv_clear(n-1);
+                if (is_fail)
+                {
+                    acv_delay.Add(n-1);
+                    Debug.Log(acv_delay[0]);
+                    is_fail = false;
+                }
             }
             else if(now[n-1] < 0)
             {
@@ -181,7 +195,6 @@ public class Achivement
             image.fillAmount = 0.0f;
             percent.text = "???";
         }
-        
     }
 
     /// <summary>
@@ -319,13 +332,13 @@ public class Achivement
         }
     }
 
-    //need to add a function that nowupdate is run by excel file
 }
 
 public class StaticCoroutine : MonoBehaviour 
 {
  
     private static StaticCoroutine mInstance = null;
+    public static bool is_play = false;
  
     private static StaticCoroutine instance
     {
@@ -372,5 +385,14 @@ public class StaticCoroutine : MonoBehaviour
     void OnApplicationQuit()
     {
         mInstance = null;
+    }
+
+    void Update() 
+    {
+        if (is_play == false && Achivement.acv_delay.Count >= 1)
+        {
+            AchivementManager.acv_clear(Achivement.acv_delay[0]);
+            Achivement.acv_delay.RemoveAt(0);
+        }
     }
 }
