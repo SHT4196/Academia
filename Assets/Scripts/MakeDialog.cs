@@ -106,9 +106,9 @@ public class MakeDialog
         for (int i = 0; i < PME_Dialog.Count; i++)
         {
 
-            if (PME_Dialog[i].TryGetValue("StoryID", out storyID) && PME_Dialog[i].TryGetValue("StoryText", out storyText) && PME_Dialog[i].TryGetValue("StoryNext", out storyNext) && PME_Dialog[i].TryGetValue("StoryResult", out storyResult) && PME_Dialog[i].TryGetValue("Sprite", out spritename) && PME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && PME_Dialog[i].TryGetValue("AfterInterval", out afterInterval) && PME_Dialog[i].TryGetValue("Probability", out probability))
+            if (PME_Dialog[i].TryGetValue("StoryID", out storyID) && PME_Dialog[i].TryGetValue("StoryText", out storyText) && PME_Dialog[i].TryGetValue("StoryNext", out storyNext) && PME_Dialog[i].TryGetValue("StoryResult", out storyResult) && PME_Dialog[i].TryGetValue("Sprite", out spritename) && PME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && PME_Dialog[i].TryGetValue("AfterInterval", out afterInterval) && PME_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate) && PME_Dialog[i].TryGetValue("Probability", out probability))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString(), Int32.Parse(probability.ToString())));
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString(), Int32.Parse(probability.ToString())));
             }
            
         }

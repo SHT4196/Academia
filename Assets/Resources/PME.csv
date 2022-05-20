@@ -1,4 +1,4 @@
-﻿StoryID,StoryText,StoryNext,StoryResult,StoryInterval,Sprite,AfterInterval,Probability
-PM1_1#1,PM text1,pm1_1&pm1_2,-,0,null,-,50
-PM1_1#2,PM text2,pm1_1&pm1_3,-,0,null,-,30
-PM1_1#3,PM text3,pm1_2&pm1_3,-,0,null,-,20
+﻿StoryID,StoryText,StoryNext,StoryResult,StoryInterval,Sprite,AfterInterval,AcvUpdate,Probability
+PM1_1#1,PM text1,pm1_1&pm1_2,-,0,null,-,-,50
+PM1_1#2,PM text2,pm1_1&pm1_3,-,0,null,-,-,30
+PM1_1#3,PM text3,pm1_2&pm1_3,-,0,null,-,-,20
