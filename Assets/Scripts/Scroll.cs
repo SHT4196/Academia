@@ -45,7 +45,6 @@ public class Scroll : MonoBehaviour
     public GameObject content;
     [SerializeField] private float scrollAmount;
 
-    Vector2 endpos;
 
     void Update()
     {
