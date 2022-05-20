@@ -32,7 +32,7 @@ public class Achivement
     private static GameObject[] p;
     /// <summary>
     /// MainMenu에서 Scene이 전환되었는지 여부
-    /// </summary>    
+    /// </summary>
     private static bool scene_change;
     /// <summary>
     /// 업적의 현재값 array
@@ -42,6 +42,10 @@ public class Achivement
     /// 업적의 최댓값(달성값) array
     /// </summary>
     private static int[] max;
+    /// <summary>
+    /// 업적의 상태의 초기값
+    /// </summary>
+    private static int[] init_state;
     /// <summary>
     /// 업적의 현재 상태 array --> -1: 숨겨진 업적, 0: 달성되지 않고 숨겨지지 않은 업적, 1: 달성된 업적
     /// </summary>
@@ -58,6 +62,22 @@ public class Achivement
     /// 숨겨진 업적의 설명 -> ???로 표시하기 위함
     /// </summary>
     private static string[] hide_description;
+    /// <summary>
+    /// 업적의 이름 저장
+    /// </summary>
+    public static string[] name;
+    /// <summary>
+    /// 업적의 그림 저장
+    /// </summary>
+    public static Sprite[] image;
+    /// <summary>
+    /// 함수 실행 성공 여부
+    /// </summary>
+    public static bool is_fail = false;
+    /// <summary>
+    /// 업적 코루틴 실행 대기열
+    /// </summary>
+    public static List<int> acv_delay = new List<int>();
 
     public Achivement()
     {
@@ -71,6 +91,10 @@ public class Achivement
         hide_name = new string[num];
         hide_description = new string[num];
         scene_change = false;
+        name = new string[num];
+        image = new Sprite[num];
+
+        init_state = state;
 
         /// <summary>
         /// 저장된 업적 불러옴
@@ -102,6 +126,11 @@ public class Achivement
     {
         a = GameObject.FindGameObjectsWithTag("Acv");
         p = GameObject.FindGameObjectsWithTag("percent");
+        for (int i = 0; i < num; i++)
+        {
+            name[i] = a[i].transform.Find("Acv_pic").transform.Find("Acv_name").GetComponent<Text>().text;
+            image[i] = a[i].transform.Find("Acv_pic").GetComponent<Image>().sprite;
+        }
     }
 
     /// <summary>
@@ -125,13 +154,22 @@ public class Achivement
 
             if(now[n-1] >= max[n-1])
             {
-                if(state[n-1]==-1){
-                    express(n-1, a[n-1]);
-                }
                 state[n-1] = 1;
                 now[n-1] = max[n-1];
                 time[n-1] = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
+                AchivementManager.acv_clear(n-1);
+                if (is_fail)
+                {
+                    acv_delay.Add(n-1);
+                    Debug.Log(acv_delay[0]);
+                    is_fail = false;
+                }
             }
+            else if(now[n-1] < 0)
+            {
+                now[n-1] = 0;
+            }
+            Debug.Log((n) + "번째 업적에 " + (plus) + " 더함 --> 결과 : " + (now[n-1]));
             save_acv();
         }
     }
@@ -157,7 +195,6 @@ public class Achivement
             image.fillAmount = 0.0f;
             percent.text = "???";
         }
-        
     }
 
     /// <summary>
@@ -196,6 +233,8 @@ public class Achivement
         }
         for (int i = 0; i < num; i++)
         {
+            if (state[i] == 1 && init_state[i] == -1)
+                express(i, a[i]);
             if (state[i]!=-1)  //check if (i)th achivement is hidden
             {
                 percentupdate(i, p[i], now[i], max[i]);
@@ -253,11 +292,8 @@ public class Achivement
     /// <param name="a">표시할 업적 prefab</param>
     public void express(int n, GameObject a)
     {
-        if(state[n] == -1)
-        {
-            a.transform.Find("Acv_name").GetComponent<Text>().text = hide_name[n];
-            a.transform.Find("Acv_description").GetComponent<Text>().text = hide_description[n];
-        }
+        a.transform.Find("Acv_name").GetComponent<Text>().text = hide_name[n];
+        a.transform.Find("Acv_description").GetComponent<Text>().text = hide_description[n];
     }
 
     /// <summary>
@@ -296,5 +332,67 @@ public class Achivement
         }
     }
 
-    //need to add a function that nowupdate is run by excel file
+}
+
+public class StaticCoroutine : MonoBehaviour 
+{
+ 
+    private static StaticCoroutine mInstance = null;
+    public static bool is_play = false;
+ 
+    private static StaticCoroutine instance
+    {
+        get
+        {
+            if (mInstance == null)
+            {
+                mInstance = GameObject.FindObjectOfType(typeof(StaticCoroutine)) as StaticCoroutine;
+ 
+                if (mInstance == null)
+                {
+                    mInstance = new GameObject("StaticCoroutine").AddComponent<StaticCoroutine>();
+                }
+            }
+            return mInstance;
+        }
+    }
+ 
+    void Awake()
+    {
+        if (mInstance == null)
+        {
+            mInstance = this as StaticCoroutine;
+        }
+    }
+ 
+    IEnumerator Perform(IEnumerator coroutine)
+    {
+        yield return StartCoroutine(coroutine);
+        Die();
+    }
+ 
+    public static void DoCoroutine(IEnumerator coroutine)
+    {
+        instance.StartCoroutine(instance.Perform(coroutine));    
+    }
+    
+    void Die()
+    {
+        mInstance = null;
+        Destroy(gameObject);
+    }
+ 
+    void OnApplicationQuit()
+    {
+        mInstance = null;
+    }
+
+    void Update() 
+    {
+        if (is_play == false && Achivement.acv_delay.Count >= 1)
+        {
+            AchivementManager.acv_clear(Achivement.acv_delay[0]);
+            Achivement.acv_delay.RemoveAt(0);
+        }
+    }
 }

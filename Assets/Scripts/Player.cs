@@ -244,8 +244,13 @@ public class Player
     /// </summary>
     public void Die()
     {
+
         
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        PlayerPrefs.DeleteAll(); //저장값 초기화
+        Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
+
         _gmr.DiepanelActive(); // die 창 활성화
         if (isAdmin)
         {

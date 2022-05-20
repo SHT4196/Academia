@@ -44,14 +44,17 @@ public class MakeDialog
         object storyInterval = null;
         object afterInterval = null;
         object probability = null;
+        object acvUpdate = null;
+
+
 
         string story_start_str = "_1";
         for (int i = 0; i < ME_Dialog.Count; i++)
         {
 
-            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && ME_Dialog[i].TryGetValue("AfterInterval", out afterInterval))
+            if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && ME_Dialog[i].TryGetValue("AfterInterval", out afterInterval) && ME_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString()));
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString()));
 
             }
            
@@ -66,9 +69,9 @@ public class MakeDialog
         for (int i = 0; i < BE_Dialog.Count; i++)
         {
 
-            if (BE_Dialog[i].TryGetValue("StoryID", out storyID) && BE_Dialog[i].TryGetValue("StoryText", out storyText) && BE_Dialog[i].TryGetValue("StoryNext", out storyNext) && BE_Dialog[i].TryGetValue("StoryResult", out storyResult) && BE_Dialog[i].TryGetValue("Sprite", out spritename))
+            if (BE_Dialog[i].TryGetValue("StoryID", out storyID) && BE_Dialog[i].TryGetValue("StoryText", out storyText) && BE_Dialog[i].TryGetValue("StoryNext", out storyNext) && BE_Dialog[i].TryGetValue("StoryResult", out storyResult) && BE_Dialog[i].TryGetValue("Sprite", out spritename) && BE_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(),0);
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(),0);
 
                 Script_Dialog.Add(scr_temp);
                 if(scr_temp.id.Contains(story_start_str))
@@ -86,9 +89,9 @@ public class MakeDialog
         for (int i = 0; i < SE_Dialog.Count; i++)
         {
 
-            if (SE_Dialog[i].TryGetValue("StoryID", out storyID) && SE_Dialog[i].TryGetValue("StoryText", out storyText) && SE_Dialog[i].TryGetValue("StoryNext", out storyNext) && SE_Dialog[i].TryGetValue("StoryResult", out storyResult) && SE_Dialog[i].TryGetValue("Sprite", out spritename))
+            if (SE_Dialog[i].TryGetValue("StoryID", out storyID) && SE_Dialog[i].TryGetValue("StoryText", out storyText) && SE_Dialog[i].TryGetValue("StoryNext", out storyNext) && SE_Dialog[i].TryGetValue("StoryResult", out storyResult) && SE_Dialog[i].TryGetValue("Sprite", out spritename) && SE_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(),0);
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(),0);
 
                 Script_Dialog.Add(scr_temp);
                 if (scr_temp.id.Contains(story_start_str))

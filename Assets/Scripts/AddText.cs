@@ -79,6 +79,8 @@ public class AddText : MonoBehaviour
         script = MakeDialog.instance.FindScript(NextContainer.instance.NextText);
         DestroyEmpty(); //Destroy empty text prefab 
         //float ScrollAmount = 0;
+        if (script.acvUpdate[0] != "-" && PlayerPrefs.GetString("ScriptID") != script.id)
+            AcvUpdate_By_CSV(script.acvUpdate);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
             AddSpace();
@@ -452,6 +454,34 @@ public class AddText : MonoBehaviour
     }
 
     /// <summary>
+    /// CSV 파일에 의한 업적 값 update
+    /// </summary>
+    /// <param name ="ABC">update할 script의 acvUpdate값</param>
+    private void AcvUpdate_By_CSV(List<string> ABC)
+    {
+        if(ABC.Count != 2)
+        {
+            Debug.Log("Unknown Case");
+            return;
+        }
+        int acv_num = Int32.Parse(ABC[0]);
+        int acv_add;
+        if (ABC[1][0] == '-')
+        {
+            acv_add = Int32.Parse(ABC[1].Substring(1)) * -1;
+        }
+        else if (ABC[1][0] == '+')
+        {
+            acv_add = Int32.Parse(ABC[1].Substring(1));
+        }
+        else
+        {
+            acv_add = Int32.Parse(ABC[1]);
+        }
+        Achivement.Acv.nowupdate(acv_num, acv_add);
+    }
+
+    /// <summary>
     /// 타이핑 효과 coroutine 제어 및 타이핑 효과 스킵시 동작
     /// </summary>
     void Update() 
@@ -477,6 +507,11 @@ public class AddText : MonoBehaviour
             AddEmpty();
 
             text_exit = false;
+        }
+        if (StaticCoroutine.is_play == false && Achivement.acv_delay.Count >= 1)
+        {
+            AchivementManager.acv_clear(Achivement.acv_delay[0]);
+            Achivement.acv_delay.RemoveAt(0);
         }
     }
 }
