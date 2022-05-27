@@ -1319,7 +1319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: c267e2334bd6b6a4a8f02484652c09e3, type: 3}
+  m_Texture: {fileID: 2800000, guid: b226fc6aa42a6fa4dbdc8abff7e7378d, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4588,6 +4588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Option_Canvas: {fileID: 1577735418}
   GameQuit_Canvas: {fileID: 1375511072}
+  Achivement_Canvas: {fileID: 0}
 --- !u!1 &850754040
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,7 +5754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 696c1db90d900d54699e324069e01752, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db8dcde2a341c3545ab4b14d98f205d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
