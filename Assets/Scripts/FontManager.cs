@@ -8,13 +8,17 @@ public class FontManager : MonoBehaviour
 {
     public TextMeshProUGUI Sample_Text;
     public TextMeshProUGUI storyText;
+    public TextMeshProUGUI Text_Size;
+    // public TextMeshProUGUI OptionClose_Text;
     private int textSize;
+    // public Text sizeBtn;
 
 
     // Start is called before the first frame update
     void Start()
     {
         textSize = 14;
+        Text_Size = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -35,11 +39,18 @@ public class FontManager : MonoBehaviour
     public void fontBigger()
     {
         int sizeMax = 18;
-        if (textSize < sizeMax) {
+        if (textSize < sizeMax)
+        {
             textSize ++;
         }
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
+        Text_Size.text = textSize.ToString();
+        // OptionClose_Text.text = textSize.ToString();
+        // sizeBtn.GetComponent<Text>().text = textSize.ToString();
+        Debug.Log("+1");
+
+        // Debug.Log("complete");
     }
 
     /// <summary>
@@ -52,8 +63,8 @@ public class FontManager : MonoBehaviour
     // }
     public void currentFontSize()
     {
-        Debug.Log("current font size : ");
         Debug.Log(textSize);
+        // Text_Size = textSize;
         // Sample_Text.fontSize = textSize;
         // storyText.fontSize = textSize;
     }
@@ -75,6 +86,12 @@ public class FontManager : MonoBehaviour
         }
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
+        Text_Size.text = textSize.ToString();
+        // sizeBtn.GetComponent<Text>().text = textSize.ToString();
+        Debug.Log("-1");
+        // Sample_Text.fontSize = textSize;
+        // storyText.fontSize = textSize;
+        // Debug.Log("complete");
     }
 
     /// <summary>
