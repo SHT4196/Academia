@@ -397,6 +397,28 @@ public class AddText : MonoBehaviour
                         Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
                     }
                 }
+                else
+                {
+                    if (Player.instance.CheckKeyAvailable(temp_str[0].ToString()))
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                }
             }
         }
     }

@@ -25,7 +25,7 @@ public class AddChoice : MonoBehaviour
     /// </summary>
     public void MakeButton()
     {
-        int i = NextContainer.instance.NextChoice.Count -1;
+        int i = 0;
         foreach (string c in NextContainer.instance.NextChoice) // 각 choice 별로 선택지 생성
         {
             int choiceCount = 0;
@@ -95,15 +95,16 @@ public class AddChoice : MonoBehaviour
             // 선택지 선택 가능 여부에 따른 Prefab Instantiation
             if (needComplete)
             {
-                _choiceBox = Instantiate(choicePrefab, _panel.transform.position, _panel.transform.rotation) as GameObject;
-                _choiceBox.transform.position += new Vector3(0, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, 0);
+                _choiceBox = Instantiate(choicePrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 _choiceBox.transform.SetParent(_panel.transform, false);
+                //_panel.transform.position.y + 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height
+                _choiceBox.transform.position = new Vector3(_choiceBox.transform.position.x, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, _choiceBox.transform.position.z);
             }
             else
             {
-                _choiceBox = Instantiate(choicePrefabActivefalse, _panel.transform.position, _panel.transform.rotation) as GameObject;
-                _choiceBox.transform.position += new Vector3(0, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, 0);
+                _choiceBox = Instantiate(choicePrefabActivefalse, Vector3.zero, Quaternion.identity) as GameObject;
                 _choiceBox.transform.SetParent(_panel.transform, false);
+                _choiceBox.transform.position = new Vector3(_choiceBox.transform.position.x, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, _choiceBox.transform.position.z);
             }
 
             _choiceText = _choiceBox.GetComponentInChildren<TextMeshProUGUI>();
@@ -128,7 +129,7 @@ public class AddChoice : MonoBehaviour
                 }   
             }
 
-            i--;
+            i++;
             
         }
     }

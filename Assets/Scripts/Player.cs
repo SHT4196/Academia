@@ -59,6 +59,13 @@ public class Player
     /// </summary>
     private string _playerName;
     
+    Dictionary<string, int> _likeableDic = new Dictionary<string,int>()
+    {
+        {"서", 0},
+        {"연", 0},
+        {"고", 0}
+    };
+    
     private PlayerManager _gmr;
 
     public bool isAdmin { get; set; }
@@ -178,7 +185,31 @@ public class Player
         if (_health <= 0)
             this.Die();
     }
-    
+
+    /// <summary>
+    /// likealbeDictionary에서 해당 key값이 valuable한지 확인
+    /// </summary>
+    /// <param name="key">확인하고자하는 key값</param>
+    /// <returns></returns>
+    public bool CheckKeyAvailable(string key)
+    {
+        return _likeableDic.ContainsKey(key);
+    }
+
+    /// <summary>
+    /// 호감도 수치 변경 함수
+    /// </summary>
+    /// <param name="key">변경하고자 하는 호감도 key</param>
+    /// <param name="value">변경할 값</param>
+    public void ChangeLikeable(string key, int value)
+    {
+        if (!CheckKeyAvailable(key))
+            return;
+        int nowValue;
+        _likeableDic.TryGetValue(key, out nowValue);
+        _likeableDic[key] = nowValue + value;
+        Debug.Log($"서: {_likeableDic["서"]}, 연: {_likeableDic["연"]}, 고: {_likeableDic["고"]}");
+    }
     /// <summary>
     /// player의 mental 수치 변경
     /// </summary>
