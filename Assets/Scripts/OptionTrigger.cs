@@ -9,6 +9,7 @@ public class OptionTrigger : MonoBehaviour
 
     public GameObject Option_Canvas;
     public GameObject GameQuit_Canvas;
+    public GameObject Achivement_Canvas;
 
     /// <summary>
     /// 옵션창 열기
@@ -24,6 +25,23 @@ public class OptionTrigger : MonoBehaviour
     public void OptionClose_Btn()
     {
         Option_Canvas.SetActive(false);
+        Time.timeScale = 1;
+
+    }
+    /// <summary>
+    /// 업적창 열기
+    /// </summary>
+    public void Achive_Btn()
+    {
+        Achivement_Canvas.SetActive(true);
+        Time.timeScale = 0;
+    }
+    /// <summary>
+    /// 업적창 닫기
+    /// </summary>
+    public void AchiceClose_Btn()
+    {
+        Achivement_Canvas.SetActive(false);
         Time.timeScale = 1;
 
     }
