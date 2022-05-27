@@ -18,7 +18,7 @@ public class FontManager : MonoBehaviour
     void Start()
     {
         textSize = 14;
-        Text_Size = GetComponent<TextMeshProUGUI>();
+        // Text_Size = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -31,11 +31,7 @@ public class FontManager : MonoBehaviour
     /// ��Ʈ ũ��
     /// </summary>
 
-    // public void bigFontSize() 
-    // {
-    //     Sample_Text.fontSize = 16;
-    //     storyText.fontSize = 16;
-    // }
+
     public void fontBigger()
     {
         int sizeMax = 18;
@@ -46,8 +42,6 @@ public class FontManager : MonoBehaviour
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
         Text_Size.text = textSize.ToString();
-        // OptionClose_Text.text = textSize.ToString();
-        // sizeBtn.GetComponent<Text>().text = textSize.ToString();
         Debug.Log("+1");
 
         // Debug.Log("complete");
@@ -56,28 +50,12 @@ public class FontManager : MonoBehaviour
     /// <summary>
     ///   ��Ʈ �߰�
     /// </summary>
-    // public void middleFontSize()
-    // {
-    //     Sample_Text.fontSize = 14;
-    //     storyText.fontSize = 14;
-    // }
-    public void currentFontSize()
-    {
-        Debug.Log(textSize);
-        // Text_Size = textSize;
-        // Sample_Text.fontSize = textSize;
-        // storyText.fontSize = textSize;
-    }
+
 
     /// <summary>
     /// ��Ʈ �۰�
     /// </summary>    
 
-    // public void smallFontSize()
-    // {
-    //     Sample_Text.fontSize = 12;
-    //     storyText.fontSize = 12;
-    // }
     public void fontSmaller()
     {
         int sizeMin = 11;
@@ -87,11 +65,8 @@ public class FontManager : MonoBehaviour
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
         Text_Size.text = textSize.ToString();
-        // sizeBtn.GetComponent<Text>().text = textSize.ToString();
         Debug.Log("-1");
-        // Sample_Text.fontSize = textSize;
-        // storyText.fontSize = textSize;
-        // Debug.Log("complete");
+
     }
 
     /// <summary>
@@ -102,8 +77,6 @@ public class FontManager : MonoBehaviour
     {
         Sample_Text.lineSpacing = 20f;
         storyText.lineSpacing  = 20f;
-
-
     }
 
     /// <summary>
@@ -113,8 +86,6 @@ public class FontManager : MonoBehaviour
     {
         Sample_Text.lineSpacing = 0f;
         storyText.lineSpacing = 0f;
-
-
     }
 
     /// <summary>
@@ -124,8 +95,6 @@ public class FontManager : MonoBehaviour
     {
         Sample_Text.lineSpacing = -20f;
         storyText.lineSpacing = -20f;
-
-
     }
 
 
