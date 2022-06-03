@@ -17,7 +17,16 @@ public class FontManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textSize = 14;
+        if (PlayerPrefs.HasKey("text_size"))
+        {
+            textSize = PlayerPrefs.GetInt("text_size");
+            Sample_Text.fontSize = textSize;
+            Text_Size.text = textSize.ToString();
+        }
+        else
+        {
+            textSize = 14;
+        }
         // Text_Size = GetComponent<TextMeshProUGUI>();
     }
 
@@ -42,8 +51,8 @@ public class FontManager : MonoBehaviour
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
         Text_Size.text = textSize.ToString();
+        PlayerPrefs.SetInt("text_size", textSize);
         Debug.Log("+1");
-
         // Debug.Log("complete");
     }
 
@@ -65,6 +74,7 @@ public class FontManager : MonoBehaviour
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
         Text_Size.text = textSize.ToString();
+        PlayerPrefs.SetInt("text_size", textSize);
         Debug.Log("-1");
 
     }
