@@ -143,7 +143,7 @@ public class MakeDialog
             {
                 if (s.id.Contains("#"))
                 {
-                    if (s.id.Split('#')[0] == storyID)
+                    if (s.id.Split('#')[1] == storyID)
                     {
                         PMEscripts.Add(s);
                         // return s;
@@ -162,7 +162,7 @@ public class MakeDialog
                 tempValue += PMEscripts[i].probability;
                 if (tempValue >= randomValue)
                 {
-                    Debug.Log($"tempvalue: {tempValue}, randomValue: {randomValue}");
+                    // Debug.Log($"tempvalue: {tempValue}, randomValue: {randomValue}");
                     return PMEscripts[i];
                 }
             }
