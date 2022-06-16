@@ -12,17 +12,28 @@ public class SoundManger : MonoBehaviour
     public Slider BgmSlider;
 
     /// <summary>
-    /// º¼·ý Á¶Àý
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
+
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("volume"))
+        {
+            BgmSlider.value = PlayerPrefs.GetFloat("volume");
+        }
+    }
+
     public void AudioControl()
     {
         float sound = BgmSlider.value;
 
         if (sound == -40f) masterMixer.SetFloat("BGM", -80);
-        else masterMixer.SetFloat("BGM", sound);
+        else
+        {
+            masterMixer.SetFloat("BGM", sound);
+            PlayerPrefs.SetFloat("volume", sound);
+        }
     }
 
 
-
-
- }
+}

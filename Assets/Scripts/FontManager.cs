@@ -8,12 +8,26 @@ public class FontManager : MonoBehaviour
 {
     public TextMeshProUGUI Sample_Text;
     public TextMeshProUGUI storyText;
+    public TextMeshProUGUI Text_Size;
+    // public TextMeshProUGUI OptionClose_Text;
+    private int textSize;
+    // public Text sizeBtn;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        if (PlayerPrefs.HasKey("text_size"))
+        {
+            textSize = PlayerPrefs.GetInt("text_size");
+            Sample_Text.fontSize = textSize;
+            Text_Size.text = textSize.ToString();
+        }
+        else
+        {
+            textSize = 14;
+        }
+        // Text_Size = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -23,67 +37,74 @@ public class FontManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÆùÆ® Å©°Ô
+    /// ï¿½ï¿½Æ® Å©ï¿½ï¿½
     /// </summary>
-    public void bigFontSize() 
+
+
+    public void fontBigger()
     {
-        Sample_Text.fontSize = 16;
-        storyText.fontSize = 16;
+        int sizeMax = 18;
+        if (textSize < sizeMax)
+        {
+            textSize ++;
+        }
+        Sample_Text.fontSize = textSize;
+        storyText.fontSize = textSize;
+        Text_Size.text = textSize.ToString();
+        PlayerPrefs.SetInt("text_size", textSize);
+        Debug.Log("+1");
+        // Debug.Log("complete");
     }
 
     /// <summary>
-    ///   ÆùÆ® Áß°£
+    ///   ï¿½ï¿½Æ® ï¿½ß°ï¿½
     /// </summary>
-    public void middleFontSize()
-    {
-        Sample_Text.fontSize = 14;
-        storyText.fontSize = 14;
 
-    }
 
     /// <summary>
-    /// ÆùÆ® ÀÛ°Ô
+    /// ï¿½ï¿½Æ® ï¿½Û°ï¿½
     /// </summary>    
 
-    public void smallFontSize()
+    public void fontSmaller()
     {
-        Sample_Text.fontSize = 12;
-        storyText.fontSize = 12;
+        int sizeMin = 11;
+        if (textSize > sizeMin) {
+            textSize --;
+        }
+        Sample_Text.fontSize = textSize;
+        storyText.fontSize = textSize;
+        Text_Size.text = textSize.ToString();
+        PlayerPrefs.SetInt("text_size", textSize);
+        Debug.Log("-1");
 
     }
 
     /// <summary>
-    /// ÁÙ°£°Ý ³Ð°Ô
+    /// ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½
     /// </summary>
 
     public void wideLineSpace()
     {
         Sample_Text.lineSpacing = 20f;
         storyText.lineSpacing  = 20f;
-
-
     }
 
     /// <summary>
-    /// ÁÙ°£°Ý º¸Åë
+    /// ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void middleLineSpace()
     {
         Sample_Text.lineSpacing = 0f;
         storyText.lineSpacing = 0f;
-
-
     }
 
     /// <summary>
-    /// ÁÙ°£°Ý Á¼°Ô
+    /// ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void narrowLineSpace()
     {
         Sample_Text.lineSpacing = -20f;
         storyText.lineSpacing = -20f;
-
-
     }
 
 
