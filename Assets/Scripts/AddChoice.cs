@@ -98,13 +98,26 @@ public class AddChoice : MonoBehaviour
                 _choiceBox = Instantiate(choicePrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 _choiceBox.transform.SetParent(_panel.transform, false);
                 //_panel.transform.position.y + 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height
-                _choiceBox.transform.position = new Vector3(_choiceBox.transform.position.x, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, _choiceBox.transform.position.z);
+                Debug.Log(_choiceBox.GetComponent<RectTransform>().rect.height);
+                _choiceBox.GetComponent<RectTransform>().anchoredPosition = 
+                new Vector2(0, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height);
+                if (i != 0)
+                {
+                    _choiceBox.GetComponent<RectTransform>().anchoredPosition += 
+                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0.2f * i);
+                }
             }
             else
             {
                 _choiceBox = Instantiate(choicePrefabActivefalse, Vector3.zero, Quaternion.identity) as GameObject;
                 _choiceBox.transform.SetParent(_panel.transform, false);
-                _choiceBox.transform.position = new Vector3(_choiceBox.transform.position.x, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height, _choiceBox.transform.position.z);
+                _choiceBox.GetComponent<RectTransform>().anchoredPosition = 
+                    new Vector2(0, 1 * i * _choiceBox.GetComponent<RectTransform>().rect.height);
+                if (i != 0)
+                {
+                    _choiceBox.GetComponent<RectTransform>().anchoredPosition += 
+                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0.2f * i);
+                }
             }
 
             _choiceText = _choiceBox.GetComponentInChildren<TextMeshProUGUI>();

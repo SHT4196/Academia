@@ -5706,9 +5706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69017917adb0c06479a7c8830937b319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sample_Text: {fileID: 0}
+  Sample_Text: {fileID: 356137989}
   storyText: {fileID: 4981541278878406689, guid: c9f047395f875484aaf053d229c10ad5, type: 3}
-  Text_Size: {fileID: 0}
+  Text_Size: {fileID: 1202919984}
 --- !u!114 &862928633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13596,7 +13596,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1945697875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f3c6fe23dc3ebd4a90b0eb4ee60e418, type: 3}
+  m_Script: {fileID: 11500000, guid: 9887fd2e6a975cd488e221465b6160ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 405559073}
