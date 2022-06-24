@@ -20,6 +20,7 @@ public class SoundManger : MonoBehaviour
         if (PlayerPrefs.HasKey("volume"))
         {
             BgmSlider.value = PlayerPrefs.GetFloat("volume");
+            // masterMixer.setFloat("BGM", BgmSlider.value);
         }
     }
 
