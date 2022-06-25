@@ -25,6 +25,11 @@ public class FontManager : MonoBehaviour
             Sample_Text.fontSize = textSize;
             Text_Size.text = textSize.ToString();
         }
+        else
+        {
+            textSize = 14;
+            Text_Size.text = textSize.ToString();
+        }
         if (PlayerPrefs.HasKey("line_space"))
         {
             lineSpace = PlayerPrefs.GetFloat("line_space");
@@ -33,9 +38,7 @@ public class FontManager : MonoBehaviour
         }
         else
         {
-            textSize = 14;
             lineSpace = 0f;
-            Text_Size.text = textSize.ToString();
             Line_Space.text = lineSpace.ToString();
         }
         // Text_Size = GetComponent<TextMeshProUGUI>();
