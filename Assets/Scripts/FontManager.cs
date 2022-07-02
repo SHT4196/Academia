@@ -9,9 +9,11 @@ public class FontManager : MonoBehaviour
     public TextMeshProUGUI Sample_Text;
     public TextMeshProUGUI storyText;
     public TextMeshProUGUI Text_Size;
+    public TextMeshProUGUI Line_Space;
     // public TextMeshProUGUI OptionClose_Text;
     private int textSize;
     // public Text sizeBtn;
+    private float lineSpace;
 
 
     // Start is called before the first frame update
@@ -26,6 +28,18 @@ public class FontManager : MonoBehaviour
         else
         {
             textSize = 14;
+            Text_Size.text = textSize.ToString();
+        }
+        if (PlayerPrefs.HasKey("line_space"))
+        {
+            lineSpace = PlayerPrefs.GetFloat("line_space");
+            Sample_Text.lineSpacing = lineSpace;
+            Line_Space.text = lineSpace.ToString();
+        }
+        else
+        {
+            lineSpace = 0f;
+            Line_Space.text = lineSpace.ToString();
         }
         // Text_Size = GetComponent<TextMeshProUGUI>();
     }
@@ -83,29 +97,56 @@ public class FontManager : MonoBehaviour
     /// �ٰ��� �а�
     /// </summary>
 
-    public void wideLineSpace()
+    // public void wideLineSpace()
+    // {
+    //     Sample_Text.lineSpacing = 20f;
+    //     storyText.lineSpacing  = 20f;
+    // }
+
+    public void lineSpaceWider()
     {
-        Sample_Text.lineSpacing = 20f;
-        storyText.lineSpacing  = 20f;
+        float lineMax = 20f;
+        if (lineSpace < lineMax)
+        {
+            lineSpace += 10f;
+        }
+        Sample_Text.lineSpacing = lineSpace;
+        storyText.lineSpacing = lineSpace;
+        Line_Space.text = lineSpace.ToString();
+        PlayerPrefs.SetFloat("line_space", lineSpace);
+        Debug.Log("line space +1");
+        // Debug.Log("complete");
     }
 
     /// <summary>
     /// �ٰ��� ����
     /// </summary>
-    public void middleLineSpace()
-    {
-        Sample_Text.lineSpacing = 0f;
-        storyText.lineSpacing = 0f;
-    }
+    // public void middleLineSpace()
+    // {
+    //     Sample_Text.lineSpacing = 0f;
+    //     storyText.lineSpacing = 0f;
+    // }
 
     /// <summary>
     /// �ٰ��� ����
     /// </summary>
-    public void narrowLineSpace()
+    // public void narrowLineSpace()
+    // {
+    //     Sample_Text.lineSpacing = -20f;
+    //     storyText.lineSpacing = -20f;
+    // }
+// }
+    public void lineSpaceNarrower()
     {
-        Sample_Text.lineSpacing = -20f;
-        storyText.lineSpacing = -20f;
+        float lineMin = -20f;
+        if (lineSpace > lineMin) {
+            lineSpace -= 10f;
+        }
+        Sample_Text.lineSpacing = lineSpace;
+        storyText.lineSpacing = lineSpace;
+        Line_Space.text = lineSpace.ToString();
+        PlayerPrefs.SetFloat("line_space", lineSpace);
+        Debug.Log("line space -1");
+
     }
-
-
 }
