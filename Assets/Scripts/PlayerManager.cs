@@ -125,7 +125,7 @@ public class PlayerManager : MonoBehaviour
         //Application.Quit();
         SceneManager.LoadScene(1);
         //EditorApplication.Exit(0);
-        Achivement.Acv.change_scene();
+      //  Achivement.Acv.change_scene();
     }
     /// <summary>
     /// Player 죽을 때 - UI 상에서 죽는 버튼

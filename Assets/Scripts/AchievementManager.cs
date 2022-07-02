@@ -1,11 +1,71 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AchivementManager : MonoBehaviour
+public class AchievementManager : MonoBehaviour
 {
+    private static AchievementManager instance = null;
+
+    public static AchievementManager Instance
+    {
+        get
+        {
+            if (null == instance)
+                return null;
+            return instance;
+        }
+    }
+    
+    [SerializeField] private List<Achievement> achievements;
+    private List<AchievementObject> _achievementObjects;
+
+    private void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            InitialAchievementObjects();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    /// <summary>
+    /// 업적 달성
+    /// </summary>
+    /// <param name="achievementId">달성하고자 하는 업적의 id</param>
+    /// <param name="amount">nowNum 증가 시킬 value</param>
+    public void Achieve_achievement(int achievementId, int amount)
+    {
+        _achievementObjects[achievementId].Achieve(amount);
+    }
+
+    public void InitialAchievementObjects()
+    {
+        _achievementObjects = new List<AchievementObject>();
+        foreach (var element in achievements)
+        {
+            _achievementObjects.Add(element.achievementObject);
+            element.achievementObject.Achievement_GameObject = element;
+        }
+    }
+
+    public void UpdateAchievements()
+    {
+        foreach (var element in achievements)
+        {
+            element.SetAchivementView();
+        }
+    }
+    
+    /*
     public const int num = 8;
     private static bool is_first = true;
     private static int n = 0;
@@ -38,7 +98,7 @@ public class AchivementManager : MonoBehaviour
         }
         catch
         {
-            CanvasHeight = GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height;
+            CanvasHeight = GameObject.Find("Canvas").GetComponent<Rect Transform>().rect.height;
         }
         acv_rect.localScale = Vector3.one;
         acv_rect.sizeDelta = new Vector2(0, acv_height);
@@ -102,4 +162,5 @@ public class AchivementManager : MonoBehaviour
             Achivement.Acv.drawpenel();
         }
     }
+    */
 }

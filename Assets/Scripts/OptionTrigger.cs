@@ -34,6 +34,7 @@ public class OptionTrigger : MonoBehaviour
     public void Achive_Btn()
     {
         Achivement_Canvas.SetActive(true);
+        AchievementManager.Instance.UpdateAchievements();
         Time.timeScale = 0;
     }
     /// <summary>
