@@ -74,14 +74,14 @@ public class InGameSwipe : MonoBehaviour
 		bool isRight = startTouchX > endTouchX ? true : false;
 
 		// 이동 방향이 왼쪽일 때
-		if (isLeft == true)
+		if ((startTouchX < Screen.width/8f) && isLeft == true)
 		{
 			Canvas.GetComponent<OptionTrigger>().Option_Btn();
 			Debug.Log ("LeftSwipe");
 		}
 
 		// 이동 방향이 오른쪽일 떄
-		else if (isRight == true)
+		else if ((startTouchX > Screen.width/1.25f) && isRight == true)
 		{
 			Canvas.GetComponent<OptionTrigger>().Achive_Btn();
 			Debug.Log("RightSwipe");

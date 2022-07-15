@@ -826,7 +826,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1142994056}
   m_HandleRect: {fileID: 1142994055}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5042,6 +5042,7 @@ GameObject:
   - component: {fileID: 843538986}
   - component: {fileID: 843538985}
   - component: {fileID: 843538988}
+  - component: {fileID: 843538989}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5152,6 +5153,19 @@ MonoBehaviour:
   Option_Canvas: {fileID: 1577735418}
   GameQuit_Canvas: {fileID: 1375511072}
   Achivement_Canvas: {fileID: 437474503}
+--- !u!114 &843538989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843538983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b785011fa6500b45897802bcdc08e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 843538983}
 --- !u!1 &850754040
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
             namePanel.SetActive(true);
+            Time.timeScale = 0;
         }
         else
         {
@@ -44,6 +45,7 @@ public class MainMenu : MonoBehaviour
     {
         Player.instance.SetPlayerName(nameInputField.text);
         SceneManager.LoadScene(2);
+        Time.timeScale = 1;
     }
 
     public void OpenAdminCanvas()
