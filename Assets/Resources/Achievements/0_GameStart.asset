@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf03bcd66961f7b43841566257edcfdb, type: 3}
-  m_Name: Hidden
+  m_Name: 0_GameStart
   m_EditorClassIdentifier: 
-  achievementName: "\uD14C\uC2A4\uD2B8"
-  achievementDesc: "\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8"
-  id: 2
+  achievementName: "\uAC8C\uC784 \uC2DC\uC791"
+  achievementDesc: "\uAC8C\uC784\uC744 \uC2DC\uC791\uD574\uBCF4\uC138\uC694"
+  id: 0
   nowNum: 0
   maxNum: 1
   achieveState: 1
-  achievementThumbnail: {fileID: 21300000, guid: a865a2c13aa17434d8c29aa9a9157d87, type: 3}
+  achievementThumbnail: {fileID: 21300000, guid: 63412a4b331a76e41a1f881ff7862577, type: 3}
   _achievementTime: 

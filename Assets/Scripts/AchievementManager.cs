@@ -21,6 +21,7 @@ public class AchievementManager : MonoBehaviour
     
     [SerializeField] private List<Achievement> achievements;
     private List<AchievementObject> _achievementObjects;
+    [SerializeField] private GameObject achieveAlarm;
 
     private void Awake()
     {
@@ -44,9 +45,21 @@ public class AchievementManager : MonoBehaviour
     /// <param name="amount">nowNum 증가 시킬 value</param>
     public void Achieve_achievement(int achievementId, int amount)
     {
-        _achievementObjects[achievementId].Achieve(amount);
+        bool checkAchieved = _achievementObjects[achievementId].Achieve(amount);
+        if (checkAchieved)
+        {
+            AchieveAlarm(_achievementObjects[achievementId].AchievementName);
+        }
     }
 
+    public void AchieveAlarm(string achieveName)
+    {
+        GameObject alarmGameObject = Instantiate(achieveAlarm);
+        alarmGameObject.GetComponentInChildren<TextMeshProUGUI>().text = $"{achieveName} - 업적을 달성하였습니다.";
+        Destroy(alarmGameObject, 1.5f);
+    }
+
+    
     public void InitialAchievementObjects()
     {
         _achievementObjects = new List<AchievementObject>();

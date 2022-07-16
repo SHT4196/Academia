@@ -105,7 +105,7 @@ public class AchievementObject : ScriptableObject
     /// 업적 달성 시 호출
     /// </summary>
     /// <param name="amount">achievement의 nownum set</param>
-    public void Achieve(int amount)
+    public bool Achieve(int amount)
     {
         NowNum += amount;
         if (MaxNum <= NowNum) // 달성했을때
@@ -113,7 +113,8 @@ public class AchievementObject : ScriptableObject
             NowNum = MaxNum;
             AchieveState = AchieveState.Achieved;
             AchievementTime = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
+            return true;
         }
-        // _achievementGameobject.SaveAcv();
+        return false;
     }
 }
