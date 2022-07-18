@@ -96,6 +96,22 @@ public class MainSwipeUI : MonoBehaviour
 			}
 		}
 #endif
+
+#if UNITY_STANDALONE_WIN
+		// 마우스 왼쪽 버튼을 눌렀을 때 1회
+		if (Input.GetMouseButtonDown(0))
+		{
+			// 터치 시작 지점 (Swipe 방향 구분)
+			startTouchX = Input.mousePosition.x;
+		}
+		else if (Input.GetMouseButtonUp(0))
+		{
+			// 터치 종료 지점 (Swipe 방향 구분)
+			endTouchX = Input.mousePosition.x;
+
+			UpdateSwipe();
+		}
+#endif
 	}
 
 	private void UpdateSwipe()
