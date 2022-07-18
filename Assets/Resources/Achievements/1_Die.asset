@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achievementName: "\uAC8C\uC784 \uC624\uBC84"
   achievementDesc: "\uAC8C\uC784 \uC624\uBC84 \uD574\uBCF4\uC138\uC694"
-  id: 0
+  id: 1
   nowNum: 0
   maxNum: 1
   achieveState: 1

@@ -44,7 +44,6 @@ public class MainMenu : MonoBehaviour
     public void SetNameAndStartGame()
     {
         Player.instance.SetPlayerName(nameInputField.text);
-        AchievementManager.Instance.Achieve_achievement(0, 1);
         SceneManager.LoadScene(2);
         Time.timeScale = 1;
     }
