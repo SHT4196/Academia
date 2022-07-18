@@ -2,13 +2,117 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 /// <summary>
 /// 업적 singleton class
 /// </summary>
-public class Achivement
+public class Achievement: MonoBehaviour
 {
+    [SerializeField] public AchievementObject achievementObject;
+
+    [SerializeField] public Text acvName;
+
+    [SerializeField] private Text acvDesc;
+
+    [SerializeField] private Image acvThumbnail;
+
+    [SerializeField] private Text acvPercent;
+
+    [SerializeField] private Image acvPercentageImg;
+    
+    [SerializeField] private Text acvTime;
+
+    [SerializeField] private Sprite hiddenAcvThumbnail;
+
+    private void Start()
+    {
+        // if(achievementObject != null)
+        //     // LoadAcv();
+        // else
+        // {
+        //     // SaveAcv();
+        // }
+        SetAchivementView();
+    }
+
+    /// <summary>
+    /// 각 업적의 상태값들을 조정해줌 (이름, 설명, 썸네일, 퍼센트, 상태 등)
+    /// </summary>
+    public void SetAchivementView()
+    {
+        if (achievementObject != null)
+        {
+            if (achievementObject.AchieveState != AchieveState.Hidden)
+            {
+                acvName.text = achievementObject.AchievementName;
+                acvDesc.text = achievementObject.AchievementDesc;
+                acvThumbnail.sprite = achievementObject.AchievementThumbnail;
+                acvPercent.text = $"{achievementObject.NowNum} / {achievementObject.MaxNum}";
+                acvPercentageImg.fillAmount = (float) achievementObject.NowNum / achievementObject.MaxNum;
+                if (achievementObject.AchieveState == AchieveState.Achieved)
+                {
+                    acvPercent.text = "Complete!";
+                    acvTime.gameObject.SetActive(true);
+                    acvTime.text = achievementObject.AchievementTime;
+                }
+            }
+            else
+            {
+                acvName.text = "???";
+                acvDesc.text = "???";
+                acvThumbnail.sprite = hiddenAcvThumbnail;
+                acvPercent.text = "???";
+                acvPercentageImg.fillAmount = 0;
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// 업적 저장, 저장 여부는 is_save를 통해 판단
+    /// </summary>
+    public void SaveAcv()
+    {
+        PlayerPrefs.SetInt("is_save", 1);
+        PlayerPrefs.SetInt("now_val" + achievementObject.Id, achievementObject.NowNum);
+        PlayerPrefs.SetInt("max_val" + achievementObject.Id, achievementObject.MaxNum);
+        PlayerPrefs.SetString("state_val" + achievementObject.Id, achievementObject.AchieveState.ToString());
+        PlayerPrefs.SetString("clear_time" + achievementObject.Id, achievementObject.AchievementTime);
+        // PlayerPrefs.SetString("hide_name" + i.ToString(), hide_name[i]);
+        // PlayerPrefs.SetString("hide_description" + i.ToString(), hide_description[i]);
+    }
+
+    /// <summary>
+    /// 저장된 업적이 있을 경우 업적 불러옴
+    /// </summary>
+    public void LoadAcv()
+    {
+        if (PlayerPrefs.GetInt("is_save") == 1)
+        {
+            achievementObject.NowNum = PlayerPrefs.GetInt("now_val" + achievementObject.Id);
+            achievementObject.MaxNum = PlayerPrefs.GetInt("max_val" + achievementObject.Id);
+            if (PlayerPrefs.GetString("state_val" + achievementObject.Id) == "Hidden")
+            {
+                achievementObject.AchieveState = AchieveState.Hidden;
+            }
+            else if (PlayerPrefs.GetString("state_val" + achievementObject.Id) == "NotAchieved")
+            {
+                achievementObject.AchieveState = AchieveState.NotAchieved;
+            }
+            else if (PlayerPrefs.GetString("state_val" + achievementObject.Id) == "Achieved")
+            {
+                achievementObject.AchieveState = AchieveState.Achieved;
+            }
+            achievementObject.AchievementTime = PlayerPrefs.GetString("clear_time" + achievementObject.Id);
+            // hide_name[i] = PlayerPrefs.GetString("hide_name" + achievementObject.Id);
+            // hide_description[i] = PlayerPrefs.GetString("hide_description" + achievementObject.Id);
+        }
+    }
+
+
+    /*
     private static Achivement acv;
     
     public static Achivement Acv{
@@ -296,41 +400,6 @@ public class Achivement
         a.transform.Find("Acv_description").GetComponent<Text>().text = hide_description[n];
     }
 
-    /// <summary>
-    /// 업적 저장, 저장 여부는 is_save를 통해 판단
-    /// </summary>
-    public void save_acv()
-    {
-        PlayerPrefs.SetInt("is_save", 1);
-        for (int i = 0; i < num; i++)
-        {
-            PlayerPrefs.SetInt("now_val" + i.ToString(), now[i]);
-            PlayerPrefs.SetInt("max_val" + i.ToString(), max[i]);
-            PlayerPrefs.SetInt("state_val" + i.ToString(), state[i]);
-            PlayerPrefs.SetString("clear_time" + i.ToString(), time[i]);
-            PlayerPrefs.SetString("hide_name" + i.ToString(), hide_name[i]);
-            PlayerPrefs.SetString("hide_description" + i.ToString(), hide_description[i]);
-        }
-    }
-
-    /// <summary>
-    /// 저장된 업적이 있을 경우 업적 불러옴
-    /// </summary>
-    public void load_acv()
-    {
-        if (PlayerPrefs.GetInt("is_save") == 1)
-        {
-            for(int i = 0; i < num; i++)
-            {
-                now[i] = PlayerPrefs.GetInt("now_val" + i.ToString());
-                max[i] = PlayerPrefs.GetInt("max_val" + i.ToString());
-                state[i] = PlayerPrefs.GetInt("state_val" + i.ToString());
-                time[i] = PlayerPrefs.GetString("clear_time" + i.ToString());
-                hide_name[i] = PlayerPrefs.GetString("hide_name" + i.ToString());
-                hide_description[i] = PlayerPrefs.GetString("hide_description" + i.ToString());
-            }
-        }
-    }
 
 }
 
@@ -395,4 +464,5 @@ public class StaticCoroutine : MonoBehaviour
             Achivement.acv_delay.RemoveAt(0);
         }
     }
+    */
 }

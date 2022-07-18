@@ -500,7 +500,7 @@ public class AddText : MonoBehaviour
         {
             acv_add = Int32.Parse(ABC[1]);
         }
-        Achivement.Acv.nowupdate(acv_num, acv_add);
+        AchievementManager.Instance.Achieve_achievement(acv_num, acv_add);
     }
 
     /// <summary>
@@ -530,10 +530,10 @@ public class AddText : MonoBehaviour
 
             text_exit = false;
         }
-        if (StaticCoroutine.is_play == false && Achivement.acv_delay.Count >= 1)
-        {
-            AchivementManager.acv_clear(Achivement.acv_delay[0]);
-            Achivement.acv_delay.RemoveAt(0);
-        }
+        // if (StaticCoroutine.is_play == false && Achivement.acv_delay.Count >= 1)
+        // {
+        //     AchivementManager.acv_clear(Achivement.acv_delay[0]);
+        //     Achivement.acv_delay.RemoveAt(0);
+        // }
     }
 }

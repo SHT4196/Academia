@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
     {
 
         Player.instance.isAdmin = false;
-        StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
+       // StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
 
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour
     public void SetNameAndStartGame()
     {
         Player.instance.SetPlayerName(nameInputField.text);
+        AchievementManager.Instance.Achieve_achievement(0, 1);
         SceneManager.LoadScene(2);
         Time.timeScale = 1;
     }
