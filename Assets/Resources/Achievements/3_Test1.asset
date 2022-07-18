@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
   m_Name: 3_Test1
   m_EditorClassIdentifier: 
-  achievementName: 
-  achievementDesc: 
+  achievementName: "\uD14C\uC2A4\uD2B8"
+  achievementDesc: "\uD14C\uC2A4\uD2B8"
   id: 3
   nowNum: 0
   maxNum: 0
