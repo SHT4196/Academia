@@ -15,6 +15,12 @@ public enum PlayerAbility
     Mana
 }
 
+public enum PlayerDepartment
+{
+    Knight,
+    Wizard,
+    Politics
+}
 /// <summary>
 /// Player Singleton class
 /// </summary>
@@ -54,6 +60,11 @@ public class Player
     /// </summary>
     private int _mana;
 
+    /// <summary>
+    /// player 학부
+    /// </summary>
+    private PlayerDepartment _department;
+    
     /// <summary>
     /// player 이름
     /// </summary>
@@ -341,6 +352,16 @@ public class Player
         this._mental = 5;
         _gmr.ImgChange(0, _health);
         _gmr.ImgChange(1, _mental);
+    }
+
+    /// <summary>
+    /// 플레이어 학부 지정
+    /// </summary>
+    /// <param name="department">지정할 학부</param>
+    public void SetPlayerDepartment(PlayerDepartment department)
+    {
+        _department = department;
+        Debug.Log($"선택한 학부: {_department}");
     }
     
     /// <summary>
