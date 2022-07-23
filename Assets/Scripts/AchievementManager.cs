@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AchievementManager : MonoBehaviour
@@ -22,6 +23,8 @@ public class AchievementManager : MonoBehaviour
     [SerializeField] private List<Achievement> achievements;
     private List<AchievementObject> _achievementObjects;
     [SerializeField] private GameObject achieveAlarm;
+    [FormerlySerializedAs("AlarmElement")] [SerializeField] private GameObject alarmElement;
+    private GameObject alarmGameObject;
 
     private void Awake()
     {
@@ -54,9 +57,19 @@ public class AchievementManager : MonoBehaviour
 
     public void AchieveAlarm(string achieveName)
     {
-        GameObject alarmGameObject = Instantiate(achieveAlarm);
-        alarmGameObject.GetComponentInChildren<TextMeshProUGUI>().text = $"{achieveName} - 업적을 달성하였습니다.";
-        Destroy(alarmGameObject, 1.5f);
+        if (alarmGameObject != null)
+        {
+            GameObject alarmElem = Instantiate(alarmElement, alarmGameObject.GetComponentInChildren<VerticalLayoutGroup>().transform);
+            alarmElem.GetComponentInChildren<TextMeshProUGUI>().text = $"{achieveName} - 업적을 달성하였습니다.";
+            Destroy(alarmElem, 1.5f);
+        }
+        else
+        {
+            alarmGameObject = Instantiate(achieveAlarm);
+            GameObject alarmElem = Instantiate(alarmElement, alarmGameObject.GetComponentInChildren<VerticalLayoutGroup>().transform);
+            alarmElem.GetComponentInChildren<TextMeshProUGUI>().text = $"{achieveName} - 업적을 달성하였습니다.";
+            Destroy(alarmElem, 1.5f);
+        }
     }
 
     

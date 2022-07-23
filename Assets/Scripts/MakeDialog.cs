@@ -54,7 +54,19 @@ public class MakeDialog
 
             if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && ME_Dialog[i].TryGetValue("AfterInterval", out afterInterval) && ME_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString()));
+                Dictionary<int, int> achievement = new Dictionary<int, int>();
+                if (acvUpdate.ToString() != "-")
+                {
+                    List<string> acvTemp = acvUpdate.ToString().Split('&').ToList();
+                    foreach (var element in acvTemp)
+                    {
+                        int id, amount;
+                        int.TryParse(element.Split('#')[0], out id);
+                        int.TryParse(element.Split('#')[1], out amount);
+                        achievement.Add(id, amount);
+                    }
+                }
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), achievement, Int32.Parse(storyInterval.ToString()), afterInterval.ToString()));
 
             }
            
@@ -71,7 +83,19 @@ public class MakeDialog
 
             if (BE_Dialog[i].TryGetValue("StoryID", out storyID) && BE_Dialog[i].TryGetValue("StoryText", out storyText) && BE_Dialog[i].TryGetValue("StoryNext", out storyNext) && BE_Dialog[i].TryGetValue("StoryResult", out storyResult) && BE_Dialog[i].TryGetValue("Sprite", out spritename) && BE_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(),0);
+                Dictionary<int, int> achievement = new Dictionary<int, int>();
+                if (acvUpdate.ToString() != "-")
+                {
+                    List<string> acvTemp = acvUpdate.ToString().Split('&').ToList();
+                    foreach (var element in acvTemp)
+                    {
+                        int id, amount;
+                        int.TryParse(element.Split('#')[0], out id);
+                        int.TryParse(element.Split('#')[1], out amount);
+                        achievement.Add(id, amount);
+                    }
+                }
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), achievement,0);
 
                 Script_Dialog.Add(scr_temp);
                 if(scr_temp.id.Contains(story_start_str))
@@ -91,7 +115,19 @@ public class MakeDialog
 
             if (SE_Dialog[i].TryGetValue("StoryID", out storyID) && SE_Dialog[i].TryGetValue("StoryText", out storyText) && SE_Dialog[i].TryGetValue("StoryNext", out storyNext) && SE_Dialog[i].TryGetValue("StoryResult", out storyResult) && SE_Dialog[i].TryGetValue("Sprite", out spritename) && SE_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
-                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(),0);
+                Dictionary<int, int> achievement = new Dictionary<int, int>();
+                if (acvUpdate.ToString() != "-")
+                {
+                    List<string> acvTemp = acvUpdate.ToString().Split('&').ToList();
+                    foreach (var element in acvTemp)
+                    {
+                        int id, amount;
+                        int.TryParse(element.Split('#')[0], out id);
+                        int.TryParse(element.Split('#')[1], out amount);
+                        achievement.Add(id, amount);
+                    }
+                }
+                Script scr_temp = new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), achievement,0);
 
                 Script_Dialog.Add(scr_temp);
                 if (scr_temp.id.Contains(story_start_str))
@@ -108,7 +144,19 @@ public class MakeDialog
 
             if (PME_Dialog[i].TryGetValue("StoryID", out storyID) && PME_Dialog[i].TryGetValue("StoryText", out storyText) && PME_Dialog[i].TryGetValue("StoryNext", out storyNext) && PME_Dialog[i].TryGetValue("StoryResult", out storyResult) && PME_Dialog[i].TryGetValue("Sprite", out spritename) && PME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && PME_Dialog[i].TryGetValue("AfterInterval", out afterInterval) && PME_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate) && PME_Dialog[i].TryGetValue("Probability", out probability))
             {
-                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), acvUpdate.ToString().Split('#').ToList(), Int32.Parse(storyInterval.ToString()), afterInterval.ToString(), Int32.Parse(probability.ToString())));
+                Dictionary<int, int> achievement = new Dictionary<int, int>();
+                if (acvUpdate.ToString() != "-")
+                {
+                    List<string> acvTemp = acvUpdate.ToString().Split('&').ToList();
+                    foreach (var element in acvTemp)
+                    {
+                        int id, amount;
+                        int.TryParse(element.Split('#')[0], out id);
+                        int.TryParse(element.Split('#')[1], out amount);
+                        achievement.Add(id, amount);
+                    }
+                }
+                Script_Dialog.Add(new Script(storyID.ToString(), storyText.ToString().Replace('$', '\n'), storyNext.ToString().Split('&').ToList(), storyResult.ToString().Split('&').ToList(), spritename.ToString(), achievement, Int32.Parse(storyInterval.ToString()), afterInterval.ToString(), Int32.Parse(probability.ToString())));
             }
            
         }

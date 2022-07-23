@@ -79,7 +79,7 @@ public class AddText : MonoBehaviour
         script = MakeDialog.instance.FindScript(NextContainer.instance.NextText);
         DestroyEmpty(); //Destroy empty text prefab 
         //float ScrollAmount = 0;
-        if (script.acvUpdate[0] != "-" && PlayerPrefs.GetString("ScriptID") != script.id)
+        if (script.acvUpdate.Count != 0 && PlayerPrefs.GetString("ScriptID") != script.id)
             AcvUpdate_By_CSV(script.acvUpdate);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
@@ -454,7 +454,7 @@ public class AddText : MonoBehaviour
     /// 타이핑 효과 coroutine
     /// </summary>
     /// <param name="_fullText">타이핑 효과를 줄 텍스트의 문자열</param>
-    /// <param name="textbox">텍스트를 넣을 textbox</param>
+    /// <param name="_textBox">텍스트를 넣을 textbox</param>
     private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)
     {
         currentText = "";
@@ -478,29 +478,13 @@ public class AddText : MonoBehaviour
     /// <summary>
     /// CSV 파일에 의한 업적 값 update
     /// </summary>
-    /// <param name ="ABC">update할 script의 acvUpdate값</param>
-    private void AcvUpdate_By_CSV(List<string> ABC)
+    /// <param name="achievement">update할 script의 acvUpdate값</param>
+    private void AcvUpdate_By_CSV(Dictionary<int, int> achievement)
     {
-        if(ABC.Count != 2)
+        foreach (var elem in achievement)
         {
-            Debug.Log("Unknown Case");
-            return;
+            AchievementManager.Instance.Achieve_achievement(elem.Key, elem.Value);
         }
-        int acv_num = Int32.Parse(ABC[0]);
-        int acv_add;
-        if (ABC[1][0] == '-')
-        {
-            acv_add = Int32.Parse(ABC[1].Substring(1)) * -1;
-        }
-        else if (ABC[1][0] == '+')
-        {
-            acv_add = Int32.Parse(ABC[1].Substring(1));
-        }
-        else
-        {
-            acv_add = Int32.Parse(ABC[1]);
-        }
-        AchievementManager.Instance.Achieve_achievement(acv_num, acv_add);
     }
 
     /// <summary>

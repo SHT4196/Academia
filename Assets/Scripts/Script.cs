@@ -7,7 +7,7 @@ public class Script
 {
 
 
-    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, List<string> __acvUpdate, int __interval, string __afterInterval = "-", int __probability = 100)
+    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, Dictionary<int, int> __acvUpdate, int __interval, string __afterInterval = "-", int __probability = 100)
 
     {
         id = __id;
@@ -72,6 +72,6 @@ public class Script
     /// <summary>
     /// Script가 나타나면 변화할 업적의 번지 수 및 업적의 값
     /// </summary>
-    public List<string> acvUpdate { get; set; }
+    public Dictionary<int, int> acvUpdate { get; set; }
 
 }
