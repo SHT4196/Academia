@@ -54,6 +54,7 @@ public class MakeDialog
 
             if (ME_Dialog[i].TryGetValue("StoryID", out storyID) && ME_Dialog[i].TryGetValue("StoryText", out storyText) && ME_Dialog[i].TryGetValue("StoryNext", out storyNext) && ME_Dialog[i].TryGetValue("StoryResult", out storyResult) && ME_Dialog[i].TryGetValue("Sprite", out spritename) && ME_Dialog[i].TryGetValue("StoryInterval", out storyInterval) && ME_Dialog[i].TryGetValue("AfterInterval", out afterInterval) && ME_Dialog[i].TryGetValue("AcvUpdate", out acvUpdate))
             {
+                //업적 복수 처리
                 Dictionary<int, int> achievement = new Dictionary<int, int>();
                 if (acvUpdate.ToString() != "-")
                 {
@@ -184,6 +185,11 @@ public class MakeDialog
             RandomPool.Instance.DeleteFromRandomPool(storyID);
         }
 
+        if (storyID[storyID.Length - 1] == 'D')
+        {
+            storyID = storyID.Replace("D", $"{Player.instance.GetPlayerDepartment()}");
+        }
+
         List<Script> PMEscripts = new List<Script>();
         foreach (Script s in Script_Dialog)
         {
@@ -210,11 +216,12 @@ public class MakeDialog
                 tempValue += PMEscripts[i].probability;
                 if (tempValue >= randomValue)
                 {
-                    // Debug.Log($"tempvalue: {tempValue}, randomValue: {randomValue}");
+                    Debug.Log($"tempvalue: {tempValue}, randomValue: {randomValue}");
                     return PMEscripts[i];
                 }
             }
         }
+        Debug.Log($"Returns Null, randomValue: {randomValue}");
         return null;
     }
     /// <summary>

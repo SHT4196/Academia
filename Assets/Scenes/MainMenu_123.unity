@@ -8211,6 +8211,7 @@ GameObject:
   - component: {fileID: 1186479283}
   - component: {fileID: 1186479282}
   - component: {fileID: 1186479287}
+  - component: {fileID: 1186479288}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -8336,6 +8337,14 @@ MonoBehaviour:
   Option_Canvas: {fileID: 862928629}
   GameQuit_Canvas: {fileID: 1908732415}
   Achivement_Canvas: {fileID: 2010834904}
+--- !u!222 &1186479288
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186479281}
+  m_CullTransparentMesh: 1
 --- !u!1 &1202919982
 GameObject:
   m_ObjectHideFlags: 0

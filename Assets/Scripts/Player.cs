@@ -114,6 +114,13 @@ public class Player
         
         //player 이름 설정
         _playerName = PlayerPrefs.GetString("PlayerName");
+
+        if (PlayerPrefs.GetString("Department") == "Knight")
+            _department = PlayerDepartment.Knight;
+        else if (PlayerPrefs.GetString("Department") == "Wizard")
+            _department = PlayerDepartment.Wizard;
+        else if (PlayerPrefs.GetString("Department") == "Politics")
+            _department = PlayerDepartment.Politics;
     }
 
     /// <summary>
@@ -361,7 +368,17 @@ public class Player
     public void SetPlayerDepartment(PlayerDepartment department)
     {
         _department = department;
+        PlayerPrefs.SetString("Department", $"{_department}");
         Debug.Log($"선택한 학부: {_department}");
+    }
+
+    /// <summary>
+    /// 플레이어 학부 리턴
+    /// </summary>
+    /// <returns>학부 </returns>
+    public PlayerDepartment GetPlayerDepartment()
+    {
+        return _department;
     }
     
     /// <summary>
