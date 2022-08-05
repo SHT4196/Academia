@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class OptionTrigger : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class OptionTrigger : MonoBehaviour
     public GameObject Option_Canvas;
     public GameObject GameQuit_Canvas;
     public GameObject Achivement_Canvas;
+    public GameObject Option_Panel;
+    public GameObject Achivement_Panel;
 
     /// <summary>
     /// 옵션창 열기
@@ -17,15 +20,19 @@ public class OptionTrigger : MonoBehaviour
     public void Option_Btn()
     {
         Option_Canvas.SetActive(true);
-        Time.timeScale = 0;
+        Option_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);   
+
     }
     /// <summary>
     /// 옵션창 닫기
     /// </summary>
     public void OptionClose_Btn()
     {
-        Option_Canvas.SetActive(false);
-        Time.timeScale = 1;
+
+        Option_Panel.transform.DOMoveX(-Screen.width / 2f, 0.5f).OnComplete(()=>
+        {
+            Option_Canvas.SetActive(false);
+        });
 
     }
     /// <summary>
@@ -35,15 +42,20 @@ public class OptionTrigger : MonoBehaviour
     {
         Achivement_Canvas.SetActive(true);
         AchievementManager.Instance.UpdateAchievements();
-        Time.timeScale = 0;
+        Achivement_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);
+
     }
     /// <summary>
     /// 업적창 닫기
     /// </summary>
-    public void AchiceClose_Btn()
+    public void AchiveClose_Btn()
     {
-        Achivement_Canvas.SetActive(false);
-        Time.timeScale = 1;
+        
+        Achivement_Panel.transform.DOMoveX(Screen.width * 1.5f, 0.5f).OnComplete(() =>
+        {
+            Achivement_Canvas.SetActive(false);
+        });
+
 
     }
     /// <summary>

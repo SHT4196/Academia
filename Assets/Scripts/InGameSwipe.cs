@@ -7,10 +7,13 @@ public class InGameSwipe : MonoBehaviour
 {
 
 	public GameObject Canvas;
+	[SerializeField]
 	private float swipeDistance = 50.0f;
 	private float startTouchX;              // 터치 시작 위치
 	private float endTouchX;                    // 터치 종료 위치
 	private bool isSwipeMode = false;       // 현재 Swipe가 되고 있는지 체크
+	public GameObject OptionCanvas;
+	public GameObject AchiveCanvas;
 
 	private void Update()
 	{
@@ -79,29 +82,46 @@ public class InGameSwipe : MonoBehaviour
 
 	private void UpdateSwipe()
 	{
-		// 너무 작은 거리를 움직였을 때는 Swipe X
-		if (Mathf.Abs(startTouchX - endTouchX) < swipeDistance)
-		{
-			isSwipeMode = false;
-		}
 
 		// Swipe 방향
 		bool isLeft = startTouchX < endTouchX ? true : false;
 		bool isRight = startTouchX > endTouchX ? true : false;
 
-		// 이동 방향이 왼쪽일 때
-		if ((startTouchX < Screen.width/8f) && isLeft == true)
+
+		// 너무 작은 거리를 움직였을 때는 Swipe X
+		if (Mathf.Abs(startTouchX - endTouchX) < swipeDistance)
 		{
-			Canvas.GetComponent<OptionTrigger>().Option_Btn();
-			Debug.Log ("LeftSwipe");
+			isLeft = false;
+			isRight = false;
 		}
 
-		// 이동 방향이 오른쪽일 떄
-		else if ((startTouchX > Screen.width/1.25f) && isRight == true)
-		{
-			Canvas.GetComponent<OptionTrigger>().Achive_Btn();
-			Debug.Log("RightSwipe");
+
+		// 이동 방향이 왼쪽일 때
+		if ((startTouchX < Screen.width / 8f))
+        {
+			if (isLeft == true && AchiveCanvas.activeSelf == false)
+			{
+				Canvas.GetComponent<OptionTrigger>().Option_Btn();
+			}
+			else if (isLeft == true && AchiveCanvas.activeSelf == true)
+			{
+				Canvas.GetComponent<OptionTrigger>().AchiveClose_Btn();
+				
+			}
 		}
-		
+			
+			// 이동 방향이 오른쪽일 떄
+		else if ((startTouchX > Screen.width / 1.25f))
+		{
+			if (isRight == true && OptionCanvas.activeSelf == false)
+			{
+				Canvas.GetComponent<OptionTrigger>().Achive_Btn();
+			}
+			else if (isRight == true && OptionCanvas.activeSelf == true)
+			{
+				Canvas.GetComponent<OptionTrigger>().OptionClose_Btn();
+			}
+
+		}
 	}
 }

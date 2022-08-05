@@ -1132,6 +1132,8 @@ MonoBehaviour:
   Option_Canvas: {fileID: 0}
   GameQuit_Canvas: {fileID: 1678773761}
   Achivement_Canvas: {fileID: 0}
+  Option_Panel: {fileID: 0}
+  Achivement_Panel: {fileID: 0}
 --- !u!114 &167834243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5972,7 +5974,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 895653931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c257ab98640432042bab2286fd14063f, type: 3}
+  m_Script: {fileID: 11500000, guid: dffa4ef587fdb8d40b071e08b3704f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollBar: {fileID: 300891837}

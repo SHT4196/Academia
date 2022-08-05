@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -70,20 +71,53 @@ public class PlayerManager : MonoBehaviour
     public void ImgChange(int state, int value)
     {
         //state 0: health, 1: mental
-        if (state == 0) {
-            for (int i = 0; i < value; i++)
+        if (state == 0) 
+        {
+            //
+
+            for (int i = 0; i < value; i++) 
                 health[i].gameObject.SetActive(true);
+            
             for (int i = 4; i >= value; i--)
-                health[i].gameObject.SetActive(false);
+                health[i].transform.DOScale(0f, 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                {
+                    health[i+1].gameObject.SetActive(false);
+                });
+
+
         }
+
         else if(state == 1)
         {
             for (int i = 0; i < value; i++)
-                mental[i].gameObject.SetActive(true);
+                    mental[i].gameObject.SetActive(true);
+
+
             for (int i = 4; i >= value; i--)
-                mental[i].gameObject.SetActive(false);
+                mental[i].transform.DOScale(0f, 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                {
+                    mental[i+1].gameObject.SetActive(false);
+                });
+
         }
+
+        if (state == 0)
+        {
+            health[value - 1].transform.DOScale(1f, 0.5f).SetLoops(2, LoopType.Yoyo);
+        }
+
+        else if (state == 1) 
+        {
+            mental[value - 1].transform.DOScale(1f, 0.5f).SetLoops(2, LoopType.Yoyo);
+        }
+       
+           
+            
     }
+        
+
+
+
     /// <summary>
     /// player 상태 이미지 set 함수
     /// </summary>
