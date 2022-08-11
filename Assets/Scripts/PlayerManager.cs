@@ -71,46 +71,51 @@ public class PlayerManager : MonoBehaviour
     public void ImgChange(int state, int value)
     {
         //state 0: health, 1: mental
-        if (state == 0) 
+        if (state == 0)
         {
             //
 
-            for (int i = 0; i < value; i++) 
+            for (int i = 0; i < value; i++)
                 health[i].gameObject.SetActive(true);
-            
+
+
             for (int i = 4; i >= value; i--)
-                health[i].transform.DOScale(0f, 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                health[i].transform.DOScale(0f, 0.5f).OnComplete(() =>
                 {
                     health[i+1].gameObject.SetActive(false);
                 });
+            
 
+
+
+
+            health[value - 1].transform.DOScale(1f, 0.25f).OnComplete(() =>
+            {
+                health[value - 1].transform.DOScale(0.5f, 0.25f);
+            });
 
         }
 
-        else if(state == 1)
+        else if (state == 1)
         {
             for (int i = 0; i < value; i++)
-                    mental[i].gameObject.SetActive(true);
+                mental[i].gameObject.SetActive(true);
 
 
             for (int i = 4; i >= value; i--)
-                mental[i].transform.DOScale(0f, 0.5f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                mental[i].transform.DOScale(0f, 0.5f).OnComplete(() =>
                 {
                     mental[i+1].gameObject.SetActive(false);
                 });
+            
+
+            mental[value - 1].transform.DOScale(1f, 0.25f).OnComplete(() =>
+            {
+                mental[value - 1].transform.DOScale(0.5f, 0.25f);
+            });
 
         }
 
-        if (state == 0)
-        {
-            health[value - 1].transform.DOScale(1f, 0.5f).SetLoops(2, LoopType.Yoyo);
-        }
-
-        else if (state == 1) 
-        {
-            mental[value - 1].transform.DOScale(1f, 0.5f).SetLoops(2, LoopType.Yoyo);
-        }
-       
            
             
     }

@@ -46,16 +46,25 @@ public class Achievement: MonoBehaviour
         {
             if (achievementObject.AchieveState != AchieveState.Hidden)
             {
-                acvName.text = achievementObject.AchievementName;
-                acvDesc.text = achievementObject.AchievementDesc;
-                acvThumbnail.sprite = achievementObject.AchievementThumbnail;
-                acvPercent.text = $"{achievementObject.NowNum} / {achievementObject.MaxNum}";
-                acvPercentageImg.fillAmount = (float) achievementObject.NowNum / achievementObject.MaxNum;
-                if (achievementObject.AchieveState == AchieveState.Achieved)
+                if (achievementObject.AchieveState == AchieveState.NotAchieved) 
                 {
+                    acvName.text = achievementObject.AchievementName;
+                    acvDesc.text = achievementObject.AchievementDesc;
+                    acvThumbnail.sprite = achievementObject.AchievementThumbnail;
+                    acvPercent.text = $"{achievementObject.NowNum} / {achievementObject.MaxNum}";
+                    acvPercentageImg.fillAmount = (float)achievementObject.NowNum / achievementObject.MaxNum;
+                    
+                }
+                
+                else if (achievementObject.AchieveState == AchieveState.Achieved)
+                {
+                    acvName.text = achievementObject.AchievementName;
+                    acvDesc.text = achievementObject.AchievementDesc;
+                    acvThumbnail.sprite = achievementObject.AchievementThumbnail;
+                    acvPercentageImg.fillAmount = (float)achievementObject.NowNum / achievementObject.MaxNum;
                     acvPercent.text = "Complete!";
-                    acvTime.gameObject.SetActive(true);
                     acvTime.text = achievementObject.AchievementTime;
+                    
                 }
             }
             else
