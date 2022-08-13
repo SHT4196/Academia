@@ -15,6 +15,12 @@ public enum PlayerAbility
     Mana
 }
 
+public enum PlayerDepartment
+{
+    Knight,
+    Wizard,
+    Politics
+}
 /// <summary>
 /// Player Singleton class
 /// </summary>
@@ -54,6 +60,11 @@ public class Player
     /// </summary>
     private int _mana;
 
+    /// <summary>
+    /// player 학부
+    /// </summary>
+    private PlayerDepartment _department;
+    
     /// <summary>
     /// player 이름
     /// </summary>
@@ -103,6 +114,13 @@ public class Player
         
         //player 이름 설정
         _playerName = PlayerPrefs.GetString("PlayerName");
+
+        if (PlayerPrefs.GetString("Department") == "Knight")
+            _department = PlayerDepartment.Knight;
+        else if (PlayerPrefs.GetString("Department") == "Wizard")
+            _department = PlayerDepartment.Wizard;
+        else if (PlayerPrefs.GetString("Department") == "Politics")
+            _department = PlayerDepartment.Politics;
     }
 
     /// <summary>
@@ -173,9 +191,9 @@ public class Player
         if (_health > 0)
         {
             this._health += value;
+            _gmr.ImgChange(0, value, this._health);
             if (this._health >= 5)
                 this._health = 5;
-            _gmr.ImgChange(0, this._health);
             if (isAdmin)
             {
                 return;
@@ -187,7 +205,7 @@ public class Player
     }
 
     /// <summary>
-    /// likealbeDictionary에서 해당 key값이 valuable한지 확인
+    /// likeableDictionary에서 해당 key값이 valuable한지 확인
     /// </summary>
     /// <param name="key">확인하고자하는 key값</param>
     /// <returns></returns>
@@ -219,9 +237,9 @@ public class Player
         if (_mental > 0)
         {
             this._mental += value;
+            _gmr.ImgChange(1, value, this._mental);
             if (this._mental >= 5)
                 this._mental = 5;
-            _gmr.ImgChange(1, this._mental);
             if (!isAdmin)
             {
                 PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
@@ -339,8 +357,28 @@ public class Player
     {
         this._health = 5;
         this._mental = 5;
-        _gmr.ImgChange(0, _health);
-        _gmr.ImgChange(1, _mental);
+        _gmr.ImgChange(0, 0, _health);
+        _gmr.ImgChange(1, 0, _mental);
+    }
+
+    /// <summary>
+    /// 플레이어 학부 지정
+    /// </summary>
+    /// <param name="department">지정할 학부</param>
+    public void SetPlayerDepartment(PlayerDepartment department)
+    {
+        _department = department;
+        PlayerPrefs.SetString("Department", $"{_department}");
+        Debug.Log($"선택한 학부: {_department}");
+    }
+
+    /// <summary>
+    /// 플레이어 학부 리턴
+    /// </summary>
+    /// <returns>학부 </returns>
+    public PlayerDepartment GetPlayerDepartment()
+    {
+        return _department;
     }
     
     /// <summary>

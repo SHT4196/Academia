@@ -79,7 +79,7 @@ public class AddText : MonoBehaviour
         script = MakeDialog.instance.FindScript(NextContainer.instance.NextText);
         DestroyEmpty(); //Destroy empty text prefab 
         //float ScrollAmount = 0;
-        if (script.acvUpdate[0] != "-" && PlayerPrefs.GetString("ScriptID") != script.id)
+        if (script.acvUpdate.Count != 0 && PlayerPrefs.GetString("ScriptID") != script.id)
             AcvUpdate_By_CSV(script.acvUpdate);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
@@ -300,106 +300,23 @@ public class AddText : MonoBehaviour
         {
             string temp_str = script.result[i];
             string string_val = "";
-            if (temp_str != "-")
+            if (temp_str == "기사")
             {
-                if (temp_str[0] == '지')
+                Player.instance.SetPlayerDepartment(PlayerDepartment.Knight);
+            }
+            else if (temp_str == "마법")
+            {
+                Player.instance.SetPlayerDepartment(PlayerDepartment.Wizard);
+            }
+            else if (temp_str == "관료")
+            {
+                Player.instance.SetPlayerDepartment(PlayerDepartment.Politics);
+            }
+            else
+            {
+                if (temp_str != "-")
                 {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '무')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '마')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '체')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.HealthChange(Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.HealthChange(Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '정')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.MentalChange(Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
-                    }
-                }
-                else
-                {
-                    if (Player.instance.CheckKeyAvailable(temp_str[0].ToString()))
+                    if (temp_str[0] == '지')
                     {
                         if (temp_str[1] == '+')
                         {
@@ -407,7 +324,7 @@ public class AddText : MonoBehaviour
                             {
                                 string_val += temp_str[j];
                             }
-                            Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val));
+                            Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val));
                         }
                         else
                         {
@@ -415,7 +332,105 @@ public class AddText : MonoBehaviour
                             {
                                 string_val += temp_str[j];
                             }
-                            Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val) * (-1));
+                            Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '무')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '마')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '체')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.HealthChange(Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.HealthChange(Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '정')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.MentalChange(Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    else
+                    {
+                        if (Player.instance.CheckKeyAvailable(temp_str[0].ToString()))
+                        {
+                            if (temp_str[1] == '+')
+                            {
+                                for (int j = 2; j < temp_str.Length; j++)
+                                {
+                                    string_val += temp_str[j];
+                                }
+                                Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val));
+                            }
+                            else
+                            {
+                                for (int j = 2; j < temp_str.Length; j++)
+                                {
+                                    string_val += temp_str[j];
+                                }
+                                Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val) * (-1));
+                            }
                         }
                     }
                 }
@@ -454,7 +469,7 @@ public class AddText : MonoBehaviour
     /// 타이핑 효과 coroutine
     /// </summary>
     /// <param name="_fullText">타이핑 효과를 줄 텍스트의 문자열</param>
-    /// <param name="textbox">텍스트를 넣을 textbox</param>
+    /// <param name="_textBox">텍스트를 넣을 textbox</param>
     private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)
     {
         currentText = "";
@@ -478,29 +493,13 @@ public class AddText : MonoBehaviour
     /// <summary>
     /// CSV 파일에 의한 업적 값 update
     /// </summary>
-    /// <param name ="ABC">update할 script의 acvUpdate값</param>
-    private void AcvUpdate_By_CSV(List<string> ABC)
+    /// <param name="achievement">update할 script의 acvUpdate값</param>
+    private void AcvUpdate_By_CSV(Dictionary<int, int> achievement)
     {
-        if(ABC.Count != 2)
+        foreach (var elem in achievement)
         {
-            Debug.Log("Unknown Case");
-            return;
+            AchievementManager.Instance.Achieve_achievement(elem.Key, elem.Value);
         }
-        int acv_num = Int32.Parse(ABC[0]);
-        int acv_add;
-        if (ABC[1][0] == '-')
-        {
-            acv_add = Int32.Parse(ABC[1].Substring(1)) * -1;
-        }
-        else if (ABC[1][0] == '+')
-        {
-            acv_add = Int32.Parse(ABC[1].Substring(1));
-        }
-        else
-        {
-            acv_add = Int32.Parse(ABC[1]);
-        }
-        AchievementManager.Instance.Achieve_achievement(acv_num, acv_add);
     }
 
     /// <summary>

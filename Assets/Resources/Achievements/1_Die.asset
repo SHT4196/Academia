@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
   m_Name: 1_Die
   m_EditorClassIdentifier: 
-  achievementName: "\uAC8C\uC784 \uC624\uBC84"
-  achievementDesc: "\uAC8C\uC784 \uC624\uBC84 \uD574\uBCF4\uC138\uC694"
+  achievementName: "\uC8FD\uC74C"
+  achievementDesc: "\uC8FD\uC74C"
   id: 1
   nowNum: 0
   maxNum: 1
   achieveState: 1
-  achievementThumbnail: {fileID: 21300000, guid: fa2cfd9982cc8a24588b9f7a6cd40fbf, type: 3}
+  achievementThumbnail: {fileID: 21300000, guid: 8efbd2ae0afde0f4c8e84b981191e9c9, type: 3}
   _achievementTime: 

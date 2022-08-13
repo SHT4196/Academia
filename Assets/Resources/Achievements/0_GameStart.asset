@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
   m_Name: 0_GameStart
   m_EditorClassIdentifier: 
-  achievementName: "\uAC8C\uC784 \uC2DC\uC791"
-  achievementDesc: "\uAC8C\uC784\uC744 \uC2DC\uC791\uD574\uBCF4\uC138\uC694"
+  achievementName: "\uAC8C\uC784\uC2DC\uC791"
+  achievementDesc: "\uAC8C\uC784\uC2DC\uC791"
   id: 0
   nowNum: 0
   maxNum: 1
   achieveState: 1
-  achievementThumbnail: {fileID: 21300000, guid: 386a558d014362d43967ed747ac12279, type: 3}
+  achievementThumbnail: {fileID: 21300000, guid: 5799870aa5ebab84aba4a9b632f46a0a, type: 3}
   _achievementTime: 
