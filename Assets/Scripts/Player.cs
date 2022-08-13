@@ -193,7 +193,7 @@ public class Player
             this._health += value;
             if (this._health >= 5)
                 this._health = 5;
-            _gmr.ImgChange(0, this._health);
+            _gmr.ImgChange(0, value, this._health);
             if (isAdmin)
             {
                 return;
@@ -239,7 +239,7 @@ public class Player
             this._mental += value;
             if (this._mental >= 5)
                 this._mental = 5;
-            _gmr.ImgChange(1, this._mental);
+            _gmr.ImgChange(1, value, this._mental);
             if (!isAdmin)
             {
                 PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
@@ -357,8 +357,8 @@ public class Player
     {
         this._health = 5;
         this._mental = 5;
-        _gmr.ImgChange(0, _health);
-        _gmr.ImgChange(1, _mental);
+        _gmr.ImgChange(0, 0, _health);
+        _gmr.ImgChange(1, 0, _mental);
     }
 
     /// <summary>
