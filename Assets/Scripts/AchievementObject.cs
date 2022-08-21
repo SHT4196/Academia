@@ -113,8 +113,10 @@ public class AchievementObject : ScriptableObject
             NowNum = MaxNum;
             AchieveState = AchieveState.Achieved;
             AchievementTime = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
+            DatabaseManager.Instance.SaveAchievementInfo(SystemInfo.deviceUniqueIdentifier, id, nowNum ,achieveState, AchievementTime);
             return true;
         }
+        DatabaseManager.Instance.SaveAchievementInfo(SystemInfo.deviceUniqueIdentifier, id, nowNum ,achieveState);
         return false;
     }
 }
