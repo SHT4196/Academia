@@ -21,12 +21,12 @@ public class AddChoice : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼±ÅÃÁö Button µ¿Àû »ý¼º
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Button ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void MakeButton()
     {
         int i = 0;
-        foreach (string c in NextContainer.instance.NextChoice) // °¢ choice º°·Î ¼±ÅÃÁö »ý¼º
+        foreach (string c in NextContainer.instance.NextChoice) // ï¿½ï¿½ choice ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             int choiceCount = 0;
             bool needComplete = true;
@@ -36,13 +36,13 @@ public class AddChoice : MonoBehaviour
             {
                 choiceCount = _choice.need.Count;
             }
-            for(int j = 0; j < choiceCount; j++) // choice available ¿©ºÎ È®ÀÎ
+            for(int j = 0; j < choiceCount; j++) // choice available ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             {
                 bool abilityAvailableCheck = false;
                 if (_choice.need != null)
                 {
                     string[] val = _choice.need[j].Split('%');
-                    if(val[0] == "¹«") 
+                    if(val[0] == "ë¬´") 
                     {
                         int value = 0;
                         for(int k = 0; k < val[1].ToIntArray().Length; k++)
@@ -50,8 +50,9 @@ public class AddChoice : MonoBehaviour
                             value += (val[1].ToIntArray()[k] - 48) * (int)Mathf.Pow(10, val[1].ToIntArray().Length - k - 1);
                         }
                         abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Force, value);
+                        
                     }
-                    else if (val[0] == "Á¤")
+                    else if (val[0] == "ì •")
                     {
                         int value = 0;
                     
@@ -62,7 +63,7 @@ public class AddChoice : MonoBehaviour
                         }
                         abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Intellect, value);
                     }
-                    else if (val[0] == "Áö")
+                    else if (val[0] == "ì§€")
                     {
                         int value = 0;
                         for (int k = 0; k < val[1].ToIntArray().Length; k++)
@@ -73,14 +74,14 @@ public class AddChoice : MonoBehaviour
                     }
                 }
 
-                if (abilityAvailableCheck == false) // ¼±ÅÃÁö¸¦ ¼±ÅÃÇÒ ¼ö ¾øÀ» ¶§
+                if (abilityAvailableCheck == false) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
                 {
                     tmpText += "<color=#8B0000>";
                     tmpText += _choice.need[j];
                     tmpText += "</color>";
                     needComplete = false;
                 }
-                else // ¼±ÅÃÁö ¼±ÅÃ °¡´ÉÇÒ ¶§
+                else // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
                 {
                     tmpText += "<color=#008000>";
                     tmpText += _choice.need[j];
@@ -92,7 +93,7 @@ public class AddChoice : MonoBehaviour
             tmpText += " " + _choice.text;
             _panel = GameObject.Find("Panel");
             
-            // ¼±ÅÃÁö ¼±ÅÃ °¡´É ¿©ºÎ¿¡ µû¸¥ Prefab Instantiation
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Prefab Instantiation
             if (needComplete)
             {
                 _choiceBox = Instantiate(choicePrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -122,7 +123,7 @@ public class AddChoice : MonoBehaviour
 
             _choiceText = _choiceBox.GetComponentInChildren<TextMeshProUGUI>();
             _choiceText.text = tmpText;
-            if (_choice.next.Count == 1) //È®·ü ¾øÀ½ - choicenext ÇÑ°³
+            if (_choice.next.Count == 1) //È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - choicenext ï¿½Ñ°ï¿½
             {
                 _choiceBox.name = _choice.next[0];
             }
@@ -148,7 +149,7 @@ public class AddChoice : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼±ÅÃÁö ¹öÆ° »èÁ¦
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void DestroyButton()
     {

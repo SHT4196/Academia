@@ -97,6 +97,47 @@ public class AddText : MonoBehaviour
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
+            
+            string coloredStr = "";
+            string value = script.text;
+            int indexNum = 0;
+            string[] val2 = value.Split('^');
+            if (val2.Length != 1)
+            {
+                indexNum = val2.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        coloredStr += val2[i];
+                    }
+                    else {
+                        coloredStr += "<color=#008000>";
+                        coloredStr += val2[i];
+                        coloredStr += "</color>";
+                    }
+                }
+                script.text = coloredStr;
+            }
+
+            string[] val3 = script.text.Split('*');
+            string result = "";
+            if (val3.Length != 1)
+            {
+                indexNum = val3.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        result += val3[i];
+                    }
+                    else {
+                        result += "<color=#ff0000>";
+                        result += val3[i];
+                        result += "</color>";
+                    }
+                }
+                script.text = result;
+            }
+
             if (!Player.instance.isAdmin)
             {
                 PlayerPrefs.SetString("ScriptID", script.id); //save id
@@ -150,6 +191,46 @@ public class AddText : MonoBehaviour
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
+
+            string coloredStr = "";
+            string value = script.text;
+            int indexNum = 0;
+            string[] val2 = value.Split('^');
+            if (val2.Length != 1)
+            {
+                indexNum = val2.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        coloredStr += val2[i];
+                    }
+                    else {
+                        coloredStr += "<color=#008000>";
+                        coloredStr += val2[i];
+                        coloredStr += "</color>";
+                    }
+                }
+                script.text = coloredStr;
+            }
+
+            string[] val3 = script.text.Split('*');
+            string result = "";
+            if (val3.Length != 1)
+            {
+                indexNum = val3.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        result += val3[i];
+                    }
+                    else {
+                        result += "<color=#ff0000>";
+                        result += val3[i];
+                        result += "</color>";
+                    }
+                }
+                script.text = result;
+            }
             
             if (!Player.instance.isAdmin)
             {
