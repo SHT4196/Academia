@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class OptionTrigger : MonoBehaviour
 {
 
     public GameObject Option_Canvas;
     public GameObject GameQuit_Canvas;
+    public GameObject Achivement_Canvas;
+    public GameObject Option_Panel;
+    public GameObject Achivement_Panel;
 
     /// <summary>
     /// �ɼ�â ����
@@ -16,17 +20,45 @@ public class OptionTrigger : MonoBehaviour
     public void Option_Btn()
     {
         Option_Canvas.SetActive(true);
-        Time.timeScale = 0;
+        Option_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);   
+
     }
     /// <summary>
     /// �ɼ�â �ݱ�
     /// </summary>
     public void OptionClose_Btn()
     {
-        Option_Canvas.SetActive(false);
-        Time.timeScale = 1;
+
+        Option_Panel.transform.DOMoveX(-Screen.width / 2f, 0.5f).OnComplete(()=>
+        {
+            Option_Canvas.SetActive(false);
+        });
 
     }
+    /// <summary>
+    /// ����â ����
+    /// </summary>
+    public void Achive_Btn()
+    {
+        Achivement_Canvas.SetActive(true);
+        AchievementManager.Instance.UpdateAchievements();
+        Achivement_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);
+
+    }
+    /// <summary>
+    /// ����â �ݱ�
+    /// </summary>
+    public void AchiveClose_Btn()
+    {
+        
+        Achivement_Panel.transform.DOMoveX(Screen.width * 1.5f, 0.5f).OnComplete(() =>
+        {
+            Achivement_Canvas.SetActive(false);
+        });
+
+    }
+
+
     /// <summary>
     /// ���� ����â ����
     /// </summary>
@@ -59,7 +91,6 @@ public class OptionTrigger : MonoBehaviour
 
     void Update()
     {
-       
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // �ڷΰ���, esc ��ư �Է½� ���� ���� �г� ����
@@ -76,8 +107,6 @@ public class OptionTrigger : MonoBehaviour
                 Debug.Log("close");
             }
         }
-
-        
     }
 
 }

@@ -6,7 +6,8 @@ using System.Linq;
 public class Script
 {
 
-    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, int __interval, string __afterInterval = "-")
+
+    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, Dictionary<int, int> __acvUpdate, int __interval, string __afterInterval = "-", int __probability = 100)
 
     {
         id = __id;
@@ -16,6 +17,9 @@ public class Script
         sprite = __sprite;
         interval = __interval;
         afterInterval = __afterInterval;
+        probability = __probability;
+        acvUpdate = __acvUpdate;
+
     }
 
 
@@ -57,4 +61,17 @@ public class Script
     /// interval을 모두 지난 후 돌아올 Main Event의 id값
     /// </summary>
     public string afterInterval { get; set; }
+
+    
+    /// <summary>
+    /// PME를 위한 확률형 Main Event
+    /// </summary>
+    public int probability { get; set; }
+
+
+    /// <summary>
+    /// Script가 나타나면 변화할 업적의 번지 수 및 업적의 값
+    /// </summary>
+    public Dictionary<int, int> acvUpdate { get; set; }
+
 }

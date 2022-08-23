@@ -16,6 +16,11 @@ public class MainEventController
     /// Main Event interval
     /// </summary>
     private int ME_interval = 0;
+    
+    /// <summary>
+    /// ME_str 저장
+    /// </summary>
+    private string last_ME_str = "";
 
     private static MainEventController _instance;
 
@@ -38,6 +43,12 @@ public class MainEventController
     {
         ME_str = _ME;
         ME_storyID = _ME[1] - '0';
+        last_ME_str = ME_str;
+        if (Player.instance.isAdmin)
+        {
+            return;
+        }
+
         PlayerPrefs.SetInt("ME_storyID", ME_storyID);
     }
     /// <summary>
@@ -54,7 +65,12 @@ public class MainEventController
     /// <returns></returns>
     public string GetNextMe()
     {
-        ME_str = PlayerPrefs.GetString("ME_str"); // 현재 ME_str 저장
+        if(!Player.instance.isAdmin)
+            ME_str = PlayerPrefs.GetString("ME_str"); // 현재 ME_str 저장
+        else
+        {
+            ME_str = last_ME_str;
+        }
         // 현재 ME_str의 script의 afterInterval 불러옴
         Script script = MakeDialog.instance.FindScript(ME_str);
         return script.afterInterval;
@@ -64,7 +80,7 @@ public class MainEventController
     /// </summary>
     public void FirstSetInterval()
     {
-        if (PlayerPrefs.GetInt("ME_interval") == 0) // 저장된 interval 존재 x
+        if (PlayerPrefs.GetInt("ME_interval") == 0 || Player.instance.isAdmin) // 저장된 interval 존재 x
             ME_interval = MakeDialog.instance.FindScript(ME_str).interval;
         else
             ME_interval = PlayerPrefs.GetInt("ME_interval");

@@ -191,7 +191,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 20, y: -28.2}
-  m_SizeDelta: {x: 268.03, y: 100}
+  m_SizeDelta: {x: 373.4113, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &966618218776911020
 CanvasRenderer:
@@ -408,7 +408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &319505274613495913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &8064528901279711295
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +481,7 @@ GameObject:
   - component: {fileID: 4799071440630179691}
   - component: {fileID: 232879041637157044}
   - component: {fileID: 7641609395079089282}
+  - component: {fileID: 5559842952586661880}
   m_Layer: 5
   m_Name: Acv
   m_TagString: Acv
@@ -547,3 +548,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5559842952586661880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064528901279711295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e5e4dcea92b2747a54a97eb2f34911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementObject: {fileID: 0}
+  acvName: {fileID: 1534807777862044659}
+  acvDesc: {fileID: 4658773769864340866}
+  acvThumbnail: {fileID: 4992153777395885526}
+  acvPercent: {fileID: 3126153327534836257}
+  acvPercentageImg: {fileID: 7949445411159087379}
+  acvTime: {fileID: 3427521281187628505}
+  hiddenAcvThumbnail: {fileID: 21300000, guid: 0f49734be8727cf4eaa66dd3475274de, type: 3}

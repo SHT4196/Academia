@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -62,28 +63,103 @@ public class PlayerManager : MonoBehaviour
     {
         
     }
+
     /// <summary>
     /// 플레이어 상태 이미지 change 
     /// </summary>
     /// <param name="state">0: health, 1: mental</param>
-    /// <param name="value">health 또는 mental 수치</param>
-    public void ImgChange(int state, int value)
+    /// <param name="value">변화되는 양</param>
+    /// <param name="result">변화된 결과값</param>
+    public void ImgChange(int state, int value, int result)
     {
         //state 0: health, 1: mental
-        if (state == 0) {
-            for (int i = 0; i < value; i++)
-                health[i].gameObject.SetActive(true);
-            for (int i = 4; i >= value; i--)
-                health[i].gameObject.SetActive(false);
-        }
-        else if(state == 1)
+        if (state == 0)
         {
-            for (int i = 0; i < value; i++)
-                mental[i].gameObject.SetActive(true);
-            for (int i = 4; i >= value; i--)
-                mental[i].gameObject.SetActive(false);
+            //감소 애니메이션
+            if (value < 0)
+            {
+                for (int i = 0; i < value * (-1); i++)
+                {
+                    int tempIndex = result - value - i - 1;
+                    if (tempIndex >= 0)
+                    {
+                        health[tempIndex].transform.DOScale(0f, 0.5f).OnComplete(() =>
+                        {
+                            health[tempIndex].gameObject.SetActive(false);
+                        });
+                    }
+                }
+            }
+            //증가 애니메이션
+            else if (value > 0)
+            {
+                for (int i = 0; i < value; i++)
+                {
+                    int tempIndex = result - value + i;
+                    if (tempIndex < 5)
+                    {
+                        health[tempIndex].gameObject.SetActive(true);
+                        health[tempIndex].transform.DOScale(1.0f, 0.5f).OnComplete(() =>
+                        {
+                            health[tempIndex].transform.DOScale(0.5f, 0.25f);
+                        });
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < result; i++)
+                    health[i].gameObject.SetActive(true);
+                for (int i = 4; i >= result; i--)
+                    health[i].gameObject.SetActive(false);
+            }
+        }
+        else if (state == 1)
+        {
+            //감소 애니메이션
+            if (value < 0)
+            {
+                for (int i = 0; i < value * (-1); i++)
+                {
+                    int tempIndex = result - value - i - 1;
+                    if (tempIndex >= 0)
+                    {
+                        mental[tempIndex].transform.DOScale(0f, 0.5f).OnComplete(() =>
+                        {
+                            mental[tempIndex].gameObject.SetActive(false);
+                        });
+                    }
+                }
+            }
+            //증가 애니메이션
+            else if (value > 0)
+            {
+                for (int i = 0; i < value; i++)
+                {
+                    int tempIndex = result - value + i;
+                    if (tempIndex < 5)
+                    {
+                        mental[tempIndex].gameObject.SetActive(true);
+                        mental[tempIndex].transform.DOScale(1f, 0.25f).OnComplete(() =>
+                        {
+                            mental[tempIndex].transform.DOScale(0.5f, 0.25f);
+                        });   
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < result; i++)
+                    mental[i].gameObject.SetActive(true);
+                for (int i = 4; i >= result; i--)
+                    mental[i].gameObject.SetActive(false);
+            }
         }
     }
+        
+
+
+
     /// <summary>
     /// player 상태 이미지 set 함수
     /// </summary>
@@ -91,8 +167,8 @@ public class PlayerManager : MonoBehaviour
     /// <param name="mental">mental 수치</param>
     public void ImgSet(int health, int mental)
     {
-        ImgChange(0, health);
-        ImgChange(1, mental);
+        ImgChange(0, 0, health);
+        ImgChange(1, 0, mental);
     }
     /// <summary>
     /// 플레이어 능력치 Change fillamount
@@ -125,7 +201,7 @@ public class PlayerManager : MonoBehaviour
         //Application.Quit();
         SceneManager.LoadScene(1);
         //EditorApplication.Exit(0);
-        Achivement.Acv.change_scene();
+      //  Achivement.Acv.change_scene();
     }
     /// <summary>
     /// Player 죽을 때 - UI 상에서 죽는 버튼

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Choice
 {
-    public Choice(string __id, string __text, string __next)
+    public Choice(string __id, string __text, List<string> __next)
     {
         id = __id;
         text = __text;
@@ -39,7 +39,7 @@ public class Choice
     /// <summary>
     /// 각 Choice들을 선택하였을 때 이어지는 Script ID
     /// </summary>
-    public string next { get; set; }
+    public List<string> next { get; set; }
 
     /// <summary>
     /// 해당 Choice를 선택하기 위해 필요한 능력치 string List

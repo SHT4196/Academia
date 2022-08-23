@@ -67,7 +67,7 @@ public class AddText : MonoBehaviour
     void Start()
     {
         currentID = "M0_0";
-        correction = true;
+        correction = true;  
         AddScript();
     }
 
@@ -123,7 +123,11 @@ public class AddText : MonoBehaviour
         }
         
         //float ScrollAmount = 0;
+<<<<<<< HEAD
         if (script.acvUpdate[0] != "-" && PlayerPrefs.GetString("ScriptID") != script.id)
+=======
+        if (script.acvUpdate.Count != 0 && PlayerPrefs.GetString("ScriptID") != script.id)
+>>>>>>> main
             AcvUpdate_By_CSV(script.acvUpdate);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
@@ -138,6 +142,7 @@ public class AddText : MonoBehaviour
             {
                 isimage.Add(false);
             }
+<<<<<<< HEAD
 
             if (!Player.instance.isAdmin)
             {
@@ -149,6 +154,64 @@ public class AddText : MonoBehaviour
                 textBox[textBox.Count - 1].text = script.text.Replace("{name}", Player.instance.GetPlayerName());
                 text_exit = true;
             }
+=======
+            textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
+            textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
+            textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
+            
+            string coloredStr = "";
+            string value = script.text;
+            int indexNum = 0;
+            string[] val2 = value.Split('^');
+            if (val2.Length != 1)
+            {
+                indexNum = val2.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        coloredStr += val2[i];
+                    }
+                    else {
+                        coloredStr += "<color=#008000>";
+                        coloredStr += val2[i];
+                        coloredStr += "</color>";
+                    }
+                }
+                script.text = coloredStr;
+            }
+
+            string[] val3 = script.text.Split('*');
+            string result = "";
+            if (val3.Length != 1)
+            {
+                indexNum = val3.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        result += val3[i];
+                    }
+                    else {
+                        result += "<color=#ff0000>";
+                        result += val3[i];
+                        result += "</color>";
+                    }
+                }
+                script.text = result;
+            }
+
+            if (!Player.instance.isAdmin)
+            {
+                PlayerPrefs.SetString("ScriptID", script.id); //save id
+                Get_Typing(script.text.Replace("{name}", Player.instance.GetPlayerName()), textBox[textBox.Count-1]);  //typing animation start
+            }
+            else
+            {
+                textBox[textBox.Count - 1].text = script.text.Replace("{name}", Player.instance.GetPlayerName());
+                text_exit = true;
+            }
+
+
+>>>>>>> main
 
 
             if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
@@ -190,6 +253,49 @@ public class AddText : MonoBehaviour
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
+<<<<<<< HEAD
+=======
+
+            string coloredStr = "";
+            string value = script.text;
+            int indexNum = 0;
+            string[] val2 = value.Split('^');
+            if (val2.Length != 1)
+            {
+                indexNum = val2.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        coloredStr += val2[i];
+                    }
+                    else {
+                        coloredStr += "<color=#008000>";
+                        coloredStr += val2[i];
+                        coloredStr += "</color>";
+                    }
+                }
+                script.text = coloredStr;
+            }
+
+            string[] val3 = script.text.Split('*');
+            string result = "";
+            if (val3.Length != 1)
+            {
+                indexNum = val3.Length;
+                for (int i = 0; i < indexNum; i++)
+                {
+                    if (i % 2 == 0) {
+                        result += val3[i];
+                    }
+                    else {
+                        result += "<color=#ff0000>";
+                        result += val3[i];
+                        result += "</color>";
+                    }
+                }
+                script.text = result;
+            }
+>>>>>>> main
             
             if (!Player.instance.isAdmin)
             {
@@ -243,9 +349,7 @@ public class AddText : MonoBehaviour
         float width = img.rectTransform.rect.width;
         float height = img.rectTransform.rect.height;
 
-        /// <summary>
-        /// 화면 크기에 대한 삽화의 비율, 0~1사이의 실수값
-        /// </summary>
+        // 화면 크기에 대한 삽화의 비율, 0~1사이의 실수값
         float image_ratio = 0.7f;
 
         if ((width >= screen_width && height >= screen_height && width-screen_width >= height-screen_height)||
@@ -342,101 +446,138 @@ public class AddText : MonoBehaviour
         {
             string temp_str = script.result[i];
             string string_val = "";
-            if (temp_str != "-")
+            if (temp_str == "기사")
             {
-                if (temp_str[0] == '지')
+                Player.instance.SetPlayerDepartment(PlayerDepartment.Knight);
+            }
+            else if (temp_str == "마법")
+            {
+                Player.instance.SetPlayerDepartment(PlayerDepartment.Wizard);
+            }
+            else if (temp_str == "관료")
+            {
+                Player.instance.SetPlayerDepartment(PlayerDepartment.Politics);
+            }
+            else
+            {
+                if (temp_str != "-")
                 {
-                    if (temp_str[1] == '+')
+                    if (temp_str[0] == '지')
                     {
-                        for (int j = 2; j < temp_str.Length; j++)
+                        if (temp_str[1] == '+')
                         {
-                            string_val += temp_str[j];
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val));
                         }
-                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val));
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '무')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '마')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '체')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.HealthChange(Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.HealthChange(Int32.Parse(string_val) * (-1));
+                        }
+                    }
+                    if (temp_str[0] == '정')
+                    {
+                        if (temp_str[1] == '+')
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.MentalChange(Int32.Parse(string_val));
+                        }
+                        else
+                        {
+                            for (int j = 2; j < temp_str.Length; j++)
+                            {
+                                string_val += temp_str[j];
+                            }
+                            Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
+                        }
                     }
                     else
                     {
-                        for (int j = 2; j < temp_str.Length; j++)
+                        if (Player.instance.CheckKeyAvailable(temp_str[0].ToString()))
                         {
-                            string_val += temp_str[j];
+                            if (temp_str[1] == '+')
+                            {
+                                for (int j = 2; j < temp_str.Length; j++)
+                                {
+                                    string_val += temp_str[j];
+                                }
+                                Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val));
+                            }
+                            else
+                            {
+                                for (int j = 2; j < temp_str.Length; j++)
+                                {
+                                    string_val += temp_str[j];
+                                }
+                                Player.instance.ChangeLikeable(temp_str[0].ToString(), Int32.Parse(string_val) * (-1));
+                            }
                         }
-                        Player.instance.Changeability(PlayerAbility.Intellect, Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '무')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Force, Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '마')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.Changeability(PlayerAbility.Mana, Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '체')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.HealthChange(Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.HealthChange(Int32.Parse(string_val) * (-1));
-                    }
-                }
-                if (temp_str[0] == '정')
-                {
-                    if (temp_str[1] == '+')
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.MentalChange(Int32.Parse(string_val));
-                    }
-                    else
-                    {
-                        for (int j = 2; j < temp_str.Length; j++)
-                        {
-                            string_val += temp_str[j];
-                        }
-                        Player.instance.MentalChange(Int32.Parse(string_val) * (-1));
                     }
                 }
             }
@@ -474,13 +615,13 @@ public class AddText : MonoBehaviour
     /// 타이핑 효과 coroutine
     /// </summary>
     /// <param name="_fullText">타이핑 효과를 줄 텍스트의 문자열</param>
-    /// <param name="textbox">텍스트를 넣을 textbox</param>
+    /// <param name="_textBox">텍스트를 넣을 textbox</param>
     private IEnumerator ShowText(string _fullText, TextMeshProUGUI _textBox)
     {
         currentText = "";
         for (int i = 0; i < _fullText.Length; i++)
         {
-            if (text_cut == true)
+            if (text_cut)
             {
                 break;
             }
@@ -490,9 +631,21 @@ public class AddText : MonoBehaviour
         }
         _textBox.text = _fullText;
         text_exit = true;
-        StopCoroutine(coroutine);
 
+        StopCoroutine(coroutine);
         text_full = true;
+    }
+
+    /// <summary>
+    /// CSV 파일에 의한 업적 값 update
+    /// </summary>
+    /// <param name="achievement">update할 script의 acvUpdate값</param>
+    private void AcvUpdate_By_CSV(Dictionary<int, int> achievement)
+    {
+        foreach (var elem in achievement)
+        {
+            AchievementManager.Instance.Achieve_achievement(elem.Key, elem.Value);
+        }
     }
 
     /// <summary>
@@ -500,10 +653,13 @@ public class AddText : MonoBehaviour
     /// </summary>
     void Update() 
     {
-        if (trigger)
+        if (!Player.instance.isAdmin)
         {
-            coroutine = StartCoroutine(ShowText(fulltext, tb));
-            trigger = false;
+            if (trigger)
+            {
+                coroutine = StartCoroutine(ShowText(fulltext, tb));
+                trigger = false;
+            }
         }
         if (text_exit)  //if typing effect end, next button express.
         {
@@ -519,5 +675,10 @@ public class AddText : MonoBehaviour
 
             text_exit = false;
         }
+        // if (StaticCoroutine.is_play == false && Achivement.acv_delay.Count >= 1)
+        // {
+        //     AchivementManager.acv_clear(Achivement.acv_delay[0]);
+        //     Achivement.acv_delay.RemoveAt(0);
+        // }
     }
 }

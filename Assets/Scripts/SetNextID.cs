@@ -5,23 +5,27 @@ using UnityEngine;
 public class SetNextID : MonoBehaviour
 {
     /// <summary>
-    /// ´ÙÀ½ Script ¼³Á¤
+    /// ë‹¤ìŒ Script ì„¤ì •
     /// </summary>
     public void Next()
     {
-        if (gameObject.name == "RANDOM") // ·£´ıÀÌº¥Æ®ÀÏ °æ¿ì
+        if (gameObject.name == "RANDOM") // ëœë¤ì´ë²¤íŠ¸ì¼ ê²½ìš°
         {
-            if(PlayerPrefs.GetInt("ME_interval") != 0)
+            if(PlayerPrefs.GetInt("ME_interval") != 0 && !Player.instance.isAdmin)
                 MainEventController.instance.SetInterval(PlayerPrefs.GetInt("ME_interval"));
-            if (MainEventController.instance.GetInterval() > 0) //Random Ç® ÁøÀÔ
+            if (MainEventController.instance.GetInterval() > 0) //Random í’€ ì§„ì…
             {
                 MainEventController.instance.IntervalDecrease();
                 int rand = RandomPool.Instance.Rand;
                 int temp = rand;
-                while (temp == rand) // ¿¬¼Ó °°Àº ½ºÅä¸® ¹æÁö
+                while (temp == rand) // ì—°ì† ê°™ì€ ìŠ¤í† ë¦¬ ë°©ì§€
                     temp = Random.Range(0, RandomPool.Instance.RandomPoolList.Count);
                 RandomPool.Instance.Rand = temp;
                 NextContainer.instance.NextText = RandomPool.Instance.RandomPoolList[temp].id;
+                if (Player.instance.isAdmin)
+                {
+                    return;
+                }
                 PlayerPrefs.SetInt("ME_interval", MainEventController.instance.GetInterval());
             }
             else 
@@ -30,12 +34,15 @@ public class SetNextID : MonoBehaviour
                 MainEventController.instance.SetME_str(NextContainer.instance.NextText);
             }
         }
-        else // ·£´ıÀÌº¥Æ®°¡ ¾Æ´Ò °æ¿ì
+        else // ëœë¤ì´ë²¤íŠ¸ê°€ ì•„ë‹ ê²½ìš°
         {
-            if(gameObject.name[0].Equals('M')) // ¸ŞÀÎ ÀÌº¥Æ®ÀÎ °æ¿ì
+            if(gameObject.name[0].Equals('M')) // ë©”ì¸ ì´ë²¤íŠ¸ì¸ ê²½ìš°
             {
                 MainEventController.instance.SetME_str(gameObject.name);
-                PlayerPrefs.SetString("ME_str", gameObject.name);
+                if (!Player.instance.isAdmin)
+                {
+                    PlayerPrefs.SetString("ME_str", gameObject.name);
+                }
                 MainEventController.instance.FirstSetInterval();
             }
             NextContainer.instance.NextText = gameObject.name;

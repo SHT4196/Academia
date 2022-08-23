@@ -15,6 +15,12 @@ public enum PlayerAbility
     Mana
 }
 
+public enum PlayerDepartment
+{
+    Knight,
+    Wizard,
+    Politics
+}
 /// <summary>
 /// Player Singleton class
 /// </summary>
@@ -55,12 +61,25 @@ public class Player
     private int _mana;
 
     /// <summary>
+    /// player 학부
+    /// </summary>
+    private PlayerDepartment _department;
+    
+    /// <summary>
     /// player 이름
     /// </summary>
     private string _playerName;
     
+    Dictionary<string, int> _likeableDic = new Dictionary<string,int>()
+    {
+        {"서", 0},
+        {"연", 0},
+        {"고", 0}
+    };
+    
     private PlayerManager _gmr;
 
+    public bool isAdmin { get; set; }
     
     private static readonly List<Pocket> EntirePocket = new List<Pocket>();
     private static readonly List<Ability> AbilityPocket = new List<Ability>();
@@ -80,6 +99,10 @@ public class Player
 
     private Player()
     {
+        if (isAdmin)
+        {
+            return;
+        }
         // gmr 및 player 기본 health, mental 수치 초기화 or 저장 값 불러오기
         _health = PlayerPrefs.GetInt("Health") == 0 ? 5 : PlayerPrefs.GetInt("Health");
         _mental = PlayerPrefs.GetInt("Mental") == 0 ? 5 : PlayerPrefs.GetInt("Mental");
@@ -91,6 +114,13 @@ public class Player
         
         //player 이름 설정
         _playerName = PlayerPrefs.GetString("PlayerName");
+
+        if (PlayerPrefs.GetString("Department") == "Knight")
+            _department = PlayerDepartment.Knight;
+        else if (PlayerPrefs.GetString("Department") == "Wizard")
+            _department = PlayerDepartment.Wizard;
+        else if (PlayerPrefs.GetString("Department") == "Politics")
+            _department = PlayerDepartment.Politics;
     }
 
     /// <summary>
@@ -123,7 +153,16 @@ public class Player
     {
         return _playerName;
     }
-    
+
+    public void SetAdminVersion(int health, int mental, int force, int intellect, int mana, string playerName)
+    {
+        _health = health;
+        _mental = mental;
+        _force = force;
+        _intellect = intellect;
+        _mana = mana;
+        _playerName = playerName;
+    }
     /// <summary>
     /// Player 능력치, 스탯 reset (게임 오버 후 실행)
     /// </summary>
@@ -152,15 +191,43 @@ public class Player
         if (_health > 0)
         {
             this._health += value;
+            _gmr.ImgChange(0, value, this._health);
             if (this._health >= 5)
                 this._health = 5;
-            _gmr.ImgChange(0, this._health);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Health", this._health); //변경된 health값 저장
         }
         if (_health <= 0)
             this.Die();
     }
-    
+
+    /// <summary>
+    /// likeableDictionary에서 해당 key값이 valuable한지 확인
+    /// </summary>
+    /// <param name="key">확인하고자하는 key값</param>
+    /// <returns></returns>
+    public bool CheckKeyAvailable(string key)
+    {
+        return _likeableDic.ContainsKey(key);
+    }
+
+    /// <summary>
+    /// 호감도 수치 변경 함수
+    /// </summary>
+    /// <param name="key">변경하고자 하는 호감도 key</param>
+    /// <param name="value">변경할 값</param>
+    public void ChangeLikeable(string key, int value)
+    {
+        if (!CheckKeyAvailable(key))
+            return;
+        int nowValue;
+        _likeableDic.TryGetValue(key, out nowValue);
+        _likeableDic[key] = nowValue + value;
+        Debug.Log($"서: {_likeableDic["서"]}, 연: {_likeableDic["연"]}, 고: {_likeableDic["고"]}");
+    }
     /// <summary>
     /// player의 mental 수치 변경
     /// </summary>
@@ -170,10 +237,13 @@ public class Player
         if (_mental > 0)
         {
             this._mental += value;
+            _gmr.ImgChange(1, value, this._mental);
             if (this._mental >= 5)
                 this._mental = 5;
-            _gmr.ImgChange(1, this._mental);
-            PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
+            if (!isAdmin)
+            {
+                PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
+            }
         }
         if (_mental <= 0)
             this.Die();
@@ -190,18 +260,30 @@ public class Player
         {
             this._force += value;
             _gmr.changeability_amount(ability, this._force);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Force", this._force);
         }
         else if (ability == PlayerAbility.Intellect)
         {
             this._intellect += value;
             _gmr.changeability_amount(ability, this._intellect);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Intellect", this._intellect);
         }
         else if (ability == PlayerAbility.Mana)
         {
             this._mana += value;
             _gmr.changeability_amount(ability, this._mana);
+            if (isAdmin)
+            {
+                return;
+            }
             PlayerPrefs.SetInt("Mana", this._mana);
         }
     }
@@ -211,8 +293,20 @@ public class Player
     /// </summary>
     public void Die()
     {
-        PlayerPrefs.DeleteAll(); // 저장값 초기화
+
+        
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        PlayerPrefs.DeleteAll(); //저장값 초기화
+       // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
+        AchievementManager.Instance.Achieve_achievement(1, 1);
+
         _gmr.DiepanelActive(); // die 창 활성화
+        if (isAdmin)
+        {
+            return;
+        }
+        PlayerPrefs.DeleteAll(); // 저장값 초기화
         
         // 후에 health와 mental의 다른 대처? 
         // if(_health == 0)
@@ -263,8 +357,28 @@ public class Player
     {
         this._health = 5;
         this._mental = 5;
-        _gmr.ImgChange(0, _health);
-        _gmr.ImgChange(1, _mental);
+        _gmr.ImgChange(0, 0, _health);
+        _gmr.ImgChange(1, 0, _mental);
+    }
+
+    /// <summary>
+    /// 플레이어 학부 지정
+    /// </summary>
+    /// <param name="department">지정할 학부</param>
+    public void SetPlayerDepartment(PlayerDepartment department)
+    {
+        _department = department;
+        PlayerPrefs.SetString("Department", $"{_department}");
+        Debug.Log($"선택한 학부: {_department}");
+    }
+
+    /// <summary>
+    /// 플레이어 학부 리턴
+    /// </summary>
+    /// <returns>학부 </returns>
+    public PlayerDepartment GetPlayerDepartment()
+    {
+        return _department;
     }
     
     /// <summary>
