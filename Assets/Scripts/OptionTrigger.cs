@@ -10,9 +10,9 @@ public class OptionTrigger : MonoBehaviour
 
     public GameObject Option_Canvas;
     public GameObject GameQuit_Canvas;
-    public GameObject Achivement_Canvas;
+    public GameObject Achievement_Canvas;
     public GameObject Option_Panel;
-    public GameObject Achivement_Panel;
+    public GameObject Achievement_Panel;
 
     /// <summary>
     /// 옵션창 열기
@@ -38,22 +38,22 @@ public class OptionTrigger : MonoBehaviour
     /// <summary>
     /// 업적창 열기
     /// </summary>
-    public void Achive_Btn()
+    public void Achieve_Btn()
     {
-        Achivement_Canvas.SetActive(true);
+        Achievement_Canvas.SetActive(true);
         AchievementManager.Instance.UpdateAchievements();
-        Achivement_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);
+        Achievement_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);
 
     }
     /// <summary>
     /// 업적창 닫기
     /// </summary>
-    public void AchiveClose_Btn()
+    public void AchieveClose_Btn()
     {
         
-        Achivement_Panel.transform.DOMoveX(Screen.width * 1.5f, 0.5f).OnComplete(() =>
+        Achievement_Panel.transform.DOMoveX(Screen.width * 1.5f, 0.5f).OnComplete(() =>
         {
-            Achivement_Canvas.SetActive(false);
+            Achievement_Canvas.SetActive(false);
         });
 
 

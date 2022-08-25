@@ -104,7 +104,7 @@ public class AddChoice : MonoBehaviour
                 if (i != 0)
                 {
                     _choiceBox.GetComponent<RectTransform>().anchoredPosition += 
-                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0.2f * i);
+                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0f * i);
                 }
             }
             else
@@ -116,7 +116,7 @@ public class AddChoice : MonoBehaviour
                 if (i != 0)
                 {
                     _choiceBox.GetComponent<RectTransform>().anchoredPosition += 
-                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0.2f * i);
+                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0f * i);
                 }
             }
 
