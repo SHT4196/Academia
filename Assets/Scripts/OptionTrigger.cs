@@ -15,7 +15,7 @@ public class OptionTrigger : MonoBehaviour
     public GameObject Achievement_Panel;
 
     /// <summary>
-    /// ¿É¼ÇÃ¢ ¿­±â
+    /// ï¿½É¼ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void Option_Btn()
     {
@@ -24,7 +24,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// ¿É¼ÇÃ¢ ´Ý±â
+    /// ï¿½É¼ï¿½Ã¢ ï¿½Ý±ï¿½
     /// </summary>
     public void OptionClose_Btn()
     {
@@ -36,7 +36,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// ¾÷ÀûÃ¢ ¿­±â
+    /// ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void Achieve_Btn()
     {
@@ -46,7 +46,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// ¾÷ÀûÃ¢ ´Ý±â
+    /// ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½Ý±ï¿½
     /// </summary>
     public void AchieveClose_Btn()
     {
@@ -56,10 +56,11 @@ public class OptionTrigger : MonoBehaviour
             Achievement_Canvas.SetActive(false);
         });
 
-
     }
+
+
     /// <summary>
-    /// °ÔÀÓ Á¾·áÃ¢ ¿­±â
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void GameQuitPanelOpen_Btn()
     {
@@ -67,7 +68,7 @@ public class OptionTrigger : MonoBehaviour
         Time.timeScale = 0;
     }
     /// <summary>
-    /// °ÔÀÓ Á¾·áÃ¢ ´Ý±â
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½Ý±ï¿½
     /// </summary>
     public void GameQuitPanelClose_Btn()
     {
@@ -75,7 +76,7 @@ public class OptionTrigger : MonoBehaviour
         Time.timeScale = 1;
     }
     /// <summary>
-    /// °ÔÀÓ Á¾·á
+    /// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public void GameQuit()
     {
@@ -90,25 +91,22 @@ public class OptionTrigger : MonoBehaviour
 
     void Update()
     {
-       
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // µÚ·Î°¡±â, esc ¹öÆ° ÀÔ·Â½Ã °ÔÀÓ Á¾·á ÆÐ³Î ¿ÀÇÂ
+            // ï¿½Ú·Î°ï¿½ï¿½ï¿½, esc ï¿½ï¿½Æ° ï¿½Ô·Â½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (GameQuit_Canvas.activeSelf == false)
             {
                 GameQuitPanelOpen_Btn();
                 Debug.Log("open");
             }
 
-            // ÀÌ¹Ì ¿­·ÁÀÖ´Ù¸é µÚ·Î°¡±â, esc ¹öÆ°À¸·Î °ÔÀÓ Á¾·á ÆÐ³Î ´Ý±â
+            // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Ù¸ï¿½ ï¿½Ú·Î°ï¿½ï¿½ï¿½, esc ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½Ý±ï¿½
             else
             {
                 GameQuitPanelClose_Btn();
                 Debug.Log("close");
             }
         }
-
-        
     }
 
 }
