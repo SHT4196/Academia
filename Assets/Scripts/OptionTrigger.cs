@@ -15,7 +15,7 @@ public class OptionTrigger : MonoBehaviour
     public GameObject Achievement_Panel;
 
     /// <summary>
-    /// �ɼ�â ����
+    /// 옵션창 열기
     /// </summary>
     public void Option_Btn()
     {
@@ -24,7 +24,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// �ɼ�â �ݱ�
+    /// 옵션창 닫기
     /// </summary>
     public void OptionClose_Btn()
     {
@@ -36,7 +36,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// ����â ����
+    /// 업적창 열기
     /// </summary>
     public void Achieve_Btn()
     {
@@ -46,7 +46,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// ����â �ݱ�
+    /// 업적창 닫기
     /// </summary>
     public void AchieveClose_Btn()
     {
@@ -60,7 +60,7 @@ public class OptionTrigger : MonoBehaviour
 
 
     /// <summary>
-    /// ���� ����â ����
+    /// 게임 종료창 열기
     /// </summary>
     public void GameQuitPanelOpen_Btn()
     {
@@ -68,7 +68,7 @@ public class OptionTrigger : MonoBehaviour
         Time.timeScale = 0;
     }
     /// <summary>
-    /// ���� ����â �ݱ�
+    /// 게임 종료창 열기
     /// </summary>
     public void GameQuitPanelClose_Btn()
     {
@@ -76,7 +76,7 @@ public class OptionTrigger : MonoBehaviour
         Time.timeScale = 1;
     }
     /// <summary>
-    /// ���� ����
+    /// 게임 종료
     /// </summary>
     public void GameQuit()
     {
@@ -91,16 +91,17 @@ public class OptionTrigger : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // �ڷΰ���, esc ��ư �Է½� ���� ���� �г� ����
+            // 게임종료창이 닫혀 있을때 뒤로가기
             if (GameQuit_Canvas.activeSelf == false)
             {
                 GameQuitPanelOpen_Btn();
                 Debug.Log("open");
             }
 
-            // �̹� �����ִٸ� �ڷΰ���, esc ��ư���� ���� ���� �г� �ݱ�
+            // 게임 종료창이 열려 있을때 뒤로가기
             else
             {
                 GameQuitPanelClose_Btn();
