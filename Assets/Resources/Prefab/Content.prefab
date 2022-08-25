@@ -64,7 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: 0
-  IsScroll: 0
+  elapsedTime: 0
+  isScroll: 0
+  first: 1
   content: {fileID: 0}
   scrollAmount: 0
 --- !u!114 &676466182202129941
