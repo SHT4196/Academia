@@ -7,17 +7,25 @@ public class Popup : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private bool isBtnDown = false;
     public GameObject Popup_image;
+    float timer = 0.0f;
+    float waitingTime = 1;
 
     /// <summary>
     /// info popup button
     /// </summary>
     public void OnPointerUp(PointerEventData eventData)
     {
-        isBtnDown = false;
+        timer += Time.deltaTime;
+        if (timer > waitingTime) {
+            isBtnDown = false;
+        }
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        isBtnDown = true;
+        timer += Time.deltaTime;
+        if (timer > waitingTime) {
+            isBtnDown = true;
+        }
     }
     // Update is called once per frame
     void Update()
