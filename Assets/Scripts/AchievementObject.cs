@@ -107,6 +107,10 @@ public class AchievementObject : ScriptableObject
     /// <param name="amount">achievement의 nownum set</param>
     public bool Achieve(int amount)
     {
+        if (AchieveState == AchieveState.Achieved)
+        {
+            return false;
+        }
         NowNum += amount;
         if (MaxNum <= NowNum) // 달성했을때
         {

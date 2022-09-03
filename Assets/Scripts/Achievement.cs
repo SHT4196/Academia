@@ -28,12 +28,6 @@ public class Achievement: MonoBehaviour
 
     private void Start()
     {
-        // if(achievementObject != null)
-        //     // LoadAcv();
-        // else
-        // {
-        //     // SaveAcv();
-        // }
         SetAchivementView();
     }
 
@@ -115,8 +109,6 @@ public class Achievement: MonoBehaviour
                 achievementObject.AchieveState = AchieveState.Achieved;
             }
             achievementObject.AchievementTime = PlayerPrefs.GetString("clear_time" + achievementObject.Id);
-            // hide_name[i] = PlayerPrefs.GetString("hide_name" + achievementObject.Id);
-            // hide_description[i] = PlayerPrefs.GetString("hide_description" + achievementObject.Id);
         }
     }
 

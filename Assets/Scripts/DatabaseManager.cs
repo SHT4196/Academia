@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Firebase;
 using Firebase.Database;
+using Firebase.Auth;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
@@ -32,10 +33,13 @@ public class DatabaseManager : MonoBehaviour
     }
     
     public DatabaseReference Reference;
+
+    public FirebaseAuth auth;
     // Start is called before the first frame update
     void Start()
     { 
         Reference = FirebaseDatabase.DefaultInstance.GetReference("users");
+        auth = FirebaseAuth.DefaultInstance;
     }
 
     public void SetPlayerName_DB(string playerName, string uniqueID)
