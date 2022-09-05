@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Firebase.Database;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ public enum PlayerDepartment
     Wizard,
     Politics
 }
+
 /// <summary>
 /// Player Singleton class
 /// </summary>
@@ -69,6 +71,7 @@ public class Player
     /// player 이름
     /// </summary>
     private string _playerName;
+
     
     Dictionary<string, int> _likeableDic = new Dictionary<string,int>()
     {
@@ -142,6 +145,7 @@ public class Player
     public void SetPlayerName(string name)
     {
         _playerName = name;
+        DatabaseManager.Instance.SetPlayerName_DB(_playerName, SystemInfo.deviceUniqueIdentifier);
         PlayerPrefs.SetString("PlayerName", name);
     }
 

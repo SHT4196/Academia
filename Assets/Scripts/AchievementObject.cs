@@ -107,14 +107,20 @@ public class AchievementObject : ScriptableObject
     /// <param name="amount">achievement의 nownum set</param>
     public bool Achieve(int amount)
     {
+        if (AchieveState == AchieveState.Achieved)
+        {
+            return false;
+        }
         NowNum += amount;
         if (MaxNum <= NowNum) // 달성했을때
         {
             NowNum = MaxNum;
             AchieveState = AchieveState.Achieved;
             AchievementTime = DateTime.Now.ToString(("yyyy-MM-dd HH:mm:ss"));
+            DatabaseManager.Instance.SaveAchievementInfo(SystemInfo.deviceUniqueIdentifier, id, nowNum ,achieveState, AchievementTime);
             return true;
         }
+        DatabaseManager.Instance.SaveAchievementInfo(SystemInfo.deviceUniqueIdentifier, id, nowNum ,achieveState);
         return false;
     }
 }
