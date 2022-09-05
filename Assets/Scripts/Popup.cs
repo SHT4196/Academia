@@ -6,28 +6,43 @@ using UnityEngine.EventSystems;
 public class Popup : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private bool isBtnDown = false;
+    private bool isDelayed = false;
     public GameObject Popup_image;
 
-    /// <summary>
-    /// info popup button
-    /// </summary>
+
+    /// button up 인식
     public void OnPointerUp(PointerEventData eventData)
     {
         isBtnDown = false;
+        Debug.Log(isBtnDown);
+        Popup_image.SetActive(false);
     }
+    /// button down 인식
     public void OnPointerDown(PointerEventData eventData)
     {
         isBtnDown = true;
+        isDelayed = true;
+        
     }
-    // Update is called once per frame
+    IEnumerator DisplayPopup()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Popup_image.SetActive(true);
+    }
     void Update()
     {
-        if (isBtnDown) {
-            Popup_image.SetActive(true);
+        if (isDelayed)
+        {
+            StartCoroutine(DisplayPopup());
+            isDelayed = false;
+
         }
         else
         {
-            Popup_image.SetActive(false);
+            if (isBtnDown == false)
+            {
+                Popup_image.SetActive(false);
+            }
         }
     }
 }
