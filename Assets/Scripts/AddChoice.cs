@@ -87,8 +87,14 @@ public class AddChoice : MonoBehaviour
                     tmpText += _choice.need[j];
                     tmpText += "</color>";
                 }
-                if (j != choiceCount - 1)
-                    tmpText += "  ";
+                //15(first), 16(replace), 17(append)
+                // if (j != choiceCount - 1)
+                //     tmpText += "  ";
+                // if (tmpText[15] == "지")
+                // {
+                //     tmpText[16].replace("%", "력 ");
+                //     tmpText[17].
+                // }
             }
             tmpText += " " + _choice.text;
             _panel = GameObject.Find("Panel");
@@ -105,7 +111,7 @@ public class AddChoice : MonoBehaviour
                 if (i != 0)
                 {
                     _choiceBox.GetComponent<RectTransform>().anchoredPosition += 
-                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0.2f * i);
+                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0f * i);
                 }
             }
             else
@@ -117,7 +123,7 @@ public class AddChoice : MonoBehaviour
                 if (i != 0)
                 {
                     _choiceBox.GetComponent<RectTransform>().anchoredPosition += 
-                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0.2f * i);
+                        new Vector2(0, _choiceBox.GetComponent<RectTransform>().rect.height * 0f * i);
                 }
             }
 

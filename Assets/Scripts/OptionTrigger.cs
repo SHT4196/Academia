@@ -10,12 +10,12 @@ public class OptionTrigger : MonoBehaviour
 
     public GameObject Option_Canvas;
     public GameObject GameQuit_Canvas;
-    public GameObject Achivement_Canvas;
+    public GameObject Achievement_Canvas;
     public GameObject Option_Panel;
-    public GameObject Achivement_Panel;
+    public GameObject Achievement_Panel;
 
     /// <summary>
-    /// �ɼ�â ����
+    /// 옵션창 열기
     /// </summary>
     public void Option_Btn()
     {
@@ -24,7 +24,7 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// �ɼ�â �ݱ�
+    /// 옵션창 닫기
     /// </summary>
     public void OptionClose_Btn()
     {
@@ -36,31 +36,31 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
-    /// ����â ����
+    /// 업적창 열기
     /// </summary>
-    public void Achive_Btn()
+    public void Achieve_Btn()
     {
-        Achivement_Canvas.SetActive(true);
+        Achievement_Canvas.SetActive(true);
         AchievementManager.Instance.UpdateAchievements();
-        Achivement_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);
+        Achievement_Panel.transform.DOMoveX(Screen.width / 2f, 0.5f);
 
     }
     /// <summary>
-    /// ����â �ݱ�
+    /// 업적창 닫기
     /// </summary>
-    public void AchiveClose_Btn()
+    public void AchieveClose_Btn()
     {
         
-        Achivement_Panel.transform.DOMoveX(Screen.width * 1.5f, 0.5f).OnComplete(() =>
+        Achievement_Panel.transform.DOMoveX(Screen.width * 1.5f, 0.5f).OnComplete(() =>
         {
-            Achivement_Canvas.SetActive(false);
+            Achievement_Canvas.SetActive(false);
         });
 
     }
 
 
     /// <summary>
-    /// ���� ����â ����
+    /// 게임 종료창 열기
     /// </summary>
     public void GameQuitPanelOpen_Btn()
     {
@@ -68,7 +68,7 @@ public class OptionTrigger : MonoBehaviour
         Time.timeScale = 0;
     }
     /// <summary>
-    /// ���� ����â �ݱ�
+    /// 게임 종료창 열기
     /// </summary>
     public void GameQuitPanelClose_Btn()
     {
@@ -76,7 +76,7 @@ public class OptionTrigger : MonoBehaviour
         Time.timeScale = 1;
     }
     /// <summary>
-    /// ���� ����
+    /// 게임 종료
     /// </summary>
     public void GameQuit()
     {
@@ -91,16 +91,17 @@ public class OptionTrigger : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // �ڷΰ���, esc ��ư �Է½� ���� ���� �г� ����
+            // 게임종료창이 닫혀 있을때 뒤로가기
             if (GameQuit_Canvas.activeSelf == false)
             {
                 GameQuitPanelOpen_Btn();
                 Debug.Log("open");
             }
 
-            // �̹� �����ִٸ� �ڷΰ���, esc ��ư���� ���� ���� �г� �ݱ�
+            // 게임 종료창이 열려 있을때 뒤로가기
             else
             {
                 GameQuitPanelClose_Btn();

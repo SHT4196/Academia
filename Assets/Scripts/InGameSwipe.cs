@@ -13,7 +13,7 @@ public class InGameSwipe : MonoBehaviour
 	private float endTouchX;                    // 터치 종료 위치
 	private bool isSwipeMode = false;       // 현재 Swipe가 되고 있는지 체크
 	public GameObject OptionCanvas;
-	public GameObject AchiveCanvas;
+	public GameObject AchieveCanvas;
 
 	private void Update()
 	{
@@ -99,13 +99,13 @@ public class InGameSwipe : MonoBehaviour
 		// 이동 방향이 왼쪽일 때
 		if ((startTouchX < Screen.width / 8f))
         {
-			if (isLeft == true && AchiveCanvas.activeSelf == false)
+			if (isLeft == true && AchieveCanvas.activeSelf == false)
 			{
 				Canvas.GetComponent<OptionTrigger>().Option_Btn();
 			}
-			else if (isLeft == true && AchiveCanvas.activeSelf == true)
+			else if (isLeft == true && AchieveCanvas.activeSelf == true)
 			{
-				Canvas.GetComponent<OptionTrigger>().AchiveClose_Btn();
+				Canvas.GetComponent<OptionTrigger>().AchieveClose_Btn();
 				
 			}
 		}
@@ -115,7 +115,7 @@ public class InGameSwipe : MonoBehaviour
 		{
 			if (isRight == true && OptionCanvas.activeSelf == false)
 			{
-				Canvas.GetComponent<OptionTrigger>().Achive_Btn();
+				Canvas.GetComponent<OptionTrigger>().Achieve_Btn();
 			}
 			else if (isRight == true && OptionCanvas.activeSelf == true)
 			{
