@@ -79,13 +79,9 @@ public class AddText : MonoBehaviour
         script = MakeDialog.instance.FindScript(NextContainer.instance.NextText);
         DestroyEmpty(); //Destroy empty text prefab 
         //float ScrollAmount = 0;
-<<<<<<< HEAD
-        if (script.acvUpdate.Count != 0 && PlayerPrefs.GetString("ScriptID") != script.id)
-=======
 
         if (script.acvUpdate.Count != 0 && PlayerPrefs.GetString("ScriptID") != script.id)
 
->>>>>>> main
             AcvUpdate_By_CSV(script.acvUpdate);
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
@@ -100,13 +96,10 @@ public class AddText : MonoBehaviour
             {
                 isimage.Add(false);
             }
-<<<<<<< HEAD
+
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[textBox.Count-1].transform.SetParent(GameObject.Find("Content").transform , true);
-=======
-            textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));
-            textBox[textBox.Count - 1].transform.SetParent(GameObject.Find("Content").transform, true);
->>>>>>> main
+
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
             if (!Player.instance.isAdmin)
             {
@@ -120,11 +113,6 @@ public class AddText : MonoBehaviour
             }
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> main
             if(isimage[isimage.Count-2])  //If image exist, increase the amount of scrolling.
             {
                 Scroll.instance.pos += imgarr[imgarr.Count-1].rectTransform.rect.height * imgarr[imgarr.Count-1].rectTransform.localScale.y;// + 200f;
@@ -164,50 +152,6 @@ public class AddText : MonoBehaviour
             textBox.Add(Instantiate(Resources.Load<TextMeshProUGUI>("Prefab/TextPrefab")));  //add text prefab
             textBox[0].transform.SetParent(GameObject.Find("Content").transform , true);
             textBox[textBox.Count - 1].rectTransform.localScale = new Vector3(widthRatio, heightRatio);
-<<<<<<< HEAD
-
-            string coloredStr = "";
-            string value = script.text;
-            int indexNum = 0;
-            string[] val2 = value.Split('^');
-            if (val2.Length != 1)
-            {
-                indexNum = val2.Length;
-                for (int i = 0; i < indexNum; i++)
-                {
-                    if (i % 2 == 0) {
-                        coloredStr += val2[i];
-                    }
-                    else {
-                        coloredStr += "<color=#008000>";
-                        coloredStr += val2[i];
-                        coloredStr += "</color>";
-                    }
-                }
-                script.text = coloredStr;
-            }
-
-            string[] val3 = script.text.Split('*');
-            string result = "";
-            if (val3.Length != 1)
-            {
-                indexNum = val3.Length;
-                for (int i = 0; i < indexNum; i++)
-                {
-                    if (i % 2 == 0) {
-                        result += val3[i];
-                    }
-                    else {
-                        result += "<color=#ff0000>";
-                        result += val3[i];
-                        result += "</color>";
-                    }
-                }
-                script.text = result;
-            }
-=======
-
->>>>>>> main
             
             if (!Player.instance.isAdmin)
             {

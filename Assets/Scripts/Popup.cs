@@ -15,26 +15,16 @@ public class Popup : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// button up 인식
     public void OnPointerUp(PointerEventData eventData)
     {
-<<<<<<< HEAD
-        timer += Time.deltaTime;
-        if (timer > waitingTime) {
-            isBtnDown = false;
-        }
-=======
+
         isBtnDown = false;
         Debug.Log(isBtnDown);
         Popup_image.SetActive(false);
->>>>>>> main
+
     }
     /// button down 인식
     public void OnPointerDown(PointerEventData eventData)
     {
-<<<<<<< HEAD
-        timer += Time.deltaTime;
-        if (timer > waitingTime) {
-            isBtnDown = true;
-        }
-=======
+
         isBtnDown = true;
         isDelayed = true;
         
@@ -43,7 +33,7 @@ public class Popup : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         yield return new WaitForSeconds(1.0f);
         Popup_image.SetActive(true);
->>>>>>> main
+
     }
     void Update()
     {
