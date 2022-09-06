@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstStart.unity
     guid: 40bd48f0928bca0418ee95f5a99f090f
   - enabled: 1
-    path: Assets/Scenes/MainMenu_123.unity
-    guid: ccdef28bd3e5a014b995839ed7ec6046
-  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 85c9c52a2eda3e045a0385bfda693334
   - enabled: 1
     path: Assets/Scenes/InGame_doyeon.unity
     guid: 21c62b497f5fade48be383add987975b
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

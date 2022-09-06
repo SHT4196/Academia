@@ -31,6 +31,8 @@ public class Player
     // Player instance
     private static Player _instance;
     
+
+
     public static Player instance
     {
         get
@@ -72,14 +74,20 @@ public class Player
     /// </summary>
     private string _playerName;
 
-    
-    Dictionary<string, int> _likeableDic = new Dictionary<string,int>()
+
+    public Dictionary<string, int> _likeableDic = new Dictionary<string, int>()
     {
         {"서", 0},
         {"연", 0},
-        {"고", 0}
+        {"고", 0},
+        {"강", 0},
+        {"성", 0},
+        {"중", 0},
+        {"한", 0}
+
     };
-    
+
+   
     private PlayerManager _gmr;
 
     public bool isAdmin { get; set; }
@@ -136,6 +144,9 @@ public class Player
         _gmr.changeability_amount(PlayerAbility.Force, _force);
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
+        _gmr.likeable_amount();
+
+        
     }
     
     /// <summary>
@@ -181,9 +192,20 @@ public class Player
         _force = 2;
         _intellect = 2;
         _mana = 2;
+
+        _likeableDic["서"] = 0;
+        _likeableDic["연"] = 0;
+        _likeableDic["고"] = 0;
+        _likeableDic["강"] = 0;
+        _likeableDic["성"] = 0;
+        _likeableDic["중"] = 0;
+        _likeableDic["한"] = 0;
+
+
         _gmr.changeability_amount(PlayerAbility.Force, _force);
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
+        _gmr.likeable_amount();
     }
 
     /// <summary>
@@ -231,6 +253,8 @@ public class Player
         _likeableDic.TryGetValue(key, out nowValue);
         _likeableDic[key] = nowValue + value;
         Debug.Log($"서: {_likeableDic["서"]}, 연: {_likeableDic["연"]}, 고: {_likeableDic["고"]}");
+        _gmr.likeable_amount();
+
     }
     /// <summary>
     /// player의 mental 수치 변경

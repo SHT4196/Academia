@@ -13,6 +13,7 @@ public class OptionTrigger : MonoBehaviour
     public GameObject Achievement_Canvas;
     public GameObject Option_Panel;
     public GameObject Achievement_Panel;
+    public GameObject Like_Canvas;
 
     /// <summary>
     /// 옵션창 열기
@@ -87,7 +88,22 @@ public class OptionTrigger : MonoBehaviour
 #endif
 
     }
-
+    /// <summary>
+    /// 호감도 창 열기
+    /// </summary>
+    public void LikeCanvasOpen_Btn()
+    {
+        Like_Canvas.SetActive(true);
+        
+    }
+    /// <summary>
+    /// 호감도 창 닫기
+    /// </summary>
+    public void LikeCanvasClose_Btn()
+    {
+        Like_Canvas.SetActive(false);
+        
+    }
 
     void Update()
     {

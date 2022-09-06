@@ -9,6 +9,8 @@ public class MainSwipeUI : MonoBehaviour
 	private float swipeTime = 0.2f;         // 페이지가 Swipe 되는 시간
 	[SerializeField]
 	private float swipeDistance = 50.0f;        // 페이지가 Swipe되기 위해 움직여야 하는 최소 거리
+	[SerializeField]
+	private Transform[] circleContents;       // 현재 페이지를 나타내는 원 이미지 ui의 transform
 
 	private float[] scrollPageValues;           // 각 페이지의 위치 값 [0.0 - 1.0]
 	private float valueDistance = 0;            // 각 페이지 사이의 거리
@@ -17,6 +19,7 @@ public class MainSwipeUI : MonoBehaviour
 	private float startTouchX;              // 터치 시작 위치
 	private float endTouchX;                    // 터치 종료 위치
 	private bool isSwipeMode = false;       // 현재 Swipe가 되고 있는지 체크
+	private float circleContentScale = 1.3f;  // 현재 페이지의 원 크기
 
 
 	private void Awake()
@@ -53,7 +56,9 @@ public class MainSwipeUI : MonoBehaviour
 	{
 		UpdateInput();
 
-	
+		// 아래에 배치된 페이지 버튼 제어
+		UpdateCircleContent();
+
 	}
 
 	private void UpdateInput()
@@ -172,6 +177,25 @@ public class MainSwipeUI : MonoBehaviour
 		}
 
 		isSwipeMode = false;
+	}
+
+	
+	
+	private void UpdateCircleContent()
+	{
+		// 아래에 배치된 페이지 버튼 크기, 색상 제어 (현재 머물고 있는 페이지의 버튼만 수정)
+		for (int i = 0; i < scrollPageValues.Length; ++i)
+		{
+			circleContents[i].localScale = Vector2.one;
+			circleContents[i].GetComponent<Image>().color = Color.gray;
+
+			// 페이지의 절반을 넘어가면 현재 페이지 원을 바꾸도록
+			if (scrollBar.value < scrollPageValues[i] + (valueDistance / 2) && scrollBar.value > scrollPageValues[i] - (valueDistance / 2))
+			{
+				circleContents[i].localScale = Vector2.one * circleContentScale;
+				circleContents[i].GetComponent<Image>().color = Color.black;
+			}
+		}
 	}
 
 

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.Serialization;
 using DG.Tweening;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -18,13 +19,22 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Text forceAmount;
     [SerializeField] private Text manaAmount;
     [SerializeField] private Text intellectAmount;
+
     [SerializeField] private Image diepanel;
 
-    [FormerlySerializedAs("stat_fill")] [SerializeField] private Image[] statFill = new Image[3];    //force, intel, poli ������ ���
+    [SerializeField] private TextMeshProUGUI koreaAmount;
+    [SerializeField] private TextMeshProUGUI seoulAmount;
+    [SerializeField] private TextMeshProUGUI yonseiAmount;
+    [SerializeField] private TextMeshProUGUI sogangAmount;
+    [SerializeField] private TextMeshProUGUI hanyangAmount;
+    [SerializeField] private TextMeshProUGUI chungangAmount;
+    [SerializeField] private TextMeshProUGUI sungkyunkwanAmount;
     
+
     // Start is called before the first frame update
     void Start()
     {
+        
         //imgSet();
     }
     private void Awake()
@@ -48,9 +58,7 @@ public class PlayerManager : MonoBehaviour
         forceAmount = _force.transform.GetChild(2).GetComponent<Text>();
         manaAmount = _mana.transform.GetChild(2).GetComponent<Text>();
         intellectAmount = _intellect.transform.GetChild(2).GetComponent<Text>();
-        statFill[0] = _force.transform.GetChild(1).GetComponent<Image>();
-        statFill[1] = _intellect.transform.GetChild(1).GetComponent<Image>();
-        statFill[2] = _mana.transform.GetChild(1).GetComponent<Image>();
+        
         diepanel = GameObject.Find("Canvas").transform.Find("DiePanel").GetComponent<Image>();
 
         if (Player.instance.IsPlayerReset) // Player 상태 초기화
@@ -156,8 +164,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-        
-
 
 
     /// <summary>
@@ -170,8 +176,9 @@ public class PlayerManager : MonoBehaviour
         ImgChange(0, 0, health);
         ImgChange(1, 0, mental);
     }
+
     /// <summary>
-    /// 플레이어 능력치 Change fillamount
+    /// 플레이어 능력치 표시 함수
     /// </summary>
     /// <param name="ability">능력치 </param>
     /// <param name="value">능력치 수치</param>
@@ -180,19 +187,43 @@ public class PlayerManager : MonoBehaviour
         if (ability == PlayerAbility.Force)
         {
             forceAmount.text = value.ToString();
-            statFill[0].fillAmount = value / 20.0f;
         }
         else if (ability == PlayerAbility.Intellect)
         {
             intellectAmount.text = value.ToString();
-            statFill[1].fillAmount = value / 20.0f;
+            
         }
         else if (ability == PlayerAbility.Mana)
         {
             manaAmount.text = value.ToString();
-            statFill[2].fillAmount = value / 20.0f;
+            
         }
+       
     }
+
+    public void likeable_amount()
+    {
+        int seo_value = Player.instance._likeableDic["서"];
+        int yon_value = Player.instance._likeableDic["연"];
+        int ko_value = Player.instance._likeableDic["고"];
+        int gang_value = Player.instance._likeableDic["강"];
+        int sung_value = Player.instance._likeableDic["성"];
+        int chung_value = Player.instance._likeableDic["중"];
+        int han_value = Player.instance._likeableDic["한"];
+
+        seoulAmount.text = seo_value.ToString();
+        yonseiAmount.text = yon_value.ToString();
+        koreaAmount.text = ko_value.ToString();
+        sogangAmount.text = gang_value.ToString();
+        sungkyunkwanAmount.text = sung_value.ToString();
+        chungangAmount.text = chung_value.ToString();
+        hanyangAmount.text = han_value.ToString();
+
+    }
+
+
+
+
     /// <summary>
     /// 죽거나 씬 바뀜
     /// </summary>

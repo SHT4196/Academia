@@ -96,8 +96,43 @@ public class InGameSwipe : MonoBehaviour
 		}
 
 
+		if (AchieveCanvas.activeSelf == false && OptionCanvas.activeSelf == false)
+		{
+			if (startTouchX > Screen.width / 1.25f && isRight == true)
+			{
+				Canvas.GetComponent<OptionTrigger>().Achieve_Btn();
+				Handheld.Vibrate();
+			}
+
+			else if (startTouchX < Screen.width / 8f && isLeft == true)
+			{
+				Canvas.GetComponent<OptionTrigger>().Option_Btn();
+				Handheld.Vibrate();
+			}
+		}
+
+		if (AchieveCanvas.activeSelf == true)
+		{
+			if (isLeft == true)
+			{
+				Canvas.GetComponent<OptionTrigger>().AchieveClose_Btn();
+				Handheld.Vibrate();
+			}
+		}
+
+		if (OptionCanvas.activeSelf == true)
+		{
+			if (isRight == true)
+			{
+				Canvas.GetComponent<OptionTrigger>().OptionClose_Btn();
+				Handheld.Vibrate();
+			}
+		}
+
+
 		// 이동 방향이 왼쪽일 때
-		if ((startTouchX < Screen.width / 8f))
+
+		/*if ((startTouchX < Screen.width / 8f))
         {
 			if (isLeft == true && AchieveCanvas.activeSelf == false)
 			{
@@ -122,6 +157,6 @@ public class InGameSwipe : MonoBehaviour
 				Canvas.GetComponent<OptionTrigger>().OptionClose_Btn();
 			}
 
-		}
+		}*/
 	}
 }
