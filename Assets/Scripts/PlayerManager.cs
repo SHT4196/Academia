@@ -22,6 +22,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private Image diepanel;
 
+    //[FormerlySerializedAs("stat_fill")] [SerializeField] private Image[] statFill = new Image[3];    //force, intel, poli ������ ���
+
     [SerializeField] private TextMeshProUGUI koreaAmount;
     [SerializeField] private TextMeshProUGUI seoulAmount;
     [SerializeField] private TextMeshProUGUI yonseiAmount;
@@ -58,6 +60,9 @@ public class PlayerManager : MonoBehaviour
         forceAmount = _force.transform.GetChild(2).GetComponent<Text>();
         manaAmount = _mana.transform.GetChild(2).GetComponent<Text>();
         intellectAmount = _intellect.transform.GetChild(2).GetComponent<Text>();
+        //statFill[0] = _force.transform.GetChild(1).GetComponent<Image>();
+        //statFill[1] = _intellect.transform.GetChild(1).GetComponent<Image>();
+        //statFill[2] = _mana.transform.GetChild(1).GetComponent<Image>();
         
         diepanel = GameObject.Find("Canvas").transform.Find("DiePanel").GetComponent<Image>();
 
@@ -187,15 +192,18 @@ public class PlayerManager : MonoBehaviour
         if (ability == PlayerAbility.Force)
         {
             forceAmount.text = value.ToString();
+            //statFill[0].fillAmount = value / 20.0f;
         }
         else if (ability == PlayerAbility.Intellect)
         {
             intellectAmount.text = value.ToString();
+            //statFill[1].fillAmount = value / 20.0f;
             
         }
         else if (ability == PlayerAbility.Mana)
         {
             manaAmount.text = value.ToString();
+            //statFill[2].fillAmount = value / 20.0f;
             
         }
        

@@ -253,7 +253,7 @@ public class AddText : MonoBehaviour
         float height = img.rectTransform.rect.height;
 
         // 화면 크기에 대한 삽화의 비율, 0~1사이의 실수값
-        float image_ratio = 0.7f;
+        float image_ratio = 0.9f;
 
         if ((width >= screen_width && height >= screen_height && width-screen_width >= height-screen_height)||
             (width >= screen_width && height < screen_height)||

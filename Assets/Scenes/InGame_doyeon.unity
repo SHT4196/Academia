@@ -3737,10 +3737,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843538984}
     m_Modifications:
+    - target: {fileID: 164415535709023480, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 168178337084567365, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0f49734be8727cf4eaa66dd3475274de, type: 3}
+    - target: {fileID: 193454141086993608, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 196621430394548837, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3809,6 +3817,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 223
       objectReference: {fileID: 0}
+    - target: {fileID: 1404387027198144824, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1550475042601121851, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_TagString
       value: manaAmount
@@ -3817,9 +3829,17 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7e5e94a5f92d65149b530c94b1386842, type: 3}
+    - target: {fileID: 2552049631587610431, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2655696793274430453, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764883348565827283, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3255425899779909401, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_Type
@@ -4116,7 +4136,11 @@ PrefabInstance:
     - target: {fileID: 6033425076774858252, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43379d3f4e6d7074e9bbeda2ecf76465, type: 3}
+      objectReference: {fileID: 21300000, guid: 3c412a5ef410903448f63e904667a06c, type: 3}
+    - target: {fileID: 6209023152286495757, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6698519184097445845, guid: 42571bb0856545c45a785788903fcbcb, type: 3}
       propertyPath: m_Name
       value: Intellect
