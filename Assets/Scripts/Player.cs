@@ -324,9 +324,9 @@ public class Player
 
         
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-        PlayerPrefs.DeleteAll(); //저장값 초기화
-       // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
+       //  GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+       //  PlayerPrefs.DeleteAll(); //저장값 초기화
+       // // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
         AchievementManager.Instance.Achieve_achievement(1, 1);
 
         _gmr.DiepanelActive(); // die 창 활성화

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 
 public class AddText : MonoBehaviour
@@ -63,6 +64,7 @@ public class AddText : MonoBehaviour
     /// </summary>
     private static bool correction = true;
 
+    private GameObject endingCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,8 +83,16 @@ public class AddText : MonoBehaviour
         //float ScrollAmount = 0;
 
         if (script.acvUpdate.Count != 0 && PlayerPrefs.GetString("ScriptID") != script.id)
-
             AcvUpdate_By_CSV(script.acvUpdate);
+
+        //엔딩을 나타내는 text Script 일 때
+        if (script.endingTrigger == 1)
+        {
+            endingCanvas = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            endingCanvas.GetComponent<Ending>().SetEndingScript(script);
+            endingCanvas.gameObject.SetActive(true);
+            return;
+        }
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
             AddSpace();

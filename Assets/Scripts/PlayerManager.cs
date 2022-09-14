@@ -16,9 +16,9 @@ public class PlayerManager : MonoBehaviour
     private GameObject _intellect;
     private GameObject _mana;
 
-    [SerializeField] private Text forceAmount;
-    [SerializeField] private Text manaAmount;
-    [SerializeField] private Text intellectAmount;
+    [SerializeField] private TextMeshProUGUI forceAmount;
+    [SerializeField] private TextMeshProUGUI manaAmount;
+    [SerializeField] private TextMeshProUGUI intellectAmount;
 
     [SerializeField] private Image diepanel;
 
@@ -57,9 +57,9 @@ public class PlayerManager : MonoBehaviour
         _force = GameObject.Find("Force");
         _intellect = GameObject.Find("Intellect");
         _mana = GameObject.Find("Mana");
-        forceAmount = _force.transform.GetChild(2).GetComponent<Text>();
-        manaAmount = _mana.transform.GetChild(2).GetComponent<Text>();
-        intellectAmount = _intellect.transform.GetChild(2).GetComponent<Text>();
+        forceAmount = _force.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        manaAmount = _mana.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        intellectAmount = _intellect.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         //statFill[0] = _force.transform.GetChild(1).GetComponent<Image>();
         //statFill[1] = _intellect.transform.GetChild(1).GetComponent<Image>();
         //statFill[2] = _mana.transform.GetChild(1).GetComponent<Image>();

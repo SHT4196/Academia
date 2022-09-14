@@ -7,7 +7,16 @@ public class Script
 {
 
 
-    public Script(string __id, string __text, List<string> __next, List<string> __result, string __sprite, Dictionary<int, int> __acvUpdate, int __interval, string __afterInterval = "-", int __probability = 100)
+    public Script(string __id, 
+        string __text, 
+        List<string> __next, 
+        List<string> __result, 
+        string __sprite, 
+        Dictionary<int, int> __acvUpdate, 
+        int __interval, 
+        int __endingTrigger = 0, 
+        string __afterInterval = "-", 
+        int __probability = 100)
 
     {
         id = __id;
@@ -16,10 +25,10 @@ public class Script
         result = __result;
         sprite = __sprite;
         interval = __interval;
+        endingTrigger = __endingTrigger;
         afterInterval = __afterInterval;
         probability = __probability;
         acvUpdate = __acvUpdate;
-
     }
 
 
@@ -73,5 +82,7 @@ public class Script
     /// Script가 나타나면 변화할 업적의 번지 수 및 업적의 값
     /// </summary>
     public Dictionary<int, int> acvUpdate { get; set; }
+    
+    public int endingTrigger { get; set; }
 
 }
