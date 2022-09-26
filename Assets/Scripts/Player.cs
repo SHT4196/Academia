@@ -77,15 +77,27 @@ public class Player
 
     public Dictionary<string, int> _likeableDic = new Dictionary<string, int>()
     {
-        {"서울", 0},
-        {"연세", 0},
-        {"고려", 0},
-        {"서강", 0},
-        {"성균관", 0},
-        {"중앙", 0},
-        {"한양", 0}
+        {"서", 0},
+        {"연", 0},
+        {"고", 0},
+        {"강", 0},
+        {"성", 0},
+        {"중", 0},
+        {"한", 0}
 
     };
+    private Dictionary<string, string> nameMatch = new Dictionary<string, int>()
+    {
+        {"서", 0},
+        {"연", 0},
+        {"고", 0},
+        {"강", 0},
+        {"성", 0},
+        {"중", 0},
+        {"한", 0}
+
+    };
+
 
    
     private PlayerManager _gmr;
@@ -193,13 +205,13 @@ public class Player
         _intellect = 2;
         _mana = 2;
 
-        _likeableDic["서울"] = 0;
-        _likeableDic["연세"] = 0;
-        _likeableDic["고려"] = 0;
-        _likeableDic["서강"] = 0;
-        _likeableDic["성균관"] = 0;
-        _likeableDic["중앙"] = 0;
-        _likeableDic["한양"] = 0;
+        _likeableDic["서"] = 0;
+        _likeableDic["연"] = 0;
+        _likeableDic["고"] = 0;
+        _likeableDic["강"] = 0;
+        _likeableDic["성"] = 0;
+        _likeableDic["중"] = 0;
+        _likeableDic["한"] = 0;
 
 
         _gmr.changeability_amount(PlayerAbility.Force, _force);
