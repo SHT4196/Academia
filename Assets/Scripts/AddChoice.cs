@@ -73,6 +73,24 @@ public class AddChoice : MonoBehaviour
                         abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Mana, value);
                     }
                 }
+                string[] rList = _choice.need[j].Split('%'); //replace list
+                string replacedTxt = "";
+                if (rList[0] == "정")
+                {
+                    replacedTxt += rList[0];
+                    replacedTxt += "치력 ";
+                    replacedTxt += rList[1];
+                    replacedTxt += "필요";
+                    _choice.need[j] = replacedTxt;
+                }
+                else
+                {
+                    replacedTxt += rList[0];
+                    replacedTxt += "력 ";
+                    replacedTxt += rList[1];
+                    replacedTxt += "필요";
+                    _choice.need[j] = replacedTxt;
+                }
 
                 if (abilityAvailableCheck == false) // �������� ������ �� ���� ��
                 {
@@ -87,14 +105,6 @@ public class AddChoice : MonoBehaviour
                     tmpText += _choice.need[j];
                     tmpText += "</color>";
                 }
-                //15(first), 16(replace), 17(append)
-                // if (j != choiceCount - 1)
-                //     tmpText += "  ";
-                // if (tmpText[15] == "지")
-                // {
-                //     tmpText[16].replace("%", "력 ");
-                //     tmpText[17].
-                // }
             }
             tmpText += " " + _choice.text;
             _panel = GameObject.Find("Panel");

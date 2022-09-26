@@ -211,13 +211,13 @@ public class PlayerManager : MonoBehaviour
 
     public void likeable_amount()
     {
-        int seo_value = Player.instance._likeableDic["서"];
-        int yon_value = Player.instance._likeableDic["연"];
-        int ko_value = Player.instance._likeableDic["고"];
-        int gang_value = Player.instance._likeableDic["강"];
-        int sung_value = Player.instance._likeableDic["성"];
-        int chung_value = Player.instance._likeableDic["중"];
-        int han_value = Player.instance._likeableDic["한"];
+        int seo_value = Player.instance._likeableDic["서울"];
+        int yon_value = Player.instance._likeableDic["연세"];
+        int ko_value = Player.instance._likeableDic["고려"];
+        int gang_value = Player.instance._likeableDic["서강"];
+        int sung_value = Player.instance._likeableDic["성균관"];
+        int chung_value = Player.instance._likeableDic["중앙"];
+        int han_value = Player.instance._likeableDic["한양"];
 
         seoulAmount.text = seo_value.ToString();
         yonseiAmount.text = yon_value.ToString();
