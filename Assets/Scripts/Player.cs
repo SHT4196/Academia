@@ -86,15 +86,15 @@ public class Player
         {"한", 0}
 
     };
-    private Dictionary<string, string> nameMatch = new Dictionary<string, int>()
+    public Dictionary<string, string> fullName = new Dictionary<string, string>()
     {
-        {"서", 0},
-        {"연", 0},
-        {"고", 0},
-        {"강", 0},
-        {"성", 0},
-        {"중", 0},
-        {"한", 0}
+        {"서", "서울"},
+        {"연", "연세"},
+        {"고", "고려"},
+        {"강", "서강"},
+        {"성", "성균관"},
+        {"중", "중앙"},
+        {"한", "한양"}
 
     };
 
