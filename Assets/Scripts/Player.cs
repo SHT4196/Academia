@@ -74,6 +74,17 @@ public class Player
     /// </summary>
     private string _playerName;
 
+    private string GoogleUID;
+
+    public string getGoogleUID()
+    {
+        return GoogleUID;
+    }
+
+    public void setGoogleUID(string _uid)
+    {
+        GoogleUID = _uid;
+    }
 
     public Dictionary<string, int> _likeableDic = new Dictionary<string, int>()
     {
@@ -84,10 +95,8 @@ public class Player
         {"성", 0},
         {"중", 0},
         {"한", 0}
-
     };
-
-   
+    
     private PlayerManager _gmr;
 
     public bool isAdmin { get; set; }
@@ -145,8 +154,6 @@ public class Player
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
         _gmr.likeable_amount();
-
-        
     }
     
     /// <summary>
@@ -156,7 +163,8 @@ public class Player
     public void SetPlayerName(string name)
     {
         _playerName = name;
-        DatabaseManager.Instance.SetPlayerName_DB(_playerName, SystemInfo.deviceUniqueIdentifier);
+        GoogleUID ??= SystemInfo.deviceUniqueIdentifier;
+        DatabaseManager.Instance.SetPlayerName_DB(_playerName, GoogleUID);
         PlayerPrefs.SetString("PlayerName", name);
     }
 

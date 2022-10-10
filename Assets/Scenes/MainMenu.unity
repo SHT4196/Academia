@@ -1142,10 +1142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384a3bb000466a144a2b89d1e79c6600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  namePanel: {fileID: 1538691786}
+  namePanel: {fileID: 1538691788}
   adminCanvas: {fileID: 428952060}
   adminButton: {fileID: 1438918295}
   nameInputField: {fileID: 1946502353}
+  infoText: {fileID: 527971965}
 --- !u!114 &167834246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2049,7 +2050,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1768335292}
   m_HandleRect: {fileID: 1768335291}
   m_Direction: 0
-  m_Value: -0.000000030530295
+  m_Value: 0
   m_Size: 0.33361104
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3450,11 +3451,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 1
+    m_MaxSize: 150
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3484,10 +3485,10 @@ RectTransform:
   m_Father: {fileID: 1601565171}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 199.221}
+  m_SizeDelta: {x: 0, y: -398.443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &550769068
 GameObject:
@@ -11038,6 +11039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 527971965}
   webClientId: 310848617796-nf5a9ds97humnn8nqv5gihmnnqg6j3g4.apps.googleusercontent.com
+  IsEditor: 0
+  mainCanvas: {fileID: 167834245}
 --- !u!4 &1537212751
 Transform:
   m_ObjectHideFlags: 0

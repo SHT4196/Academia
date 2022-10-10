@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
 using Google;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
  
 public class GoogleSignInClass : MonoBehaviour
@@ -15,11 +17,15 @@ public class GoogleSignInClass : MonoBehaviour
  
     private FirebaseAuth auth;
     private GoogleSignInConfiguration configuration;
- 
+
+    [SerializeField] private bool IsEditor = false;
+    [FormerlySerializedAs("MainCanvas")] [SerializeField] private MainMenu mainCanvas;
     private void Awake()
     {
         configuration = new GoogleSignInConfiguration { WebClientId = webClientId, RequestEmail = true, RequestIdToken = true };
         CheckFirebaseDependencies();
+        if (Application.isEditor)
+            IsEditor = true;
     }
  
     private void CheckFirebaseDependencies()
@@ -45,12 +51,19 @@ public class GoogleSignInClass : MonoBehaviour
  
     private void OnSignIn()
     {
-        GoogleSignIn.Configuration = configuration;
-        GoogleSignIn.Configuration.UseGameSignIn = false;
-        GoogleSignIn.Configuration.RequestIdToken = true;
-        AddToInformation("Calling SignIn");
+        if (!IsEditor)
+        {
+            GoogleSignIn.Configuration = configuration;
+            GoogleSignIn.Configuration.UseGameSignIn = false;
+            GoogleSignIn.Configuration.RequestIdToken = true;
+            AddToInformation("Calling SignIn");
  
-        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
+            GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
+        }
+        else
+        {
+            mainCanvas.GoInGame();
+        }
     }
  
     private void OnSignOut()
@@ -90,13 +103,13 @@ public class GoogleSignInClass : MonoBehaviour
         {
             AddToInformation("Welcome: " + task.Result.DisplayName + "!");
             AddToInformation("Email = " + task.Result.Email);
-            AddToInformation("Google ID Token = " + task.Result.IdToken);
+            // AddToInformation("Google ID Token = " + task.Result.IdToken);
             AddToInformation("Email = " + task.Result.Email);
-            SignInWithGoogleOnFirebase(task.Result.IdToken);
+            SignInWithGoogleOnFirebase(task.Result.IdToken, task.Result.UserId);
         }
     }
  
-    private void SignInWithGoogleOnFirebase(string idToken)
+    private void SignInWithGoogleOnFirebase(string idToken, string UID)
     {
         Credential credential = GoogleAuthProvider.GetCredential(idToken, null);
  
@@ -110,7 +123,10 @@ public class GoogleSignInClass : MonoBehaviour
             }
             else
             {
-                AddToInformation("Sign In Successful.");
+                AddToInformation("Sign In Successful., UID: " + UID);
+                Player.instance.setGoogleUID(UID);
+                mainCanvas.GoInGame();
+                AddToInformation("Success2");
             }
         });
     }

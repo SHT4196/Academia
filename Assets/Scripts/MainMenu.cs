@@ -8,10 +8,12 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [FormerlySerializedAs("NamePanel")] [SerializeField] private GameObject namePanel;
+    [FormerlySerializedAs("NamePanel")] [SerializeField] private Image namePanel;
     [FormerlySerializedAs("AdminCanvas")] [SerializeField] private Canvas adminCanvas;
     [SerializeField] private Button adminButton;
     [SerializeField] private TMP_InputField nameInputField;
+
+    [SerializeField] private Text infoText;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,8 @@ public class MainMenu : MonoBehaviour
 
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
-            namePanel.SetActive(true);
+            infoText.text += $"\n{namePanel.gameObject.activeSelf}";
+            // namePanel.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
         else
