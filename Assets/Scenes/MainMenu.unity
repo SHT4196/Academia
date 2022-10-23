@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384a3bb000466a144a2b89d1e79c6600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  namePanel: {fileID: 1538691788}
+  namePanel: {fileID: 1538691786}
   adminCanvas: {fileID: 428952060}
   adminButton: {fileID: 1438918295}
   nameInputField: {fileID: 1946502353}

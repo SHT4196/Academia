@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
 using Google;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -17,7 +19,6 @@ public class GoogleSignInClass : MonoBehaviour
  
     private FirebaseAuth auth;
     private GoogleSignInConfiguration configuration;
-
     [SerializeField] private bool IsEditor = false;
     [FormerlySerializedAs("MainCanvas")] [SerializeField] private MainMenu mainCanvas;
     private void Awake()
@@ -124,13 +125,21 @@ public class GoogleSignInClass : MonoBehaviour
             else
             {
                 AddToInformation("Sign In Successful., UID: " + UID);
+                // mainCanvas.GoInGame();
+                Player.instance.SetIsSignIn(true);
                 Player.instance.setGoogleUID(UID);
-                mainCanvas.GoInGame();
                 AddToInformation("Success2");
+                StartCoroutine(signInSetPlayer());
             }
         });
     }
- 
+
+    IEnumerator signInSetPlayer()
+    {
+        yield return new WaitForEndOfFrame();
+        mainCanvas.namePanel.gameObject.SetActive(true);
+        StopCoroutine(signInSetPlayer());
+    }
     public void OnSignInSilently()
     {
         GoogleSignIn.Configuration = configuration;

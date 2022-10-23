@@ -76,6 +76,13 @@ public class Player
 
     private string GoogleUID;
 
+    private bool isSignIn = false;
+
+    public void SetIsSignIn(bool value)
+    {
+        isSignIn = value;
+    }
+    
     public string getGoogleUID()
     {
         return GoogleUID;
@@ -163,7 +170,8 @@ public class Player
     public void SetPlayerName(string name)
     {
         _playerName = name;
-        GoogleUID ??= SystemInfo.deviceUniqueIdentifier;
+        if(!isSignIn)
+            GoogleUID = SystemInfo.deviceUniqueIdentifier;
         DatabaseManager.Instance.SetPlayerName_DB(_playerName, GoogleUID);
         PlayerPrefs.SetString("PlayerName", name);
     }
