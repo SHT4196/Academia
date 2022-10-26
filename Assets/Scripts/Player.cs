@@ -102,8 +102,22 @@ public class Player
         {"성", 0},
         {"중", 0},
         {"한", 0}
+
     };
-    
+    public Dictionary<string, string> fullName = new Dictionary<string, string>()
+    {
+        {"서", "서울"},
+        {"연", "연세"},
+        {"고", "고려"},
+        {"강", "서강"},
+        {"성", "성균관"},
+        {"중", "중앙"},
+        {"한", "한양"}
+
+    };
+
+
+   
     private PlayerManager _gmr;
 
     public bool isAdmin { get; set; }
@@ -161,6 +175,8 @@ public class Player
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
         _gmr.likeable_amount();
+
+        
     }
     
     /// <summary>
@@ -340,9 +356,9 @@ public class Player
 
         
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-       //  GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-       //  PlayerPrefs.DeleteAll(); //저장값 초기화
-       // // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        PlayerPrefs.DeleteAll(); //저장값 초기화
+       // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
         AchievementManager.Instance.Achieve_achievement(1, 1);
 
         _gmr.DiepanelActive(); // die 창 활성화
