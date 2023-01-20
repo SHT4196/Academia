@@ -433,7 +433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.0785}
-  m_AnchoredPosition: {x: -0.0025024, y: -44.37622}
+  m_AnchoredPosition: {x: -0.0025024414, y: -44.37622}
   m_SizeDelta: {x: 0.0048828, y: -88.752}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1436988694
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1657006466}
-        m_TargetAssemblyTypeName: GameStart, Assembly-CSharp
-        m_MethodName: GoMainMenu
+      - m_Target: {fileID: 1473586275}
+        m_TargetAssemblyTypeName: GoogleSignInClass, Assembly-CSharp
+        m_MethodName: SignInWithGoogle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -611,6 +611,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1473586274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473586276}
+  - component: {fileID: 1473586275}
+  m_Layer: 0
+  m_Name: GoogleSignIn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1473586275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473586274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae6e6f0523a67a4db31ab9fb45563e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webClientId: 310848617796-nf5a9ds97humnn8nqv5gihmnnqg6j3g4.apps.googleusercontent.com
+  IsEditor: 0
+  Canvas: {fileID: 1657006466}
+--- !u!4 &1473586276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473586274}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 287.61105, y: 284.07852, z: -316.04028}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657006465
 GameObject:
   m_ObjectHideFlags: 0
