@@ -11,11 +11,16 @@ public class SoundManger : MonoBehaviour
     public Slider BgmSlider;
     public Slider EffectSlider;
 
-    public AudioSource audioSource;
+    public AudioSource EffectAudio;
+    public AudioSource EndingAudio;
+
     public AudioClip ClickSound;
     public AudioClip PlusSound;
     public AudioClip MinusSound;
     public AudioClip ChangingStatSound;
+    public AudioClip GoodEndingBGM;
+    public AudioClip BadEndingBGM;
+
     public static SoundManger instance;
 
     /// <summary>
@@ -69,7 +74,7 @@ public class SoundManger : MonoBehaviour
 
     public void PlayBtnSound()
     {
-        audioSource.PlayOneShot(ClickSound);
+        EffectAudio.PlayOneShot(ClickSound);
     }
 
     public void stopAudio()
@@ -80,17 +85,35 @@ public class SoundManger : MonoBehaviour
 
     public void PlayPlusSound()
     {
-        audioSource.PlayOneShot(PlusSound);
+        EffectAudio.PlayOneShot(PlusSound);
     }
 
     public void PlayMinusSound()
     {
-        audioSource.PlayOneShot(MinusSound);
+        EffectAudio.PlayOneShot(MinusSound);
     }
 
     public void PlayChangingStatSound()
     {
-        audioSource.PlayOneShot(ChangingStatSound);
+        EffectAudio.PlayOneShot(ChangingStatSound);
+    }
+
+    //play good ending bgm
+    public void PlayGoodEndingBGM()
+    {
+        EndingAudio.PlayOneShot(GoodEndingBGM);
+    }
+
+    //play bad ending bgm
+    public void PlayBadEndingBGM()
+    {
+        EndingAudio.PlayOneShot(BadEndingBGM);
+    }
+
+    //stop ending audio (at good and bad)
+    public void StopEndingAudio()
+    {
+        EndingAudio.Stop();
     }
 
 }
