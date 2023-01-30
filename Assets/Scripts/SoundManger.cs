@@ -13,6 +13,9 @@ public class SoundManger : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip ClickSound;
+    public AudioClip PlusSound;
+    public AudioClip MinusSound;
+    public AudioClip ChangingStatSound;
     public static SoundManger instance;
 
     /// <summary>
@@ -67,6 +70,27 @@ public class SoundManger : MonoBehaviour
     public void PlayBtnSound()
     {
         audioSource.PlayOneShot(ClickSound);
+    }
+
+    public void stopAudio()
+    {
+        // audio = GetComponenet<AudioSource>();
+        // audio.Stop();
+    }
+
+    public void PlayPlusSound()
+    {
+        audioSource.PlayOneShot(PlusSound);
+    }
+
+    public void PlayMinusSound()
+    {
+        audioSource.PlayOneShot(MinusSound);
+    }
+
+    public void PlayChangingStatSound()
+    {
+        audioSource.PlayOneShot(ChangingStatSound);
     }
 
 }
