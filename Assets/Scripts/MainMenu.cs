@@ -42,14 +42,14 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
     }
 
     public void SetNameAndStartGame()
     {
         Player.instance.SetPlayerName(nameInputField.text);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         Time.timeScale = 1;
     }
 

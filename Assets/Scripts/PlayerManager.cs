@@ -238,7 +238,7 @@ public class PlayerManager : MonoBehaviour
     public void DieAndSceneChange()
     {
         //Application.Quit();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         //EditorApplication.Exit(0);
       //  Achivement.Acv.change_scene();
     }

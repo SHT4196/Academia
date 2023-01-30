@@ -21,7 +21,7 @@ public class GameStart : MonoBehaviour
     }
 
     // 게임 시작
-    public void GoMainMenu()
+    public void GoLoginScene()
     {
         SceneManager.LoadScene(1);
     }
@@ -30,6 +30,11 @@ public class GameStart : MonoBehaviour
     {
         TabtoStart_Btn.SetActive(true);
 
+    }
+
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene(2);
     }
 
 }

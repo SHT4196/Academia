@@ -64,7 +64,8 @@ public class AddText : MonoBehaviour
     /// </summary>
     private static bool correction = true;
 
-    private GameObject endingCanvas;
+    private GameObject goodEndingCanvas;
+    private GameObject badEndingCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,11 +89,19 @@ public class AddText : MonoBehaviour
         //엔딩을 나타내는 text Script 일 때
         if (script.endingTrigger == 1)
         {
-            endingCanvas = GameObject.Find("Ending").transform.GetChild(0).gameObject;
-            endingCanvas.GetComponent<Ending>().SetEndingScript(script);
-            endingCanvas.gameObject.SetActive(true);
+            goodEndingCanvas = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            goodEndingCanvas.GetComponent<Ending>().SetEndingScript(script);
+            goodEndingCanvas.gameObject.SetActive(true);
             return;
         }
+        else if (script.endingTrigger == 2)
+        {
+            badEndingCanvas = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            badEndingCanvas.GetComponent<Ending>().SetEndingScript(script);
+            badEndingCanvas.gameObject.SetActive(true);
+            return;
+        }
+
         if (currentID[0] == script.id[0] && currentID[1] == script.id[1]) //Check if the screen is switched
         {
             AddSpace();

@@ -58,7 +58,7 @@ public class Ending : MonoBehaviour
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();
         Player.instance.IsPlayerReset = true;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void SetEndingScript(Script endingScript)
