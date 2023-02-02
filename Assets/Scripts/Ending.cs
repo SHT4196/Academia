@@ -21,10 +21,16 @@ public class Ending : MonoBehaviour
     private string _endingTempText = "";
 
     private bool _isTypeDone = false;
+
+    public AudioSource bgmSource;
+    public AudioSource endingSource;
+    public AudioClip endingClip;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bgmSource.Stop();
+        Debug.Log("started ending");
+        endingSource.PlayOneShot(endingClip);
     }
 
     // Update is called once per frame
@@ -34,6 +40,7 @@ public class Ending : MonoBehaviour
         {
             StartCoroutine(nameof(Type));
             _isReadyToType = false;
+            // SoundManger.stopAudio();
         }
 
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
@@ -55,6 +62,7 @@ public class Ending : MonoBehaviour
     {
         Player.instance.ResetPlayer();
         PlayerPrefs.DeleteAll();
+        endingSource.Stop();
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();
         Player.instance.IsPlayerReset = true;

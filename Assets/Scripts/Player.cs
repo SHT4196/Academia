@@ -5,7 +5,6 @@ using Firebase.Database;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /// <summary>
 /// Player 스탯 Enum class
 /// </summary>
@@ -248,7 +247,16 @@ public class Player
     {
         if (_health > 0)
         {
-            this._health += value;
+            if (value >= 0)
+            {
+                this._health += value;
+                SoundManger.instance.PlayPlusSound();
+            }
+            else
+            {
+                this._health += value;
+                SoundManger.instance.PlayMinusSound();
+            }
             _gmr.ImgChange(0, value, this._health);
             if (this._health >= 5)
                 this._health = 5;
@@ -296,7 +304,17 @@ public class Player
     {
         if (_mental > 0)
         {
-            this._mental += value;
+            if (value >= 0)
+            {
+                SoundManger.instance.PlayPlusSound();
+                this._mental += value;
+
+            }
+            else
+            {
+                SoundManger.instance.PlayMinusSound();
+                this._mental += value;
+            }
             _gmr.ImgChange(1, value, this._mental);
             if (this._mental >= 5)
                 this._mental = 5;
@@ -318,6 +336,7 @@ public class Player
     {
         if (ability == PlayerAbility.Force)
         {
+            SoundManger.instance.PlayChangingStatSound();
             this._force += value;
             _gmr.changeability_amount(ability, this._force);
             if (isAdmin)
@@ -328,6 +347,7 @@ public class Player
         }
         else if (ability == PlayerAbility.Intellect)
         {
+            SoundManger.instance.PlayChangingStatSound();
             this._intellect += value;
             _gmr.changeability_amount(ability, this._intellect);
             if (isAdmin)
@@ -338,6 +358,7 @@ public class Player
         }
         else if (ability == PlayerAbility.Mana)
         {
+            SoundManger.instance.PlayChangingStatSound();
             this._mana += value;
             _gmr.changeability_amount(ability, this._mana);
             if (isAdmin)
