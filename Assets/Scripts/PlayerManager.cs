@@ -46,11 +46,11 @@ public class PlayerManager : MonoBehaviour
         mental = new List<Image>();
         GameObject healthGo = GameObject.FindWithTag("Health");
         GameObject mentalGo = GameObject.FindWithTag("Mental");
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 3; i++)
         {
             health.Add(healthGo.transform.GetChild(i).GetComponent<Image>());
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             mental.Add(mentalGo.transform.GetChild(i).GetComponent<Image>());
         }
@@ -109,7 +109,7 @@ public class PlayerManager : MonoBehaviour
                 for (int i = 0; i < value; i++)
                 {
                     int tempIndex = result - value + i;
-                    if (tempIndex < 5)
+                    if (tempIndex < 3)
                     {
                         health[tempIndex].gameObject.SetActive(true);
                         health[tempIndex].transform.DOScale(1.0f, 0.5f).OnComplete(() =>
@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
             {
                 for (int i = 0; i < result; i++)
                     health[i].gameObject.SetActive(true);
-                for (int i = 4; i >= result; i--)
+                for (int i = 2; i >= result; i--)
                     health[i].gameObject.SetActive(false);
             }
         }
@@ -150,7 +150,7 @@ public class PlayerManager : MonoBehaviour
                 for (int i = 0; i < value; i++)
                 {
                     int tempIndex = result - value + i;
-                    if (tempIndex < 5)
+                    if (tempIndex < 3)
                     {
                         mental[tempIndex].gameObject.SetActive(true);
                         mental[tempIndex].transform.DOScale(1f, 0.25f).OnComplete(() =>
@@ -164,7 +164,7 @@ public class PlayerManager : MonoBehaviour
             {
                 for (int i = 0; i < result; i++)
                     mental[i].gameObject.SetActive(true);
-                for (int i = 4; i >= result; i--)
+                for (int i = 2; i >= result; i--)
                     mental[i].gameObject.SetActive(false);
             }
         }

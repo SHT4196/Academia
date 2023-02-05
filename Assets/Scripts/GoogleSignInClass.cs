@@ -20,7 +20,7 @@ public class GoogleSignInClass : MonoBehaviour
     private FirebaseAuth auth;
     private GoogleSignInConfiguration configuration;
     [SerializeField] private bool IsEditor = false;
-    [FormerlySerializedAs("Canvas")] [SerializeField] private GameStart Canvas; //  정확한 기능이 무엇인가요? ->
+    [FormerlySerializedAs("Canvas")] [SerializeField] private MainMenu Canvas; //  정확한 기능이 무엇인가요? ->
                                                                                        // 로그인 후 MainCanvas의 GoInGame()을 통해 게임 내로 진입할 수 있도록 합니다!
                                                                                        // FormerlySerializedAs는 단순히 변수명 바꾸기 위해서 사용했습니다.
                                                                                        // (FormerlySerializedAs로 변수명을 바꾸면 Unity Editor의 inspector창에서 다시 지정하지 않아도 됩니다)

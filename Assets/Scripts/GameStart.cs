@@ -11,7 +11,7 @@ public class GameStart : MonoBehaviour
     // 시작 버튼 지연
     void Start()
     {
-        Invoke("Start_Btn", 3f);
+        Invoke("GoLoginScene", 2f);
     }
 
     // Update is called once per frame
@@ -26,15 +26,8 @@ public class GameStart : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void Start_Btn()
-    {
-        TabtoStart_Btn.SetActive(true);
+  
 
-    }
-
-    public void GoMainMenu()
-    {
-        SceneManager.LoadScene(2);
-    }
+   
 
 }

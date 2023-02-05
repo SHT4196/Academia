@@ -43,11 +43,11 @@ public class Player
     }
 
     /// <summary>
-    /// player health 수치: 0 ~ 5
+    /// player health 수치: 0 ~ 3
     /// </summary>
     private int _health;
     /// <summary>
-    /// player mental 수치: 0 ~ 5
+    /// player mental 수치: 0 ~ 3
     /// </summary>
     private int _mental; 
     /// <summary>
@@ -144,8 +144,8 @@ public class Player
             return;
         }
         // gmr 및 player 기본 health, mental 수치 초기화 or 저장 값 불러오기
-        _health = PlayerPrefs.GetInt("Health") == 0 ? 5 : PlayerPrefs.GetInt("Health");
-        _mental = PlayerPrefs.GetInt("Mental") == 0 ? 5 : PlayerPrefs.GetInt("Mental");
+        _health = PlayerPrefs.GetInt("Health") == 0 ? 3 : PlayerPrefs.GetInt("Health");
+        _mental = PlayerPrefs.GetInt("Mental") == 0 ? 3 : PlayerPrefs.GetInt("Mental");
         
         // player force, intellect, mana 수치 초기화 or 저장 값 불러옴
         _force = PlayerPrefs.GetInt("Force") == 0 ? 2 : PlayerPrefs.GetInt("Force");
@@ -216,8 +216,8 @@ public class Player
     {
         _gmr = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         
-        _health = 5;
-        _mental = 5;
+        _health = 3;
+        _mental = 3;
         _gmr.ImgSet(_health, _mental);
         
         _force = 2;
@@ -258,8 +258,8 @@ public class Player
                 SoundManger.instance.PlayMinusSound();
             }
             _gmr.ImgChange(0, value, this._health);
-            if (this._health >= 5)
-                this._health = 5;
+            if (this._health >= 3)
+                this._health = 3;
             if (isAdmin)
             {
                 return;
@@ -316,8 +316,8 @@ public class Player
                 this._mental += value;
             }
             _gmr.ImgChange(1, value, this._mental);
-            if (this._mental >= 5)
-                this._mental = 5;
+            if (this._mental >= 3)
+                this._mental = 3;
             if (!isAdmin)
             {
                 PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
@@ -436,8 +436,8 @@ public class Player
     /// </summary>
     public void SetAgain() //Play Again
     {
-        this._health = 5;
-        this._mental = 5;
+        this._health = 3;
+        this._mental = 3;
         _gmr.ImgChange(0, 0, _health);
         _gmr.ImgChange(1, 0, _mental);
     }

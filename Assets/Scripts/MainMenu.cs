@@ -24,7 +24,10 @@ public class MainMenu : MonoBehaviour
     {
         
     }
-
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene(2);
+    }
     public void GoInGame()
     {
 
@@ -32,12 +35,12 @@ public class MainMenu : MonoBehaviour
        // StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
 
        namePanel = gameObject.transform.GetChild(4).gameObject;
-       infoText.text += "GoInGame!";
+       
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
-            infoText.text += $"\n{namePanel.gameObject.activeSelf}";
+           
             namePanel.SetActive(true);
-            infoText.text += $"\n{namePanel.gameObject.activeSelf}";
+          
             Time.timeScale = 0;
         }
         else
