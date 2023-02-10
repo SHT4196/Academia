@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 3_innocent
+  m_EditorClassIdentifier: 
+  achievementName: "\uB124 \uB2E8\uC810\uC774 \uBB54\uC9C0 \uC54C\uC544~\uBC14\uB85C
+    \uC194\uC9C1\uD55C\uAC70\uC57C"
+  achievementDesc: "\uAD50\uC218\uB2D8\uC758 \uC9C8\uBB38\uC5D0 \uC798 \uBAA8\uB974\uACA0\uB2E4\uACE0
+    \uC2E4\uD1A0\uD558\uAE30"
+  id: 3
+  nowNum: 0
+  maxNum: 1
+  achieveState: 0
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

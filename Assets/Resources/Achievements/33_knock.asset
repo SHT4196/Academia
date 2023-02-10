@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 33_knock
+  m_EditorClassIdentifier: 
+  achievementName: "\uB204\uAC00 \uB178\uD06C \uC18C\uB9AC\uB97C \uB0B4\uC5C8\uC5B4"
+  achievementDesc: "\uB0AE\uC7A0\uC744 \uACC4\uC18D \uBC29\uD574\uBC1B\uAE30"
+  id: 33
+  nowNum: 0
+  maxNum: 1
+  achieveState: 1
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

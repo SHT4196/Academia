@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 29_saving
+  m_EditorClassIdentifier: 
+  achievementName: "\uB77C\uC774\uC5B8 \uC77C\uBCD1 \uAD6C\uD558\uAE30"
+  achievementDesc: "\uC4F0\uB7EC\uC9C4 \uBD80\uC0C1\uC790\uB97C \uCC59\uACA8 \uBB34\uC0AC\uD788
+    \uC77C\uD589\uACFC \uD569\uB958\uD558\uAE30"
+  id: 29
+  nowNum: 0
+  maxNum: 1
+  achieveState: 1
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

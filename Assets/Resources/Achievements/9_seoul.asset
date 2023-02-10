@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 9_seoul
+  m_EditorClassIdentifier: 
+  achievementName: "\uBAA8\uB85C \uAC00\uB3C4 \uC11C\uC6B8\uB9CC \uAC00\uBA74"
+  achievementDesc: "\uB9C8\uBC95\uD559\uBD80\uC758 \uC5F0\uADF9 \uB3C4\uC640\uC8FC\uAE30\uB97C
+    \uC644\uB8CC\uD558\uAE30"
+  id: 9
+  nowNum: 0
+  maxNum: 1
+  achieveState: 1
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

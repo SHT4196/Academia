@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 35_loveYou
+  m_EditorClassIdentifier: 
+  achievementName: "\uC0AC\uB791\uD574\uC694~"
+  achievementDesc: "\uD2B9\uBCC4\uC218\uC0AC\uAD6D \uC694\uC6D0\uC758 \uB9D0\uC5D0
+    \uB6B1\uC774\uB85C \uB2F5\uD558\uAE30"
+  id: 35
+  nowNum: 0
+  maxNum: 1
+  achieveState: 0
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 
