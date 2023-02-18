@@ -8,13 +8,22 @@ public class FontManager : MonoBehaviour
 {
     public TextMeshProUGUI Sample_Text;
     public TextMeshProUGUI storyText;
-    public TextMeshProUGUI Text_Size;
-    public TextMeshProUGUI Line_Space;
-    // public TextMeshProUGUI OptionClose_Text;
-    private int textSize;
-    // public Text sizeBtn;
-    private float lineSpace;
 
+    private int textSize;
+    private float lineSpace;
+    public Slider TextSizeSlider;
+    public Slider LineSpaceSlider;
+
+    public static FontManager instance;
+
+
+    void Awake()
+    {
+        if (FontManager.instance == null)
+        {
+            FontManager.instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,24 +31,22 @@ public class FontManager : MonoBehaviour
         if (PlayerPrefs.HasKey("text_size"))
         {
             textSize = PlayerPrefs.GetInt("text_size");
+            TextSizeSlider.value = PlayerPrefs.GetInt("text_size");
             Sample_Text.fontSize = textSize;
-            Text_Size.text = textSize.ToString();
         }
         else
         {
             textSize = 14;
-            Text_Size.text = textSize.ToString();
         }
         if (PlayerPrefs.HasKey("line_space"))
         {
             lineSpace = PlayerPrefs.GetFloat("line_space");
+            LineSpaceSlider.value = PlayerPrefs.GetFloat("line_space");
             Sample_Text.lineSpacing = lineSpace;
-            Line_Space.text = lineSpace.ToString();
         }
         else
         {
             lineSpace = 0f;
-            Line_Space.text = lineSpace.ToString();
         }
         // Text_Size = GetComponent<TextMeshProUGUI>();
     }
@@ -61,13 +68,13 @@ public class FontManager : MonoBehaviour
         if (textSize < sizeMax)
         {
             textSize ++;
+            TextSizeSlider.value ++;
         }
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
-        Text_Size.text = textSize.ToString();
+        // TextSizeSlider.value = textSize;
         PlayerPrefs.SetInt("text_size", textSize);
         Debug.Log("+1");
-        // Debug.Log("complete");
     }
 
     /// <summary>
@@ -82,12 +89,13 @@ public class FontManager : MonoBehaviour
     public void fontSmaller()
     {
         int sizeMin = 11;
-        if (textSize > sizeMin) {
+        if (textSize > sizeMin)
+        {
             textSize --;
+            TextSizeSlider.value --;
         }
         Sample_Text.fontSize = textSize;
         storyText.fontSize = textSize;
-        Text_Size.text = textSize.ToString();
         PlayerPrefs.SetInt("text_size", textSize);
         Debug.Log("-1");
 
@@ -109,44 +117,38 @@ public class FontManager : MonoBehaviour
         if (lineSpace < lineMax)
         {
             lineSpace += 10f;
+            LineSpaceSlider.value += 10;
         }
         Sample_Text.lineSpacing = lineSpace;
         storyText.lineSpacing = lineSpace;
-        Line_Space.text = lineSpace.ToString();
+        // Line_Space.text = lineSpace.ToString();
         PlayerPrefs.SetFloat("line_space", lineSpace);
         Debug.Log("line space +1");
         // Debug.Log("complete");
     }
 
-    /// <summary>
-    /// �ٰ��� ����
-    /// </summary>
-    // public void middleLineSpace()
-    // {
-    //     Sample_Text.lineSpacing = 0f;
-    //     storyText.lineSpacing = 0f;
-    // }
-
-    /// <summary>
-    /// �ٰ��� ����
-    /// </summary>
-    // public void narrowLineSpace()
-    // {
-    //     Sample_Text.lineSpacing = -20f;
-    //     storyText.lineSpacing = -20f;
-    // }
-// }
     public void lineSpaceNarrower()
     {
         float lineMin = -20f;
-        if (lineSpace > lineMin) {
+        if (lineSpace > lineMin)
+        {
             lineSpace -= 10f;
+            LineSpaceSlider.value -= 10;
         }
         Sample_Text.lineSpacing = lineSpace;
         storyText.lineSpacing = lineSpace;
-        Line_Space.text = lineSpace.ToString();
+        // Line_Space.text = lineSpace.ToString();
         PlayerPrefs.SetFloat("line_space", lineSpace);
         Debug.Log("line space -1");
 
+    }
+
+    public void ResetFontSettings()
+    {
+        //reset text size values
+        textSize = 14;
+
+        //reset line space values
+        lineSpace = 0f;
     }
 }

@@ -39,37 +39,73 @@ public class SoundManger : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("BGMvolume"))
         {
-            BgmSlider.value = PlayerPrefs.GetFloat("BGMvolume");
-            // masterMixer.setFloat("BGM", BgmSlider.value);
+            float bgmSound = PlayerPrefs.GetFloat("BGMvolume");
+            BgmSlider.value = bgmSound;
+            masterMixer.SetFloat("BGM", bgmSound);
         }
         if (PlayerPrefs.HasKey("Effectvolume"))
         {
-            BgmSlider.value = PlayerPrefs.GetFloat("Effectvolume");
-            // masterMixer.setFloat("BGM", BgmSlider.value);
+            float effectSound = PlayerPrefs.GetFloat("Effectvolume");
+            EffectSlider.value = effectSound;
+            masterMixer.SetFloat("Effect", effectSound);
         }
     }
 
-    public void BGMAudioControl()
+    public void BGMVolumeUp()
     {
+        BgmSlider.value += 5;
         float sound = BgmSlider.value;
 
         if (sound == -40f) masterMixer.SetFloat("BGM", -80);
-        else
-        {
+        else {
             masterMixer.SetFloat("BGM", sound);
             PlayerPrefs.SetFloat("BGMvolume", sound);
         }
     }
-    public void EffectAudioControl()
+
+    public void BGMVolumeDown()
     {
+        BgmSlider.value -= 5;
+        float sound = BgmSlider.value;
+
+        if (sound == -40f) masterMixer.SetFloat("BGM", -80);
+        else{
+            masterMixer.SetFloat("BGM", sound);
+            PlayerPrefs.SetFloat("BGMvolume", sound);
+        }
+    }
+
+    public void EffectVolumeUp()
+    {
+        EffectSlider.value += 5;
         float sound = EffectSlider.value;
 
         if (sound == -40f) masterMixer.SetFloat("Effect", -80);
-        else
-        {
+        else{
             masterMixer.SetFloat("Effect", sound);
             PlayerPrefs.SetFloat("EffectVolume", sound);
         }
+    }
+
+    public void EffectVolumeDown()
+    {
+        EffectSlider.value -= 5;
+        float sound = EffectSlider.value;
+
+        if (sound == -40f) masterMixer.SetFloat("Effect", -80);
+        else{
+            masterMixer.SetFloat("Effect", sound);
+            PlayerPrefs.SetFloat("EffectVolume", sound);
+        }
+    }
+
+    public void ResestSoundSettings()
+    {
+        //reset sound values
+        masterMixer.SetFloat("BGM", -40);
+        masterMixer.SetFloat("Effect", -40);
+        BgmSlider.value = -20;
+        EffectSlider.value = -20;
     }
 
     public void PlayBtnSound()
