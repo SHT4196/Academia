@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_InputField nameInputField;
 
     [SerializeField] private Text infoText;
+    [SerializeField] private GameObject warningText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,9 +53,16 @@ public class MainMenu : MonoBehaviour
 
     public void SetNameAndStartGame()
     {
-        Player.instance.SetPlayerName(nameInputField.text);
-        SceneManager.LoadScene(3);
-        Time.timeScale = 1;
+        if (nameInputField.text.Length < 7)
+        {
+            Player.instance.SetPlayerName(nameInputField.text);
+            SceneManager.LoadScene(3);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            warningText.SetActive(true);
+        }
     }
 
     public void OpenAdminCanvas()
