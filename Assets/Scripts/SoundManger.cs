@@ -26,7 +26,6 @@ public class SoundManger : MonoBehaviour
     /// <summary>
     /// ���� ����
     /// </summary>
-
     void Awake()
     {
         if (SoundManger.instance == null)
@@ -99,11 +98,16 @@ public class SoundManger : MonoBehaviour
         }
     }
 
-    public void ResestSoundSettings()
+/// <summary>
+/// 사운드 설정 값을 기본값으로 리셋하는 함수
+/// </summary>
+    public void ResetSoundSettings()
     {
         //reset sound values
-        masterMixer.SetFloat("BGM", -40);
-        masterMixer.SetFloat("Effect", -40);
+        masterMixer.SetFloat("BGM", -20);
+        masterMixer.SetFloat("Effect", -20);
+        PlayerPrefs.SetFloat("BGMvolume", -20);
+        PlayerPrefs.SetFloat("EffectVolume", -20);
         BgmSlider.value = -20;
         EffectSlider.value = -20;
     }

@@ -1531,10 +1531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5955a180a0a684fada11c1ea6d54d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Option_Canvas: {fileID: 0}
+  Option_Canvas: {fileID: 895653931}
   GameQuit_Canvas: {fileID: 1678773761}
   Achievement_Canvas: {fileID: 0}
-  Option_Panel: {fileID: 0}
+  Option_Panel: {fileID: 1233639554}
   Achievement_Panel: {fileID: 0}
   Like_Canvas: {fileID: 0}
 --- !u!114 &167834244
@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69017917adb0c06479a7c8830937b319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sample_Text: {fileID: 1257473621}
+  sampleText: {fileID: 1257473621}
   storyText: {fileID: 4981541278878406689, guid: c9f047395f875484aaf053d229c10ad5, type: 3}
   TextSizeSlider: {fileID: 462447383}
   LineSpaceSlider: {fileID: 524039850}
@@ -12311,6 +12311,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 167834242}
+        m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
+        m_MethodName: ResetSetting_Btn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1127283294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14389,9 +14401,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 167834242}
-        m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
-        m_MethodName: GameQuitPanelOpen_Btn
+      - m_Target: {fileID: 740472434}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: PlayBtnSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14401,9 +14413,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 740472434}
-        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
-        m_MethodName: PlayBtnSound
+      - m_Target: {fileID: 167834242}
+        m_TargetAssemblyTypeName: OptionTrigger, Assembly-CSharp
+        m_MethodName: OptionClose_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14783,7 +14795,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 743158431}
   m_Direction: 2
   m_Value: 1.0000001
-  m_Size: 0.20435178
+  m_Size: 0.19176836
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
