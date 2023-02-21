@@ -99,8 +99,12 @@ public class Player
         {"고", 0},
         {"강", 0},
         {"성", 0},
+        {"한", 0},
         {"중", 0},
-        {"한", 0}
+        {"경", 0},
+        {"U",0},
+        {"H",0 }
+
 
     };
     public Dictionary<string, string> fullName = new Dictionary<string, string>()
@@ -110,8 +114,11 @@ public class Player
         {"고", "고려"},
         {"강", "서강"},
         {"성", "성균관"},
+        {"한", "한양"},
         {"중", "중앙"},
-        {"한", "한양"}
+        {"경", "경희"},
+        {"U", "UOS"},
+        {"H", "HUF"}
 
     };
 
@@ -229,14 +236,19 @@ public class Player
         _likeableDic["고"] = 0;
         _likeableDic["강"] = 0;
         _likeableDic["성"] = 0;
-        _likeableDic["중"] = 0;
         _likeableDic["한"] = 0;
+        _likeableDic["중"] = 0;
+        _likeableDic["경"] = 0;
+        _likeableDic["U"] = 0;
+        _likeableDic["H"] = 0;
 
 
         _gmr.changeability_amount(PlayerAbility.Force, _force);
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
         _gmr.likeable_amount();
+
+        
     }
 
     /// <summary>
@@ -247,7 +259,7 @@ public class Player
     {
         if (_health > 0)
         {
-            if (value >= 0)
+            if (value > 0)
             {
                 this._health += value;
                 SoundManger.instance.PlayPlusSound();
@@ -267,6 +279,39 @@ public class Player
             PlayerPrefs.SetInt("Health", this._health); //변경된 health값 저장
         }
         if (_health <= 0)
+            this.Die();
+    }
+
+   
+    /// <summary>
+    /// player의 mental 수치 변경
+    /// </summary>
+    /// <param name="value">변경할 값</param>
+    public void MentalChange(int value)
+    {
+        if (_mental > 0)
+        {
+            if (value > 0)
+            {
+                SoundManger.instance.PlayPlusSound();
+                this._mental += value;
+
+            }
+            else
+            {
+                SoundManger.instance.PlayMinusSound();
+                this._mental += value;
+            }
+            _gmr.ImgChange(1, value, this._mental);
+            if (this._mental >= 3)
+                this._mental = 3;
+            if (!isAdmin)
+            {
+                return; 
+            }
+            PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
+        }
+        if (_mental <= 0)
             this.Die();
     }
 
@@ -295,36 +340,16 @@ public class Player
         Debug.Log($"서: {_likeableDic["서"]}, 연: {_likeableDic["연"]}, 고: {_likeableDic["고"]}");
         _gmr.likeable_amount();
 
-    }
-    /// <summary>
-    /// player의 mental 수치 변경
-    /// </summary>
-    /// <param name="value">변경할 값</param>
-    public void MentalChange(int value)
-    {
-        if (_mental > 0)
-        {
-            if (value >= 0)
-            {
-                SoundManger.instance.PlayPlusSound();
-                this._mental += value;
-
-            }
-            else
-            {
-                SoundManger.instance.PlayMinusSound();
-                this._mental += value;
-            }
-            _gmr.ImgChange(1, value, this._mental);
-            if (this._mental >= 3)
-                this._mental = 3;
-            if (!isAdmin)
-            {
-                PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
-            }
-        }
-        if (_mental <= 0)
-            this.Die();
+        PlayerPrefs.SetInt("서", _likeableDic["서"]);
+        PlayerPrefs.SetInt("연", _likeableDic["연"]);
+        PlayerPrefs.SetInt("고", _likeableDic["고"]);
+        PlayerPrefs.SetInt("강", _likeableDic["강"]);
+        PlayerPrefs.SetInt("성", _likeableDic["성"]);
+        PlayerPrefs.SetInt("한", _likeableDic["한"]);
+        PlayerPrefs.SetInt("중", _likeableDic["중"]);
+        PlayerPrefs.SetInt("경", _likeableDic["경"]);
+        PlayerPrefs.SetInt("H", _likeableDic["H"]);
+        PlayerPrefs.SetInt("U", _likeableDic["U"]);
     }
 
     /// <summary>
@@ -394,7 +419,9 @@ public class Player
         //     Debug.Log("Die");
         // else if(_mental == 0)
         //     Debug.Log("Die");
+
     }
+
 
     /// <summary>
     /// 선택지 선택 시 Pocket에 해당 element가 있는지 검사

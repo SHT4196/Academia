@@ -52,7 +52,7 @@ public class AddChoice : MonoBehaviour
                         abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Force, value);
                         
                     }
-                    else if (val[0] == "정")
+                    else if (val[0] == "지")
                     {
                         int value = 0;
                     
@@ -63,7 +63,7 @@ public class AddChoice : MonoBehaviour
                         }
                         abilityAvailableCheck = Player.instance.AbilityAvailable(PlayerAbility.Intellect, value);
                     }
-                    else if (val[0] == "지")
+                    else if (val[0] == "마")
                     {
                         int value = 0;
                         for (int k = 0; k < val[1].ToIntArray().Length; k++)
@@ -75,10 +75,10 @@ public class AddChoice : MonoBehaviour
                 }
                 string[] rList = _choice.need[j].Split('%'); //replace list
                 string replacedTxt = "";
-                if (rList[0] == "정")
+                if (rList[0] == "지")
                 {
                     replacedTxt += rList[0];
-                    replacedTxt += "치력 ";
+                    replacedTxt += "력 ";
                     replacedTxt += rList[1];
                     replacedTxt += "필요";
                     _choice.need[j] = replacedTxt;

@@ -77,11 +77,11 @@ public class Admin : MonoBehaviour
             mainId = mainEventId.text;
             if (Int32.TryParse(healthAmount.text, out health))
             {
-                if (health >= 1 && health <= 5)
+                if (health >= 1 && health <= 3)
                 {
                     if (Int32.TryParse(mentalAmount.text, out mental))
                     {
-                        if (mental >= 1 && mental <= 5)
+                        if (mental >= 1 && mental <= 3)
                         {
                             if (Int32.TryParse(forceAmount.text, out force))
                             {

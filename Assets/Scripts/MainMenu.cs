@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] public GameObject namePanel;
+    [SerializeField] public GameObject resetPanel;
+    [SerializeField] public GameObject noDataPanel;
     [SerializeField] private Canvas adminCanvas;
     [SerializeField] private Button adminButton;
     [SerializeField] private TMP_InputField nameInputField;
@@ -28,14 +30,15 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
-    public void GoInGame()
+    public void NewGame()
     {
 
         Player.instance.isAdmin = false;
        // StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
 
        namePanel = gameObject.transform.GetChild(4).gameObject;
-       
+       resetPanel = gameObject.transform.GetChild(5).gameObject;
+
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
            
@@ -45,8 +48,36 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            resetPanel.SetActive(true);
+
+            Time.timeScale = 0;
+        }
+    }
+
+    public void LoadGame()
+    {
+
+        Player.instance.isAdmin = false;
+        // StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
+
+        resetPanel = gameObject.transform.GetChild(5).gameObject;
+        noDataPanel = gameObject.transform.GetChild(6).gameObject;
+
+        if (PlayerPrefs.GetString("ScriptID") == "")
+        {
+
+            noDataPanel.SetActive(true);
+
+            Time.timeScale = 0;
+        }
+        else
+        {
             SceneManager.LoadScene(3);
         }
+    }
+    public void Reset()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     public void SetNameAndStartGame()
@@ -54,6 +85,47 @@ public class MainMenu : MonoBehaviour
         Player.instance.SetPlayerName(nameInputField.text);
         SceneManager.LoadScene(3);
         Time.timeScale = 1;
+    }
+
+    public void NamePanelOpen()
+    {
+        namePanel = gameObject.transform.GetChild(4).gameObject;
+        namePanel.SetActive(true);
+        Time.timeScale = 0;
+
+    }
+
+    public void NamePanelClose()
+    {
+        namePanel = gameObject.transform.GetChild(4).gameObject;
+        namePanel.SetActive(false);
+        Time.timeScale = 1;
+
+    }
+
+    public void ResetPanelOpen()
+    {
+        resetPanel = gameObject.transform.GetChild(5).gameObject;
+        resetPanel.SetActive(true);
+        Time.timeScale = 0;
+
+    }
+
+
+    public void ResetPanelClose()
+    {
+        resetPanel = gameObject.transform.GetChild(5).gameObject;
+        resetPanel.SetActive(false);
+        Time.timeScale = 1;
+
+    }
+
+    public void NoDatePanelClose()
+    {
+        noDataPanel = gameObject.transform.GetChild(6).gameObject;
+        noDataPanel.SetActive(false);
+        Time.timeScale = 1;
+
     }
 
     public void OpenAdminCanvas()
