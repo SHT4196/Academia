@@ -6,15 +6,24 @@ using TMPro;
 
 public class FontManager : MonoBehaviour
 {
-    public TextMeshProUGUI Sample_Text;
+    public TextMeshProUGUI sampleText;
     public TextMeshProUGUI storyText;
-    public TextMeshProUGUI Text_Size;
-    public TextMeshProUGUI Line_Space;
-    // public TextMeshProUGUI OptionClose_Text;
-    private int textSize;
-    // public Text sizeBtn;
-    private float lineSpace;
 
+    private int textSize;
+    private float lineSpace;
+    public Slider TextSizeSlider;
+    public Slider LineSpaceSlider;
+
+    public static FontManager instance;
+
+
+    void Awake()
+    {
+        if (FontManager.instance == null)
+        {
+            FontManager.instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,24 +31,22 @@ public class FontManager : MonoBehaviour
         if (PlayerPrefs.HasKey("text_size"))
         {
             textSize = PlayerPrefs.GetInt("text_size");
-            Sample_Text.fontSize = textSize;
-            Text_Size.text = textSize.ToString();
+            TextSizeSlider.value = PlayerPrefs.GetInt("text_size");
+            sampleText.fontSize = textSize;
         }
         else
         {
             textSize = 14;
-            Text_Size.text = textSize.ToString();
         }
         if (PlayerPrefs.HasKey("line_space"))
         {
             lineSpace = PlayerPrefs.GetFloat("line_space");
-            Sample_Text.lineSpacing = lineSpace;
-            Line_Space.text = lineSpace.ToString();
+            LineSpaceSlider.value = PlayerPrefs.GetFloat("line_space");
+            sampleText.lineSpacing = lineSpace;
         }
         else
         {
             lineSpace = 0f;
-            Line_Space.text = lineSpace.ToString();
         }
         // Text_Size = GetComponent<TextMeshProUGUI>();
     }
@@ -51,102 +58,101 @@ public class FontManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ��Ʈ ũ��
+    /// 폰트 크기를 크게 설정하는 함수. 누를 때마다 +1pt
     /// </summary>
-
-
     public void fontBigger()
     {
         int sizeMax = 18;
         if (textSize < sizeMax)
         {
             textSize ++;
+            TextSizeSlider.value ++;
         }
-        Sample_Text.fontSize = textSize;
-        storyText.fontSize = textSize;
-        Text_Size.text = textSize.ToString();
-        PlayerPrefs.SetInt("text_size", textSize);
-        Debug.Log("+1");
-        // Debug.Log("complete");
+        UpdateTextSize();
     }
 
-    /// <summary>
-    ///   ��Ʈ �߰�
-    /// </summary>
 
 
     /// <summary>
-    /// ��Ʈ �۰�
+    /// 폰트 크기를 작게 설정하는 함수. 누를 때마다 -1pt
     /// </summary>    
-
     public void fontSmaller()
     {
         int sizeMin = 11;
-        if (textSize > sizeMin) {
+        if (textSize > sizeMin)
+        {
             textSize --;
+            TextSizeSlider.value --;
         }
-        Sample_Text.fontSize = textSize;
-        storyText.fontSize = textSize;
-        Text_Size.text = textSize.ToString();
-        PlayerPrefs.SetInt("text_size", textSize);
-        Debug.Log("-1");
-
+        UpdateTextSize();
     }
 
+
     /// <summary>
-    /// �ٰ��� �а�
+    /// 줄 간격을 넓게 설정하는 함수. 누를 때마다 +10f
     /// </summary>
-
-    // public void wideLineSpace()
-    // {
-    //     Sample_Text.lineSpacing = 20f;
-    //     storyText.lineSpacing  = 20f;
-    // }
-
     public void lineSpaceWider()
     {
         float lineMax = 20f;
         if (lineSpace < lineMax)
         {
             lineSpace += 10f;
+            LineSpaceSlider.value += 10;
         }
-        Sample_Text.lineSpacing = lineSpace;
-        storyText.lineSpacing = lineSpace;
-        Line_Space.text = lineSpace.ToString();
-        PlayerPrefs.SetFloat("line_space", lineSpace);
-        Debug.Log("line space +1");
-        // Debug.Log("complete");
+        UpdateLineSpace();
     }
 
-    /// <summary>
-    /// �ٰ��� ����
-    /// </summary>
-    // public void middleLineSpace()
-    // {
-    //     Sample_Text.lineSpacing = 0f;
-    //     storyText.lineSpacing = 0f;
-    // }
 
     /// <summary>
-    /// �ٰ��� ����
+    /// 줄 간격을 좁게 설정하는 함수. 누를 때마다 -10f
     /// </summary>
-    // public void narrowLineSpace()
-    // {
-    //     Sample_Text.lineSpacing = -20f;
-    //     storyText.lineSpacing = -20f;
-    // }
-// }
     public void lineSpaceNarrower()
     {
         float lineMin = -20f;
-        if (lineSpace > lineMin) {
+        if (lineSpace > lineMin)
+        {
             lineSpace -= 10f;
+            LineSpaceSlider.value -= 10;
         }
-        Sample_Text.lineSpacing = lineSpace;
-        storyText.lineSpacing = lineSpace;
-        Line_Space.text = lineSpace.ToString();
-        PlayerPrefs.SetFloat("line_space", lineSpace);
-        Debug.Log("line space -1");
+        UpdateLineSpace();
+    }
 
+
+    /// <summary>
+    /// 줄 간격 설정 값이 변경된 후 본문 텍스트와 샘플 텍스트에 적용시키는 함수
+    /// </summary>
+    private void UpdateLineSpace()
+    {
+        LineSpaceSlider.value = lineSpace;
+        sampleText.lineSpacing = lineSpace;
+        storyText.lineSpacing = lineSpace;
+        PlayerPrefs.SetFloat("line_space", lineSpace);
+    }
+
+
+    /// <summary>
+    /// 폰트 크기 설정 값이 변경된 후 본문 텍스트와 샘플 텍스트에 적용시키는 함수
+    /// </summary>
+    private void UpdateTextSize()
+    {
+        TextSizeSlider.value = textSize;
+        sampleText.fontSize = textSize;
+        storyText.fontSize = textSize;
+        PlayerPrefs.SetInt("text_size", textSize);
+    }
+
+
+    /// <summary>
+    /// 폰트 설정 값을 기본값으로 리셋
+    /// </summary>
+    public void ResetFontSettings()
+    {
+        //reset text size values
+        textSize = 14;
+        UpdateTextSize();
+
+        //reset line space values
+        lineSpace = 0f;
+        UpdateLineSpace();
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 25_middleStone
+  m_EditorClassIdentifier: 
+  achievementName: "\uC911\uAE09 \uB9C8\uB825\uC11D \uD68D\uB4DD"
+  achievementDesc: "\uAD11\uC0B0 \uAE4A\uC219\uC774 \uB354 \uB4E4\uC5B4\uAC00\uC11C
+    \uC911\uAE09 \uB9C8\uB825\uC11D \uCC44\uAD74\uD558\uAE30"
+  id: 25
+  nowNum: 0
+  maxNum: 1
+  achieveState: 1
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

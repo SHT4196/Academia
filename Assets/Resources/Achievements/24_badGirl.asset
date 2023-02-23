@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 24_badGirl
+  m_EditorClassIdentifier: 
+  achievementName: "\uAC89\uC73C\uB860 \uBC37\uAC78 \uC18D\uC73C\uB860 \uAD7F\uAC78"
+  achievementDesc: "\uB4B7\uB2F4\uC774 \uD55C\uCC3D\uC774\uB358 \uD68C\uC758\uC2E4\uC5D0
+    \uD798\uCC28\uAC8C \uB4E4\uC5B4\uAC00\uAE30"
+  id: 24
+  nowNum: 0
+  maxNum: 1
+  achieveState: 1
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
-  m_Name: 3_new
+  m_Name: 30_cheerUp
   m_EditorClassIdentifier: 
-  achievementName: "\uC0C8 \uC5C5\uC801"
-  achievementDesc: "\uC0C8\uB85C\uC6B4 \uC2A4\uD06C\uB9BD\uD2B8"
-  id: 4
+  achievementName: "\uC9C4\uC815\uD55C \uC704\uB85C\uB780"
+  achievementDesc: "\uD559\uC0DD\uD68C\uC7A5 \uC120\uAC70\uC5D0\uC11C \uB5A8\uC5B4\uC9C4
+    \uC720\uC624\uC218\uB97C \uC704\uB85C\uD574\uC8FC\uAE30"
+  id: 30
   nowNum: 0
-  maxNum: 3
+  maxNum: 1
   achieveState: 1
-  achievementThumbnail: {fileID: 21300000, guid: 8a23205812eb3bf48a313f2b901116d6, type: 3}
+  achievementThumbnail: {fileID: 0}
   _achievementTime: 

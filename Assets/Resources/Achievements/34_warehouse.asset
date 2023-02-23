@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 34_warehouse
+  m_EditorClassIdentifier: 
+  achievementName: "\uBC11\uC838\uC57C \uBCF8\uC804"
+  achievementDesc: "\uC9C0\uD558 \uACC4\uB2E8 \uBC11 \uCC3D\uACE0\uB85C \uBC14\uB85C
+    \uD5A5\uD558\uAE30"
+  id: 34
+  nowNum: 0
+  maxNum: 1
+  achieveState: 1
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 

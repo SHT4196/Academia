@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
-  m_Name: 2_Hidden
+  m_Name: 42_Isaac
   m_EditorClassIdentifier: 
-  achievementName: hidden
-  achievementDesc: hidden
-  id: 2
+  achievementName: "\uC544\uC774\uC791, \uD574 \uC918!"
+  achievementDesc: "\uC0AC\uC778\uAC80\uC744 \uC544\uC774\uC791\uC5D0\uAC8C \uBC00\uC5B4\uC8FC\uAE30"
+  id: 42
   nowNum: 0
   maxNum: 1
-  achieveState: 1
-  achievementThumbnail: {fileID: 21300000, guid: 5ebcb2f973f8a1c4bbdf345fbe04765e, type: 3}
+  achieveState: 0
+  achievementThumbnail: {fileID: 0}
   _achievementTime: 

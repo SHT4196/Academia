@@ -12,6 +12,9 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private List<Image> health;
     [SerializeField] private List<Image> mental;
+    [SerializeField] private Image forceImg;
+    [SerializeField] private Image intellectImg;
+    [SerializeField] private Image manaImg;
     private GameObject _force;
     private GameObject _intellect;
     private GameObject _mana;
@@ -60,6 +63,9 @@ public class PlayerManager : MonoBehaviour
         _force = GameObject.Find("Force");
         _intellect = GameObject.Find("Intellect");
         _mana = GameObject.Find("Mana");
+        forceImg = _force.transform.GetChild(0).GetComponent<Image>();
+        intellectImg = _intellect.transform.GetChild(0).GetComponent<Image>();
+        manaImg = _mana.transform.GetChild(0).GetComponent<Image>();
         forceAmount = _force.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         manaAmount = _mana.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         intellectAmount = _intellect.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
@@ -172,6 +178,36 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 능력치 이미지 애니메이션 적용 함수
+    /// </summary>
+    /// <param name="img">애니메이션을 적용할 이미지 번호(1:force, 2:intellect, 3:mana)</param>
+    public void ImgAnim(int imgNum)
+    {
+        float changeSize = 1.6f;
+        float changeTime = 0.9f;
+
+        if (imgNum == 1)
+        {
+            forceImg.transform.DOScale(changeSize,changeTime).OnComplete(() => {
+                forceImg.transform.DOScale(1.0f, changeTime);
+            });
+        }
+        else if (imgNum == 2)
+        {
+            intellectImg.transform.DOScale(changeSize, changeTime).OnComplete(() => {
+                intellectImg.transform.DOScale(1.0f, changeTime);
+            });
+        }
+        else if (imgNum == 3)
+        {
+            intellectImg.transform.DOScale(changeSize, changeTime).OnComplete(() => {
+                intellectImg.transform.DOScale(1.0f, changeTime);
+            });
+        }
+    }
+
 
 
     /// <summary>

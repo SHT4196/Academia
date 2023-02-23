@@ -37,6 +37,16 @@ public class OptionTrigger : MonoBehaviour
 
     }
     /// <summary>
+    /// 폰트 세팅값, 사운드 세팅값 리셋하는 함수(초기화 버튼에 붙임)
+    /// </summary>
+    public void ResetSetting_Btn()
+    {
+
+        FontManager.instance.ResetFontSettings();
+        SoundManger.instance.ResetSoundSettings();
+
+    }
+    /// <summary>
     /// 업적창 열기
     /// </summary>
     public void Achieve_Btn()
@@ -107,7 +117,6 @@ public class OptionTrigger : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // 게임종료창이 닫혀 있을때 뒤로가기

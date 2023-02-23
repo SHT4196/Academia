@@ -9,7 +9,7 @@ public class Popup : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool isDelayed = false;
     public GameObject Popup_image;
     float timer = 0.0f;
-    float waitingTime = 1;
+    // float waitingTime = 1;
 
 
     /// button up 인식
@@ -31,7 +31,7 @@ public class Popup : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     IEnumerator DisplayPopup()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         Popup_image.SetActive(true);
 
     }

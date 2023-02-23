@@ -158,7 +158,7 @@ public class Player
         _force = PlayerPrefs.GetInt("Force") == 0 ? 2 : PlayerPrefs.GetInt("Force");
         _intellect = PlayerPrefs.GetInt("Intellect") == 0 ? 2 : PlayerPrefs.GetInt("Intellect");
         _mana = PlayerPrefs.GetInt("Mana") == 0 ? 2 : PlayerPrefs.GetInt("Mana");
-        
+
         //player 이름 설정
         _playerName = PlayerPrefs.GetString("PlayerName");
 
@@ -186,8 +186,6 @@ public class Player
         _gmr.changeability_amount(PlayerAbility.Intellect, _intellect);
         _gmr.changeability_amount(PlayerAbility.Mana, _mana);
         _gmr.likeable_amount();
-
-        
     }
     
     /// <summary>
@@ -368,6 +366,7 @@ public class Player
         {
             SoundManger.instance.PlayChangingStatSound();
             this._force += value;
+            _gmr.ImgAnim(1);
             _gmr.changeability_amount(ability, this._force);
             if (isAdmin)
             {
@@ -379,6 +378,7 @@ public class Player
         {
             SoundManger.instance.PlayChangingStatSound();
             this._intellect += value;
+            _gmr.ImgAnim(2);
             _gmr.changeability_amount(ability, this._intellect);
             if (isAdmin)
             {
@@ -390,6 +390,7 @@ public class Player
         {
             SoundManger.instance.PlayChangingStatSound();
             this._mana += value;
+            _gmr.ImgAnim(3);
             _gmr.changeability_amount(ability, this._mana);
             if (isAdmin)
             {

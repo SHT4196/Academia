@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
-  m_Name: 1_Die
+  m_Name: 45_mainChara
   m_EditorClassIdentifier: 
-  achievementName: "\uC8FD\uC74C"
-  achievementDesc: "\uC8FD\uC74C"
-  id: 1
+  achievementName: "\uC8FC\uC778\uACF5\uC774 \uB418\uACE0 \uC2F6\uC5B4"
+  achievementDesc: "\uC9C1\uC811 \uC0AC\uC778\uAC80\uC744 \uB4E4\uACE0 \uBB38\uC591\uC744
+    \uCC0C\uB974\uAE30"
+  id: 45
   nowNum: 0
   maxNum: 1
-  achieveState: 1
-  achievementThumbnail: {fileID: 21300000, guid: 8efbd2ae0afde0f4c8e84b981191e9c9, type: 3}
+  achieveState: 0
+  achievementThumbnail: {fileID: 0}
   _achievementTime: 

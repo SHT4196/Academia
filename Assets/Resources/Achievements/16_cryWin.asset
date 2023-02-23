@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37432617e4bfc4b4e86d23bf92096698, type: 3}
+  m_Name: 16_cryWin
+  m_EditorClassIdentifier: 
+  achievementName: "\uC120\uC999\uD544\uC2B9"
+  achievementDesc: "\uB9C8\uB825\uD3ED\uD0C4 \uD14C\uB7EC \uC7AC\uD310\uC5D0\uC11C
+    \uB208\uBB3C\uB85C \uBB34\uC8C4\uB97C \uC8FC\uC7A5\uD558\uAE30"
+  id: 16
+  nowNum: 0
+  maxNum: 1
+  achieveState: 0
+  achievementThumbnail: {fileID: 0}
+  _achievementTime: 
