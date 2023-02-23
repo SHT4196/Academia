@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4716243374538510210, guid: 2ac4677763d17ec499f1c65b86984844, type: 3}
       propertyPath: m_Name
-      value: mental
+      value: mental Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716243374538510210, guid: 2ac4677763d17ec499f1c65b86984844, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4716243374538510211, guid: 2ac4677763d17ec499f1c65b86984844, type: 3}
       propertyPath: m_Pivot.x

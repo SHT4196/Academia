@@ -168,6 +168,11 @@ public class Player
             _department = PlayerDepartment.Wizard;
         else if (PlayerPrefs.GetString("Department") == "Politics")
             _department = PlayerDepartment.Politics;
+
+        _likeableDic["서"] = PlayerPrefs.GetInt("서") == 0 ? 0 : PlayerPrefs.GetInt("서");
+        _likeableDic["고"] = PlayerPrefs.GetInt("고") == 0 ? 0 : PlayerPrefs.GetInt("고");
+        _likeableDic["연"] = PlayerPrefs.GetInt("연") == 0 ? 0 : PlayerPrefs.GetInt("연");
+
     }
 
     /// <summary>
@@ -272,11 +277,11 @@ public class Player
             _gmr.ImgChange(0, value, this._health);
             if (this._health >= 3)
                 this._health = 3;
-            if (isAdmin)
+            if (!isAdmin)
             {
-                return;
+                PlayerPrefs.SetInt("Health", this._health); //변경된 health값 저장
             }
-            PlayerPrefs.SetInt("Health", this._health); //변경된 health값 저장
+            
         }
         if (_health <= 0)
             this.Die();
@@ -307,10 +312,10 @@ public class Player
                 this._mental = 3;
             if (!isAdmin)
             {
-                return; 
+                PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
             }
-            PlayerPrefs.SetInt("Mental", this._mental); //변경된 mental 값 저장
         }
+            
         if (_mental <= 0)
             this.Die();
     }
@@ -340,7 +345,7 @@ public class Player
         Debug.Log($"서: {_likeableDic["서"]}, 연: {_likeableDic["연"]}, 고: {_likeableDic["고"]}");
         _gmr.likeable_amount();
 
-        PlayerPrefs.SetInt("서", _likeableDic["서"]);
+        PlayerPrefs.SetInt("서", _likeableDic["서"]); 
         PlayerPrefs.SetInt("연", _likeableDic["연"]);
         PlayerPrefs.SetInt("고", _likeableDic["고"]);
         PlayerPrefs.SetInt("강", _likeableDic["강"]);
@@ -401,9 +406,8 @@ public class Player
     {
 
         
-        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
-        PlayerPrefs.DeleteAll(); //저장값 초기화
+        //GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        //GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
        // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
         AchievementManager.Instance.Achieve_achievement(1, 1);
 

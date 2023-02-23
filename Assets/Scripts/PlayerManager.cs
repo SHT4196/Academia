@@ -246,6 +246,8 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void DieAndSceneChange()
     {
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
+        GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         //Application.Quit();
         SceneManager.LoadScene(2);
         //EditorApplication.Exit(0);
