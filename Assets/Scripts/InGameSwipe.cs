@@ -101,13 +101,13 @@ public class InGameSwipe : MonoBehaviour
 			if (startTouchX > Screen.width / 1.25f && isRight == true)
 			{
 				Canvas.GetComponent<OptionTrigger>().Achieve_Btn();
-				Handheld.Vibrate();
+				//Handheld.Vibrate();
 			}
 
 			else if (startTouchX < Screen.width / 8f && isLeft == true)
 			{
 				Canvas.GetComponent<OptionTrigger>().Option_Btn();
-				Handheld.Vibrate();
+				//Handheld.Vibrate();
 			}
 		}
 
@@ -116,7 +116,7 @@ public class InGameSwipe : MonoBehaviour
 			if (isLeft == true)
 			{
 				Canvas.GetComponent<OptionTrigger>().AchieveClose_Btn();
-				Handheld.Vibrate();
+				//Handheld.Vibrate();
 			}
 		}
 
@@ -125,7 +125,7 @@ public class InGameSwipe : MonoBehaviour
 			if (isRight == true)
 			{
 				Canvas.GetComponent<OptionTrigger>().OptionClose_Btn();
-				Handheld.Vibrate();
+				//Handheld.Vibrate();
 			}
 		}
 

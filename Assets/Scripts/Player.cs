@@ -172,6 +172,13 @@ public class Player
         _likeableDic["서"] = PlayerPrefs.GetInt("서") == 0 ? 0 : PlayerPrefs.GetInt("서");
         _likeableDic["고"] = PlayerPrefs.GetInt("고") == 0 ? 0 : PlayerPrefs.GetInt("고");
         _likeableDic["연"] = PlayerPrefs.GetInt("연") == 0 ? 0 : PlayerPrefs.GetInt("연");
+        _likeableDic["서"] = PlayerPrefs.GetInt("강") == 0 ? 0 : PlayerPrefs.GetInt("강");
+        _likeableDic["고"] = PlayerPrefs.GetInt("성") == 0 ? 0 : PlayerPrefs.GetInt("성");
+        _likeableDic["연"] = PlayerPrefs.GetInt("한") == 0 ? 0 : PlayerPrefs.GetInt("한");
+        _likeableDic["서"] = PlayerPrefs.GetInt("중") == 0 ? 0 : PlayerPrefs.GetInt("중");
+        _likeableDic["고"] = PlayerPrefs.GetInt("경") == 0 ? 0 : PlayerPrefs.GetInt("경");
+        _likeableDic["연"] = PlayerPrefs.GetInt("H") == 0 ? 0 : PlayerPrefs.GetInt("H");
+        _likeableDic["연"] = PlayerPrefs.GetInt("U") == 0 ? 0 : PlayerPrefs.GetInt("U");
 
     }
 
@@ -410,20 +417,40 @@ public class Player
         //GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         //GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
        // Achivement.Acv.nowupdate(8, 1); //죽었을 때 업적 
-        AchievementManager.Instance.Achieve_achievement(1, 1);
+        //AchievementManager.Instance.Achieve_achievement(1, 1);
 
-        _gmr.DiepanelActive(); // die 창 활성화
+        _gmr.DieboxActive(); // die 창 활성화
+
         if (isAdmin)
         {
             return;
         }
         PlayerPrefs.DeleteAll(); // 저장값 초기화
-        
+        PlayerPrefs.SetInt("Tutorial", 1);
+
         // 후에 health와 mental의 다른 대처? 
         // if(_health == 0)
         //     Debug.Log("Die");
         // else if(_mental == 0)
         //     Debug.Log("Die");
+
+    }
+
+    public void Reset()
+    {
+
+
+
+        _gmr.DiepanelActive(); // die 창 활성화
+
+        if (isAdmin)
+        {
+            return;
+        }
+        PlayerPrefs.DeleteAll(); // 저장값 초기화
+        PlayerPrefs.SetInt("Tutorial", 1);
+
+       
 
     }
 

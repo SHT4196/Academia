@@ -13,9 +13,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Canvas adminCanvas;
     [SerializeField] private Button adminButton;
     [SerializeField] private TMP_InputField nameInputField;
+   
 
     [SerializeField] private Text infoText;
     [SerializeField] private GameObject warningText;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,23 +26,31 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// 튜토리얼 판단 변수 조절
+    /// </summary>
+    void Awake()
     {
-        
+       
     }
+
+
     public void GoMainMenu()
     {
         SceneManager.LoadScene(2);
     }
+    /// <summary>
+    ///  튜토리얼 자동 실행
+    /// </summary>
+
     public void NewGame()
     {
 
         Player.instance.isAdmin = false;
        // StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
 
-       namePanel = gameObject.transform.GetChild(4).gameObject;
-       resetPanel = gameObject.transform.GetChild(5).gameObject;
+       namePanel = gameObject.transform.GetChild(2).gameObject;
+       resetPanel = gameObject.transform.GetChild(3).gameObject;
 
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
@@ -62,8 +73,8 @@ public class MainMenu : MonoBehaviour
         Player.instance.isAdmin = false;
         // StaticCoroutine.is_play = false; //씬 전환시 코루틴 종료
 
-        resetPanel = gameObject.transform.GetChild(5).gameObject;
-        noDataPanel = gameObject.transform.GetChild(6).gameObject;
+        resetPanel = gameObject.transform.GetChild(3).gameObject;
+        noDataPanel = gameObject.transform.GetChild(4).gameObject;
 
         if (PlayerPrefs.GetString("ScriptID") == "")
         {
@@ -80,6 +91,7 @@ public class MainMenu : MonoBehaviour
     public void Reset()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("Tutorial", 1);
     }
 
     public void SetNameAndStartGame()
@@ -98,7 +110,7 @@ public class MainMenu : MonoBehaviour
 
     public void NamePanelOpen()
     {
-        namePanel = gameObject.transform.GetChild(4).gameObject;
+        namePanel = gameObject.transform.GetChild(2).gameObject;
         namePanel.SetActive(true);
         Time.timeScale = 0;
 
@@ -106,7 +118,7 @@ public class MainMenu : MonoBehaviour
 
     public void NamePanelClose()
     {
-        namePanel = gameObject.transform.GetChild(4).gameObject;
+        namePanel = gameObject.transform.GetChild(2).gameObject;
         namePanel.SetActive(false);
         Time.timeScale = 1;
 
@@ -114,7 +126,7 @@ public class MainMenu : MonoBehaviour
 
     public void ResetPanelOpen()
     {
-        resetPanel = gameObject.transform.GetChild(5).gameObject;
+        resetPanel = gameObject.transform.GetChild(3).gameObject;
         resetPanel.SetActive(true);
         Time.timeScale = 0;
 
@@ -123,7 +135,7 @@ public class MainMenu : MonoBehaviour
 
     public void ResetPanelClose()
     {
-        resetPanel = gameObject.transform.GetChild(5).gameObject;
+        resetPanel = gameObject.transform.GetChild(3).gameObject;
         resetPanel.SetActive(false);
         Time.timeScale = 1;
 
@@ -131,7 +143,7 @@ public class MainMenu : MonoBehaviour
 
     public void NoDatePanelClose()
     {
-        noDataPanel = gameObject.transform.GetChild(6).gameObject;
+        noDataPanel = gameObject.transform.GetChild(4).gameObject;
         noDataPanel.SetActive(false);
         Time.timeScale = 1;
 
@@ -142,4 +154,6 @@ public class MainMenu : MonoBehaviour
         adminCanvas.gameObject.SetActive(true);
         adminCanvas.GetComponent<Admin>().idPanel.SetActive(true);
     }
+
+    
 }

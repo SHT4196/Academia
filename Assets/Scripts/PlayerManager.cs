@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI intellectAmount;
 
     [SerializeField] private Image diepanel;
+    [SerializeField] private Image diebox;
 
     //[FormerlySerializedAs("stat_fill")] [SerializeField] private Image[] statFill = new Image[3];    //force, intel, poli ������ ���
 
@@ -74,6 +75,7 @@ public class PlayerManager : MonoBehaviour
         //statFill[2] = _mana.transform.GetChild(1).GetComponent<Image>();
         
         diepanel = GameObject.Find("Canvas").transform.Find("DiePanel").GetComponent<Image>();
+        diebox = GameObject.Find("Canvas").transform.Find("DieBox").GetComponent<Image>();
 
         if (Player.instance.IsPlayerReset) // Player 상태 초기화
             Player.instance.ResetPlayer();
@@ -298,9 +300,22 @@ public class PlayerManager : MonoBehaviour
         Player.instance.Die();
         
     }
+
+    public void Resett()
+    {
+
+        Player.instance.Reset();
+
+    }
     /// <summary>
     /// 죽은 후 Panel Activate
     /// </summary>
+    public void DieboxActive()
+    {
+        diebox.gameObject.SetActive(true);
+     
+    }
+
     public void DiepanelActive()
     {
         diepanel.gameObject.SetActive(true);

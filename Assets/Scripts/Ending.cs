@@ -62,6 +62,7 @@ public class Ending : MonoBehaviour
     {
         Player.instance.ResetPlayer();
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("Tutorial", 1);
         endingSource.Stop();
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         GameObject.Find("Content").GetComponent<AddText>().DestroyPicture();

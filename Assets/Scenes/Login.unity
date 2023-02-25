@@ -231,10 +231,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   namePanel: {fileID: 0}
+  resetPanel: {fileID: 0}
+  noDataPanel: {fileID: 0}
+  tutorialPanel: {fileID: 0}
   adminCanvas: {fileID: 0}
   adminButton: {fileID: 0}
   nameInputField: {fileID: 0}
   infoText: {fileID: 0}
+  warningText: {fileID: 0}
+  _tutorial: 0
 --- !u!114 &165963965
 MonoBehaviour:
   m_ObjectHideFlags: 0
