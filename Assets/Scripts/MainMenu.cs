@@ -96,7 +96,7 @@ public class MainMenu : MonoBehaviour
 
     public void SetNameAndStartGame()
     {
-        if (nameInputField.text.Length < 7)
+        if ((nameInputField.text.Length < 7) && (nameInputField.text.Length > 0))
         {
             Player.instance.SetPlayerName(nameInputField.text);
             SceneManager.LoadScene(3);
