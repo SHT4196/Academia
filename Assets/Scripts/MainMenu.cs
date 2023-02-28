@@ -90,8 +90,9 @@ public class MainMenu : MonoBehaviour
     }
     public void Reset()
     {
+        
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("Tutorial", 1);
+      
     }
 
     public void SetNameAndStartGame()

@@ -6,8 +6,10 @@ public class EndingManager : MonoBehaviour
 {
     private static EndingManager _instance;
 
-    public Canvas goodEndingCanvas;
-    public Canvas badEndingCanvas;
+    public Canvas EndingCanvasK;
+    public Canvas EndingCanvasY;
+    public Canvas EndingCanvasB1;
+    public Canvas EndingCanvasB2;
     public static EndingManager instance
     {
         get
