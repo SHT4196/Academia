@@ -4434,7 +4434,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1768335292}
   m_HandleRect: {fileID: 1768335291}
   m_Direction: 0
-  m_Value: -0.000000029075895
+  m_Value: 0.000000029075895
   m_Size: 0.3228494
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7713,6 +7713,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 740472434}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: PlayBtnSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &473329276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8594,7 +8606,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 740472434}
         m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
         m_MethodName: PlayBtnSound
         m_Mode: 1
@@ -24464,7 +24476,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 740472434}
         m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
         m_MethodName: PlayBtnSound
         m_Mode: 1
@@ -25743,8 +25755,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 743158432}
   m_HandleRect: {fileID: 743158431}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.1837558
+  m_Value: 0.9999999
+  m_Size: 0.18431677
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28707,7 +28719,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -33598,6 +33610,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 740472434}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: PlayBtnSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1870483583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35012,7 +35036,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 740472434}
         m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
         m_MethodName: PlayBtnSound
         m_Mode: 1
@@ -37977,7 +38001,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 740472434}
         m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
         m_MethodName: PlayBtnSound
         m_Mode: 1
