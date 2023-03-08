@@ -15,9 +15,9 @@ MonoBehaviour:
   achievementName: "\uBA85\uC608 \uBBFC\uCD08\uB2E8 \uAC00\uC785"
   achievementDesc: "\uC0AC\uD0D5 \uC120\uD0DD\uC5D0\uC11C \uBBFC\uD2B8\uB9DB \uC0AC\uD0D5
     \uACE0\uB974\uAE30"
-  id: 2
+  id: 1
   nowNum: 0
   maxNum: 1
   achieveState: 1
   achievementThumbnail: {fileID: 21300000, guid: 5d1cc42e13330664ca3e8bdce12fc5f5, type: 3}
-  _achievementTime: 
+  _achievementTime: 2023-02-27 20:07:14
