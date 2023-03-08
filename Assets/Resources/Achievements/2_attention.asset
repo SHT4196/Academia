@@ -15,7 +15,7 @@ MonoBehaviour:
   achievementName: "\uAD00\uC885 \uB4F1\uADF9"
   achievementDesc: "\uCC45\uC0C1 \uBC11\uC73C\uB85C \uC190\uC744 \uBED7\uC5B4 \uD39C
     \uC8FC\uC6CC\uC8FC\uAE30"
-  id: 3
+  id: 2
   nowNum: 0
   maxNum: 1
   achieveState: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achievementName: "MBTI\uB294 \uACFC\uD559\uC774\uB2E4"
   achievementDesc: "MBTI \uAC80\uC0AC 3\uD68C \uC9C4\uD589\uD558\uAE30"
-  id: 1
+  id: 0
   nowNum: 0
   maxNum: 3
   achieveState: 1
