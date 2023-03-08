@@ -204,8 +204,8 @@ public class PlayerManager : MonoBehaviour
         }
         else if (imgNum == 3)
         {
-            intellectImg.transform.DOScale(changeSize, changeTime).OnComplete(() => {
-                intellectImg.transform.DOScale(1.0f, changeTime);
+            manaImg.transform.DOScale(changeSize, changeTime).OnComplete(() => {
+                manaImg.transform.DOScale(1.0f, changeTime);
             });
         }
     }
