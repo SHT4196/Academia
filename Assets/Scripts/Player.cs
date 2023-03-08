@@ -425,8 +425,10 @@ public class Player
         {
             return;
         }
+
         PlayerPrefs.DeleteAll(); // 저장값 초기화
         PlayerPrefs.SetInt("Tutorial", 1);
+        
 
         // 후에 health와 mental의 다른 대처? 
         // if(_health == 0)
@@ -449,8 +451,9 @@ public class Player
         }
         PlayerPrefs.DeleteAll(); // 저장값 초기화
         PlayerPrefs.SetInt("Tutorial", 1);
+        
 
-       
+
 
     }
 

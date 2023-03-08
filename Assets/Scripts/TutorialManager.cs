@@ -10,13 +10,17 @@ public class TutorialManager : MonoBehaviour
 {
 
     [SerializeField] public GameObject tutorialPanel;
+    public GameObject[] tutorialImage;
     private int _tutorial;
+    private int tutorialIndex;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         Invoke("AutoTutorial", 1f);
+        tutorialIndex = 0;
     }
 
     /// <summary>
@@ -57,15 +61,34 @@ public class TutorialManager : MonoBehaviour
     {
         
         tutorialPanel.gameObject.SetActive(true);
-        Time.timeScale = 0;
+        tutorialImage[0].gameObject.SetActive(true);
+        
     }
 
     public void TutorialPanelClose()
     {
         
         tutorialPanel.SetActive(false);
-        Time.timeScale = 1;
+       
 
+    }
+
+    public void Next() 
+    {
+        if (tutorialIndex < 12) 
+        {
+            tutorialIndex += 1;
+            for (int i = 0; i < tutorialImage.Length; i++)
+            {
+                tutorialImage[i].gameObject.SetActive(false);
+                tutorialImage[tutorialIndex].gameObject.SetActive(true);
+            }
+        }
+        if (tutorialIndex >= 12)
+        {
+            TutorialPanelClose();
+            tutorialIndex = 0;
+        }
     }
 
 }

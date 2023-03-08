@@ -64,8 +64,10 @@ public class AddText : MonoBehaviour
     /// </summary>
     private static bool correction = true;
 
-    private GameObject goodEndingCanvas;
-    private GameObject badEndingCanvas;
+    private GameObject EndingCanvasK;
+    private GameObject EndingCanvasY;
+    private GameObject EndingCanvasB1;
+    private GameObject EndingCanvasB2;
     // Start is called before the first frame update
     void Start()
     {
@@ -89,16 +91,30 @@ public class AddText : MonoBehaviour
         //엔딩을 나타내는 text Script 일 때
         if (script.endingTrigger == 1)
         {
-            goodEndingCanvas = GameObject.Find("Ending").transform.GetChild(0).gameObject;
-            goodEndingCanvas.GetComponent<Ending>().SetEndingScript(script);
-            goodEndingCanvas.gameObject.SetActive(true);
+            EndingCanvasK = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            EndingCanvasK.GetComponent<Ending>().SetEndingScript(script);
+            EndingCanvasK.gameObject.SetActive(true);
             return;
         }
         else if (script.endingTrigger == 2)
         {
-            badEndingCanvas = GameObject.Find("Ending").transform.GetChild(0).gameObject;
-            badEndingCanvas.GetComponent<Ending>().SetEndingScript(script);
-            badEndingCanvas.gameObject.SetActive(true);
+            EndingCanvasY = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            EndingCanvasY.GetComponent<Ending>().SetEndingScript(script);
+            EndingCanvasY.gameObject.SetActive(true);
+            return;
+        }
+        else if (script.endingTrigger == 3)
+        {
+            EndingCanvasB1 = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            EndingCanvasB1.GetComponent<Ending>().SetEndingScript(script);
+            EndingCanvasB1.gameObject.SetActive(true);
+            return;
+        }
+        else if (script.endingTrigger == 4)
+        {
+            EndingCanvasB2 = GameObject.Find("Ending").transform.GetChild(0).gameObject;
+            EndingCanvasB2.GetComponent<Ending>().SetEndingScript(script);
+            EndingCanvasB2.gameObject.SetActive(true);
             return;
         }
 
