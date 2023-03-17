@@ -8,7 +8,7 @@ public class MainSwipeUI : MonoBehaviour
 	private Scrollbar scrollBar;                    // Scrollbar의 위치를 바탕으로 현재 페이지 검사
 	private float swipeTime = 0.2f;         // 페이지가 Swipe 되는 시간
 	[SerializeField]
-	private float swipeDistance = 50.0f;        // 페이지가 Swipe되기 위해 움직여야 하는 최소 거리
+	private float swipeDistance = 200.0f;        // 페이지가 Swipe되기 위해 움직여야 하는 최소 거리
 	[SerializeField]
 	private Transform[] circleContents;       // 현재 페이지를 나타내는 원 이미지 ui의 transform
 

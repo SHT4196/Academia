@@ -18,5 +18,5 @@ MonoBehaviour:
   nowNum: 0
   maxNum: 1
   achieveState: 1
-  achievementThumbnail: {fileID: 0}
+  achievementThumbnail: {fileID: 21300000, guid: 5d1cc42e13330664ca3e8bdce12fc5f5, type: 3}
   _achievementTime: 

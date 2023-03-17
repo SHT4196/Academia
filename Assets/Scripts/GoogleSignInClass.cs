@@ -176,4 +176,7 @@ public class GoogleSignInClass : MonoBehaviour
     }
 
     private void AddToInformation(string str) { infoText.text += "\n" + str; }
+
+    
+
 }

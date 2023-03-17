@@ -4434,7 +4434,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1768335292}
   m_HandleRect: {fileID: 1768335291}
   m_Direction: 0
-  m_Value: 0.000000029075895
+  m_Value: -0.000000029075895
   m_Size: 0.3228494
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7654,7 +7654,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -259.18, y: 330}
+  m_AnchoredPosition: {x: -252.18, y: 330}
   m_SizeDelta: {x: 420, y: 157.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &473329275
@@ -10865,8 +10865,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43.065, y: 412.5}
-  m_SizeDelta: {x: 872.21, y: 1082.9475}
+  m_AnchoredPosition: {x: -26.09, y: 412.5}
+  m_SizeDelta: {x: 872.18, y: 1082.9475}
   m_Pivot: {x: 0.4999997, y: 0.50000036}
 --- !u!114 &629252021
 MonoBehaviour:
@@ -16010,7 +16010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollBar: {fileID: 300891837}
-  swipeDistance: 50
+  swipeDistance: 450
   circleContents:
   - {fileID: 68875809}
   - {fileID: 313397914}
@@ -25755,8 +25755,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 743158432}
   m_HandleRect: {fileID: 743158431}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.18431677
+  m_Value: 0.9999998
+  m_Size: 0.1837558
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28851,7 +28851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -33.100037, y: 114.599976}
+  m_AnchoredPosition: {x: -26.1, y: 114.599976}
   m_SizeDelta: {x: 872.19995, y: 157.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1599588925
@@ -33551,7 +33551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 193, y: 330}
+  m_AnchoredPosition: {x: 200, y: 330}
   m_SizeDelta: {x: 420, y: 157.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1870483582

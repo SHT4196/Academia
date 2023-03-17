@@ -83,6 +83,39 @@ public class AddChoice : MonoBehaviour
                     replacedTxt += "필요";
                     _choice.need[j] = replacedTxt;
                 }
+                else if (rList[0] == "고")
+                {
+                    replacedTxt += rList[0];
+                    replacedTxt += "려 호감도 ";
+                    replacedTxt += rList[1];
+                    replacedTxt += "필요";
+                    _choice.need[j] = replacedTxt;
+                }
+                else if (rList[0] == "연")
+                {
+                    replacedTxt += rList[0];
+                    replacedTxt += "세 호감도 ";
+                    replacedTxt += rList[1];
+                    replacedTxt += "필요";
+                    _choice.need[j] = replacedTxt;
+                }
+                else if (rList[0] == "서")
+                {
+                    replacedTxt += rList[0];
+                    replacedTxt += "울 호감도 ";
+                    replacedTxt += rList[1];
+                    replacedTxt += "필요";
+                    _choice.need[j] = replacedTxt;
+                }
+                else if (rList[0] == "강")
+                {
+                    replacedTxt += "서";
+                    replacedTxt += rList[0];
+                    replacedTxt += " 호감도 ";
+                    replacedTxt += rList[1];
+                    replacedTxt += "필요";
+                    _choice.need[j] = replacedTxt;
+                }
                 else
                 {
                     replacedTxt += rList[0];
@@ -94,14 +127,14 @@ public class AddChoice : MonoBehaviour
 
                 if (abilityAvailableCheck == false) // �������� ������ �� ���� ��
                 {
-                    tmpText += "<color=#8B0000>";
+                    tmpText += "<color=#791414>";
                     tmpText += _choice.need[j];
                     tmpText += "</color>";
                     needComplete = false;
                 }
                 else // ������ ���� ������ ��
                 {
-                    tmpText += "<color=#008000>";
+                    tmpText += "<color=#14782E>";
                     tmpText += _choice.need[j];
                     tmpText += "</color>";
                 }
