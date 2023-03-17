@@ -93,7 +93,7 @@ public class Admin : MonoBehaviour
                                         Debug.Log($"ME ID: {mainId}, Health: {health}, Mental: {mental}, force: {force}, intellect: {intellect}, mana: {mana}, playername: {playername}");
                                         Player.instance.isAdmin = true;
                                         NextContainer.instance.EnterAdminMode(mainId, health, mental, force, intellect, mana, playername);
-                                        SceneManager.LoadScene(3);
+                                        SceneManager.LoadScene(4);
                                     }
                                     else
                                     {

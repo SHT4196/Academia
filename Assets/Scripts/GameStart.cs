@@ -27,7 +27,7 @@ public class GameStart : MonoBehaviour
     {
         logoImg.DOFade(1f, 1.5f);
         logoTxt.DOFade(1f, 1.5f);
-        Invoke("GoLoginScene", 2f);
+        Invoke("GoSecondScene", 2f);
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class GameStart : MonoBehaviour
     }
 
     // ���� ����
-    public void GoLoginScene()
+    public void GoSecondScene()
     {
         SceneManager.LoadScene(1);
     }

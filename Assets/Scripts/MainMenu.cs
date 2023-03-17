@@ -17,14 +17,10 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private Text infoText;
     [SerializeField] private GameObject warningText;
-
+    public GameObject Second;
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     /// <summary>
     /// 튜토리얼 판단 변수 조절
@@ -34,11 +30,17 @@ public class MainMenu : MonoBehaviour
        
     }
 
-
-    public void GoMainMenu()
+    public void GoLoginScene()
     {
         SceneManager.LoadScene(2);
     }
+
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene(3);
+
+    }
+   
     /// <summary>
     ///  튜토리얼 자동 실행
     /// </summary>
@@ -85,7 +87,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
     }
     public void Reset()
@@ -100,7 +102,7 @@ public class MainMenu : MonoBehaviour
         if ((nameInputField.text.Length < 7) && (nameInputField.text.Length > 0))
         {
             Player.instance.SetPlayerName(nameInputField.text);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
             Time.timeScale = 1;
         }
         else
