@@ -107,7 +107,7 @@ public class PlayerManager : MonoBehaviour
                     int tempIndex = result - value - i - 1;
                     if (tempIndex >= 0)
                     {
-                        health[tempIndex].transform.DOScale(0f, 0.5f).OnComplete(() =>
+                        health[tempIndex].transform.DOScale(0f, 0.35f).OnComplete(() =>
                         {
                             health[tempIndex].gameObject.SetActive(false);
                         });
@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
                     if (tempIndex < 3)
                     {
                         health[tempIndex].gameObject.SetActive(true);
-                        health[tempIndex].transform.DOScale(1.0f, 0.5f).OnComplete(() =>
+                        health[tempIndex].transform.DOScale(1.0f, 0.35f).OnComplete(() =>
                         {
                             health[tempIndex].transform.DOScale(0.5f, 0.25f);
                         });
@@ -188,7 +188,7 @@ public class PlayerManager : MonoBehaviour
     public void ImgAnim(int imgNum)
     {
         float changeSize = 1.6f;
-        float changeTime = 0.9f;
+        float changeTime = 0.6f;
 
         if (imgNum == 1)
         {
