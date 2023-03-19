@@ -19,7 +19,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("AutoTutorial", 0.5f);
+        Invoke("AutoTutorial", 0.3f);
         tutorialIndex = 0;
     }
 

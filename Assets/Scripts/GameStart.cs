@@ -25,9 +25,9 @@ public class GameStart : MonoBehaviour
     // ���� ��ư ����
     void Start()
     {
-        logoImg.DOFade(1f, 1.5f);
-        logoTxt.DOFade(1f, 1.5f);
-        Invoke("GoSecondScene", 2f);
+        logoImg.DOFade(1f, 1.8f);
+        logoTxt.DOFade(1f, 1.8f);
+        Invoke("GoSecondScene", 2.5f);
     }
 
     // Update is called once per frame

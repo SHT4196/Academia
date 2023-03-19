@@ -37477,7 +37477,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "6\uC790 \uC774\uB0B4\uB85C \uC785\uB825\uD574\uC8FC\uC138\uC694."
+  m_text: "1\uAE00\uC790 \uC774\uC0C1 6\uC790 \uC774\uD558\uB85C \uC785\uB825\uD574\uC8FC\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ce9c7620bdfb51640ba7788d25bc8343, type: 2}
   m_sharedMaterial: {fileID: -5308970991984094578, guid: ce9c7620bdfb51640ba7788d25bc8343, type: 2}

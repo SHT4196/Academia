@@ -27,7 +27,7 @@ public class GoogleSignInClass : MonoBehaviour
 
     void Start()
     {
-        Invoke("SignInWithGoogle",0.5f);
+        Invoke("SignInWithGoogle",0.3f);
     }
 
     private void Awake()
