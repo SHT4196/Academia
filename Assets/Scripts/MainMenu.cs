@@ -32,12 +32,12 @@ public class MainMenu : MonoBehaviour
 
     public void GoLoginScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadSceneAsync(2);
     }
 
     public void GoMainMenu()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadSceneAsync(3);
 
     }
    
@@ -87,14 +87,15 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadSceneAsync(4);
         }
     }
     public void Reset()
     {
         
         PlayerPrefs.DeleteAll();
-      
+        PlayerPrefs.SetInt("Tutorial", 1);
+
     }
 
     public void SetNameAndStartGame()
@@ -102,7 +103,7 @@ public class MainMenu : MonoBehaviour
         if ((nameInputField.text.Length < 7) && (nameInputField.text.Length > 0))
         {
             Player.instance.SetPlayerName(nameInputField.text);
-            SceneManager.LoadScene(4);
+            SceneManager.LoadSceneAsync(4);
             Time.timeScale = 1;
         }
         else

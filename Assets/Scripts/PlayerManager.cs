@@ -287,7 +287,7 @@ public class PlayerManager : MonoBehaviour
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         GameObject.Find("Content").GetComponent<AddText>().DestroySpace();
         //Application.Quit();
-        SceneManager.LoadScene(3);
+        SceneManager.LoadSceneAsync(3);
         //EditorApplication.Exit(0);
       //  Achivement.Acv.change_scene();
     }

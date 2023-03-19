@@ -33,16 +33,18 @@ public class FontManager : MonoBehaviour
             textSize = PlayerPrefs.GetInt("text_size");
             TextSizeSlider.value = PlayerPrefs.GetInt("text_size");
             sampleText.fontSize = textSize;
+            storyText.fontSize = textSize;
         }
         else
         {
-            textSize = 14;
+            textSize = 18;
         }
         if (PlayerPrefs.HasKey("line_space"))
         {
             lineSpace = PlayerPrefs.GetFloat("line_space");
             LineSpaceSlider.value = PlayerPrefs.GetFloat("line_space");
             sampleText.lineSpacing = lineSpace;
+            storyText.lineSpacing = lineSpace;
         }
         else
         {
@@ -62,7 +64,7 @@ public class FontManager : MonoBehaviour
     /// </summary>
     public void fontBigger()
     {
-        int sizeMax = 18;
+        int sizeMax = 21;
         if (textSize < sizeMax)
         {
             textSize ++;
@@ -78,7 +80,7 @@ public class FontManager : MonoBehaviour
     /// </summary>    
     public void fontSmaller()
     {
-        int sizeMin = 11;
+        int sizeMin = 14;
         if (textSize > sizeMin)
         {
             textSize --;
@@ -148,7 +150,7 @@ public class FontManager : MonoBehaviour
     public void ResetFontSettings()
     {
         //reset text size values
-        textSize = 14;
+        textSize = 18;
         UpdateTextSize();
 
         //reset line space values
