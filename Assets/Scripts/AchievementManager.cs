@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class AchievementManager : MonoBehaviour
 {
     private static AchievementManager instance = null;
+    
 
     public static AchievementManager Instance
     {
@@ -36,12 +37,21 @@ public class AchievementManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             AchievementSyncDB();
             InitialAchievementObjects();
+            
         }
         else
         {
             Destroy(this.gameObject);
         }
         
+    }
+
+    void Start() 
+    {
+        
+        AchievementManager.Instance.UpdateAchievements();
+        Debug.Log("업적 최신화");
+
     }
 
     /// <summary>

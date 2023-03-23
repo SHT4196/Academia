@@ -29,6 +29,7 @@ public class Achievement: MonoBehaviour
     private void Start()
     {
         SetAchivementView();
+        Debug.Log(" SetAchivementView");
     }
 
     /// <summary>

@@ -305,6 +305,7 @@ public class PlayerManager : MonoBehaviour
     {
 
         Player.instance.Reset();
+        Player.instance.ResetPlayer();
 
     }
     /// <summary>

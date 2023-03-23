@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] public GameObject namePanel;
     [SerializeField] public GameObject resetPanel;
+    [SerializeField] public GameObject resetPanel2;
     [SerializeField] public GameObject noDataPanel;
     [SerializeField] private Canvas adminCanvas;
     [SerializeField] private Button adminButton;
@@ -94,8 +95,12 @@ public class MainMenu : MonoBehaviour
     {
         
         PlayerPrefs.DeleteAll();
+        Player.instance.IsPlayerReset = true;
         PlayerPrefs.SetInt("Tutorial", 1);
 
+      
+    
+    
     }
 
     public void SetNameAndStartGame()
@@ -140,6 +145,23 @@ public class MainMenu : MonoBehaviour
     public void ResetPanelClose()
     {
         resetPanel = gameObject.transform.GetChild(3).gameObject;
+        resetPanel.SetActive(false);
+        Time.timeScale = 1;
+
+    }
+
+    public void ResetPanel2Open()
+    {
+        resetPanel = gameObject.transform.GetChild(6).gameObject;
+        resetPanel.SetActive(true);
+        Time.timeScale = 0;
+
+    }
+
+
+    public void ResetPanel2Close()
+    {
+        resetPanel = gameObject.transform.GetChild(6).gameObject;
         resetPanel.SetActive(false);
         Time.timeScale = 1;
 
